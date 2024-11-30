@@ -8,9 +8,22 @@
 </head>
 <body>
 
-<header>
-    <h1>GamerHub</h1>
-</header>
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav__data">
+                <a href="#" class="nav__logo">
+                    <img src="GamerHubLogo.png" alt="GamerHub Logo" class="logo">
+                </a>
+    
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-menu-line nav__toggle-menu"></i>
+                    <i class="ri-close-line nav__toggle-close"></i>
+                </div>
+            </div>
+    
+            <!-- Add navigation items similar to the main page -->
+        </nav>
+    </header>
 
 <section class="checkout-section">
     <h2>Checkout</h2>
@@ -90,16 +103,30 @@
     <section class="summary">
         <h3>Summary</h3>
         <div class="summary-item">
-            <p>Product 1</p>
-            <p>£999.99</p>
+            <img src="Mouse.jpg" alt="Placeholder Image" class="product-image">
+            <div class="product-details">
+                <p class="product-name">MX Anywhere 3S for Mac</p>
+                <p class="product-quantity">Quantity: 1</p>
+                <p class="product-price">Price: £89.99</p>
+            </div>
         </div>
+        <div class="divider small-divider"></div> <!-- Divider between image and subtotal -->
+    
         <div class="summary-item">
-            <p>Shipping</p>
-            <p>£999.99</p>
+            <p>Subtotal</p>
+            <p id="subtotal-price">£89.99</p>
         </div>
+        <div class="divider thick-divider"></div> <!-- Thicker divider between subtotal and total -->
+    
         <div class="summary-item total">
             <p>Total</p>
-            <p>£999.99</p>
+            <p id="total-price">£89.99</p>
+        </div>
+        <div class="promo-code">
+            <label for="promo-input">Promo Code:</label>
+            <input type="text" id="promo-input" placeholder="Enter promo code">
+            <button id="apply-promo">Apply</button>
+            <p id="promo-message"></p>
         </div>
     </section>
 </div>

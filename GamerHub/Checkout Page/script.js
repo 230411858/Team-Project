@@ -1,5 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("#checkout-form");
+    const applyPromoButton = document.querySelector("#apply-promo");
+    const promoInput = document.querySelector("#promo-input");
+    const promoMessage = document.querySelector("#promo-message");
+    const subtotalElement = document.querySelector("#subtotal-price");
+    const totalElement = document.querySelector("#total-price");
+
+     // Function to apply promo code
+     applyPromoButton.addEventListener("click", function () {
+        const promoCode = promoInput.value.trim().toLowerCase();
+        if (promoCode === "blackfriday20") {
+            let subtotal = parseFloat(subtotalElement.textContent.replace("\u00a3", ""));
+            let discountedTotal = subtotal * 0.8; // Apply 20% discount
+            totalElement.textContent = `£${discountedTotal.toFixed(2)}`;
+            promoMessage.textContent = "Promo code applied successfully!";
+            promoMessage.style.color = "green";
+        } else {
+            promoMessage.textContent = "Invalid promo code.";
+            promoMessage.style.color = "red";
+        }
+    });
 
     form.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -73,4 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".error-message").forEach((el) => el.remove());
         document.querySelectorAll("input").forEach((input) => (input.style.borderColor = ""));
     }
+    
 });
+
+
