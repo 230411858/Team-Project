@@ -1,0 +1,249 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #fff;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.checkout-section {
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 1rem 1rem;
+    margin-bottom: 2rem;
+}
+
+.checkout-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+.checkout-section p {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.checkout-section a {
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.checkout-section a:hover {
+    text-decoration: underline;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 2rem auto;
+    gap: 2rem;
+    padding: 0 1.5rem;
+}
+
+.shipping-form {
+    flex: 2;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #fff;
+    box-sizing: border-box;
+    color: #333;
+}
+
+input:focus,
+select:focus {
+    border-color: #0078d7;
+    outline: none;
+    background-color: #fff;
+}
+
+.helper-text {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 0.5rem;
+}
+
+input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.required {
+    color: red;
+}
+
+.form-row {
+    display: flex;
+    gap: 2rem;
+}
+
+.form-group.half {
+    flex: 1;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: #0078d7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 2rem;
+}
+
+.submit-btn:hover {
+    background-color: #005bb5;
+}
+
+.summary {
+    flex: 1;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    position: sticky;
+    top: 20px; 
+    font-family: Arial, sans-serif;
+    max-height: fit-content; 
+    overflow: hidden;
+    margin-top: 0rem; 
+}
+
+.summary h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+.product-details {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.summary-item.total {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    color: #000;
+}
+
+.summary-item.total p {
+    font-weight: bold;
+    color: #000;
+}
+
+.product-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.summary-item img {
+    display: inline-block;
+}
+
+/* Promo code and summary adjustments */
+
+.promo-code {
+    margin-top: 1.5rem;
+}
+
+.promo-code input {
+    width: calc(100% - 120px);
+    padding: 0.5rem;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.promo-code button {
+    padding: 0.5rem 1rem;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.promo-code button:hover {
+    background-color: #005bb5;
+}
+
+#promo-message {
+    margin-top: 0.5rem;
+    color: green;
+}
+
+/* Divider styles */
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    margin: 1rem 0;
+}
+
+.small-divider {
+    height: 1px;
+    background-color: #e0e0e0;
+}
+
+.thick-divider {
+    height: 2px;
+    background-color: #ccc;
+    margin: 1.5rem 0;
+}
+
+.logo {
+    width: 200px; /* Adjust the width as needed */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center the logo horizontally */
+}
