@@ -79,13 +79,13 @@
         transform: rotate(0deg);
     }
     25%{
-        transform: rotate(10deg);
+        transform: rotate(3deg);
     }
     50%{
         transform: rotate(0deg);
     }
     75%{
-        transform: rotate(-10deg);
+        transform: rotate(-3deg);
     }
     100%{
         transform: rotate(0deg);
@@ -135,34 +135,51 @@
 #pagebody-bottom button:hover {
     background-color:orange; /* Highlight button on hover */
     color: white;
+    
 }
 
 
 /* Product Section*/
 
+.page-layout{
+    display: flex;
+    gap: 50px;
+    padding: 10px 20px;
+}
+
+.filtersection{
+    width: 20%; /* Takes up 20% of the page width */
+    padding: 20px;
+    border-right: 1px solid #ddd; /* Adds a separator line */
+    font-family: Arial;
+}
+
+
 .productsmice{
     text-align: center;
 }
 
-.mainproduct {
-
-display: flex;
-flex-direction: row;
-
+.productcontainer{
+    width: 80%;
+    display: grid;
+    gap: 50px;
+    grid-template-columns: repeat(3, 1fr); /* 3 products per row */
+    align-items: start;
 }
 
 .products{
-    width: 20%;
-    padding: 10px 30px;
-    border: 1px solid rgb(255, 191, 72);
-    border-radius: 25px;
+    width: 100%;
+    padding: 15px;
+    margin: 5px 10px;
+    border: 1px solid black;
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
-    margin: 50px 50px;
-    transition: 0.2s ease;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.1);
+    transition: 0.2s ease-in-out;
+    display: flex;
     text-align: start;
     position: relative;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 
@@ -174,17 +191,15 @@ flex-direction: row;
 .products img{
     width: 100%;
     height: auto;
+    object-fit: cover;
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 
-.products h5{
-    padding-top: 7px;
-    color: 5px;
-}
 
 .products h4{
     color: lightgreen;
-    font-weight: 700;
+    font-weight: bold;
     font-size: 15px;
 }
 
