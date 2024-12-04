@@ -438,3 +438,76 @@ span{
     font-size: 2rem;
   }
 }
+
+/*=============== Basket Section Stuff ===============*/
+.show-basket {
+  transform: translateX(0)
+}
+
+.basket-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: var(--font-semi-bold);
+}
+
+.checkout.btn {
+  background-color: var(--first-color);
+  color: #fff;
+  padding: 10xp;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.basket-items {
+  list-style: none;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.basket-content {
+  padding: 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+}
+
+.basket-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background: var(--body-color);
+  box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+  transform: translateX(100%);
+  transition: transform 0.4s;
+  z-index: var(--z-fixed);
+}
+
+.nav_basket{
+  display: flex;
+  margin-left: 150px;
+  position: absolute;
+  right: 80px;
+  cursor: pointer;
+}
+
+.basket-count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: var(--first-color);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.nav_basket .ri-shopping-cart-line {
+  font-size: 1.5rem;
+  color: var(--title-color);
+}
+
