@@ -25,15 +25,19 @@
                         <i class="ri-menu-line nav__toggle-menu"></i>
                         <i class="ri-close-line nav__toggle-close"></i>
                     </div>
-                </div>
 
+                    <div class="nav_basket">
+                        <i class="ri-shopping-cart-line"></i>
+                        <span class="basket-count">0</span>
+                    </div>
+                </div>
                 <!--=============== NAV MENU ===============-->
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
                         <li>
                             <a href="#" class="nav__link">Home</a>
                         </li>
-
+                        
                         <!--=============== DROPDOWN 1 ===============-->
                         <li class="dropdown__item">                      
                             <div class="nav__link dropdown__button">
@@ -251,6 +255,19 @@
                 <h1><b>The way to <span>compete</span> with excellence</b></h1>
                 <button>Discover our Offers</button>
             </div>
+        </div>
+        <!--=============== Basket Modal added by KS ===============-->
+        <div class="basket-modal" id="basket-modal">   
+            <div class="basket-content">
+                <h2>Your Basket</h2>
+                <ul class="basket-items"></ul>
+                <div class="basket-total">
+                    <span>Total:</span>
+                    <span class="total-price">£0.00</span>
+                </div>
+                <button class="checkout-btn">Checkout</button>
+            </div>
+
         </div>
         <!--=============== MAIN JS ===============-->
         <script src="assets/js/main.js"></script>
