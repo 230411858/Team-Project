@@ -11,6 +11,10 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/about', function () {
+    return view('about');
+});
+
 Route::get('/login', function () {
     return view('login');
 });
