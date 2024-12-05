@@ -1,0 +1,226 @@
+/* PRODUCT PAGE BODY */
+
+#pagebody{
+    padding: 0px;
+}
+
+
+/* TOP/TEXT SECTION OF MAIN BODY*/
+
+#pagebody-top{
+    padding-top: 125px;
+    display: flex;
+    justify-content: center;
+
+}
+
+#productwrapper{
+    background-color: #f0f4f8;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+#textsection{
+    width:45%;  
+    padding: 0px 20px; 
+}
+
+#textsection h2{
+    color: orange;
+    font-family: sans-serif;
+    font-style: italic;
+    font-size: 50px;
+    padding-bottom: 0px;
+    margin: 10px 0px;
+}
+
+#textsection p{
+    color: #333;
+    font-family: sans-serif;
+    font-style: italic;
+    font-size: 15px;
+}
+
+/* TOP/IMAGE SECTION OF MAIN BODY*/
+
+#imagesection{
+    background-color: white;
+    width: 30vw;
+    height: 30vw;
+    border-radius: 50%; /* Makes the container circular */
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    margin: 50px auto;  /* Allows horizontal centering*/
+    box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+#imagesection img{
+    height: 50%;
+    width: auto;
+    border-radius: 50%;
+}
+
+#imagesection:hover{
+    animation: animation 0.5s linear infinite;
+    cursor:pointer;
+}
+
+@keyframes animation{
+    0%{
+        transform: rotate(0deg);
+    }
+    25%{
+        transform: rotate(3deg);
+    }
+    50%{
+        transform: rotate(0deg);
+    }
+    75%{
+        transform: rotate(-3deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
+/* BANNER OF BODY SECTION*/
+
+#pagebody-bottom {
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: #d1e7f0;
+}
+
+#bottombanner {
+    display: flex;
+    flex-direction: row; /* Place text and button side by side */
+    align-items: center;
+    gap: 15px; /* Add space between text and button */
+}
+
+
+#pagebody-bottom p{
+    color: orange;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin:0;
+}
+
+#pagebody-bottom button{
+    font-family: sans-serif;
+    font-size: 16px; /* Ensure the button matches text size */
+    padding: 8px 16px;
+    border: transparent;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#pagebody-bottom button:hover {
+    background-color:orange; /* Highlight button on hover */
+    color: white;
+    
+}
+
+
+/* Product Section*/
+
+.page-layout{
+    display: flex;
+    gap: 50px;
+    padding: 10px 20px;
+}
+
+.filtersection{
+    width: 20%; /* Takes up 20% of the page width */
+    padding: 20px;
+    border-right: 1px solid #ddd; /* Adds a separator line */
+    font-family: Arial;
+}
+
+
+.productsmice{
+    text-align: center;
+}
+
+.productcontainer{
+    width: 80%;
+    display: grid;
+    gap: 50px;
+    grid-template-columns: repeat(3, 1fr); /* 3 products per row */
+    align-items: start;
+}
+
+.products{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.1);
+    transition: 0.2s ease-in-out;
+    display: flex;
+    text-align: start;
+    position: relative;
+    flex-direction: column;
+}
+
+
+.products:hover{
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.2);
+
+}
+
+.products img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+
+.products h4{
+    color: lightgreen;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.cart{
+    background-color: lightblue;
+    color: blue;
+    font-weight: 500;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px;
+    right: 10px
+}
+
+.star i{
+    font-size: 12px;
+    color: rgb(255, 247, 3);
+
+}
+
