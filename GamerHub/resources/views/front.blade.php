@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!--=============== REMIXICONS ===============-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,8 +15,8 @@
         <!--=============== REMIXICONS ===============-->
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
-        <!--=============== CSS ===============-->
-        <link rel="stylesheet" href="{{ url('/css/front.css') }}">
+    <!--=============== REMIXICONS ===============-->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
         <title>GAMERHUB</title>
     </head>
