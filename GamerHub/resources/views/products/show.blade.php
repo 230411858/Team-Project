@@ -271,8 +271,18 @@
             <div class="images-p">
 
                 <div class="image-main-p">
-
-                    <img src="{{ url('/images') }}/{{ $product->category }}/{{ $images->first()->file }}" alt="Product Image" id="Mainpicture">
+                @php
+                $image = $images->firstWhere('product', $product->id);
+                if ($image == null)
+                {
+                    $file = $product->category . '/' . 'cover.png';
+                }
+                else
+                {
+                    $file = $product->category . '/' . $image->file;
+                }
+                @endphp
+                    <img src="{{ url('/images') }}/{{ $file }}" alt="Product Image" id="Mainpicture">
                 </div>
 
                 <div class="thumbnails">
