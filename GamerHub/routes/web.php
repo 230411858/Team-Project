@@ -1,15 +1,26 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('front');
+    return redirect('/products');
 });
 
 Route::get('/contact', function () {
     return view('contact');
 });
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/products', [ProductController::class, 'index']);
+
+Route::get('/products/category/{category}', [ProductController::class, 'category']);
+
+Route::get('/products/{id}', [ProductController::class, 'show']);
 
 Route::get('/login', function () {
     return view('login');

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!--=============== REMIXICONS ===============-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,8 +15,8 @@
         <!--=============== REMIXICONS ===============-->
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
-    <!--=============== REMIXICONS ===============-->
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="assets/css/styles.css">
 
         <title>GAMERHUB</title>
     </head>
@@ -26,9 +26,8 @@
             <nav class="nav container">
                 <div class="nav__data">
                     <a href="#" class="nav__logo">
-                        </i> GAMERHUB
+                        <img src="assets/GamerHubLogo.png"  width="130" height="auto">
                     </a>
-    
                     <div class="nav__toggle" id="nav-toggle">
                         <i class="ri-menu-line nav__toggle-menu"></i>
                         <i class="ri-close-line nav__toggle-close"></i>
@@ -43,7 +42,7 @@
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
                         <li>
-                            <a href="#" class="nav__link">Home</a>
+                            <a href="/Front_Page/index.html" class="nav__link">Home</a>
                         </li>
                         
                         <!--=============== DROPDOWN 1 ===============-->
@@ -59,7 +58,7 @@
                                             <i class="ri-mouse-line"></i>
                                         </div>
     
-                                        <a href="#" class="dropdown__title">Mouses</a>
+                                        <a href="shop.html" class="dropdown__title">Mouses</a>
     
                                         <ul class="dropdown__list">
                                             <li>
@@ -216,7 +215,7 @@
                                             <i class="ri-arrow-right-up-line"></i>
                                         </div>
     
-                                        <a href="{{ url('/contact') }}" class="dropdown__title">Contact US</a>
+                                        <a href="#" class="dropdown__title">Contact US</a>
     
                                     </div>
                                 </div>
@@ -226,7 +225,7 @@
                         
 
                         <li>
-                            <a href="{{ url('/contact') }}" class="nav__link">Contact Us</a>
+                            <a href="#" class="nav__link">Contact Us</a>
                         </li>
                         <li>
                             <div class="box">
@@ -260,138 +259,140 @@
                 </div>
             </nav>
         </header>
-        <section id="hero">
-            <div class="hero-section">
-                <div class="hero-content">
-                    <h1><b>The way to <span>compete</span> with excellence</b></h1>
-                    <button>Discover our Offers</button>
+
+
+       
+
+
+
+ <!-- Products part -->
+ <h1 class="name-p">Product Name</h1>
+ <div class="page-p container">
+ 
+    <div class="main-p">
+
+                <div class="images-p">
+
+    <div class="image-main-p">
+
+  <img src="assets/Products/WirelessMouse1.png"  alt="Product Image" id="Mainpicture">
+    </div>
+        
+<div class="thumbnails">
+    <img src="assets/Products/WirelessMouse1.png" alt="thumbnail1"  onclick="changeImage('assets/Products/WirelessMouse1.png')">
+    <img src="assets/Products/WirelessMouse2.png" alt="thumbnail2" onclick="changeImage('assets/Products/WirelessMouse2.png')">
+    <img src="assets/Products/WirelessMouse3.png" alt="thumbnail3 " onclick="changeImage('assets/Products/WirelessMouse3.png')">
+</div>
+
+                </div>
+                
+
+                <div class="details-p">
+
+<p class="description-p">
+    A Description of the mouse explaining its qualities
+</p>
+            <p class="price-p">Price: £<span id="price">29.99</span></p>
+
+    <div class="quantity-section">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" value="1" min="1" onchange="updateTotal()">
+        <p>Total: £<span id="total">29.99</span></p>
+    </div>
+        <button class="cart-butt" aria-label="Add to Cart">Add to Cart</button>
+                 
+
+        <div class="extra-info">
+            <div class="info-section">
+                <h3>Free Shipping and Returns</h3>
+                <p>Experience peak comfort and performance with MX Ergo S advanced wireless trackball...</p>
+            </div>
+        
+            <div class="info-section">
+                <h3>Items We Suggest</h3>
+                <ul>
+                    <li>ERGO K860 - £99.99</li>
+                    <li>Zone Vibe 100 - £99.99</li>
+                </ul>
+            </div>
+        
+            <div class="extra-info">
+                <div class="info-section">
+                    <h3>Free Shipping and Returns</h3>
+                    <p>Experience peak comfort and performance with MX Ergo S advanced wireless trackball...</p>
+                </div>
+            
+                <div class="info-section">
+                    <h3>Items We Suggest</h3>
+                    <ul>
+                        <li>ERGO K860 - £99.99</li>
+                        <li>Zone Vibe 100 - £99.99</li>
+                    </ul>
+                </div>
+            
+         
+                <div class="specs-main">
+<button type="button" class="spec-det">Specs & Details</button>
+<div class="specstable">
+                        <ul>
+                            <li>Height: 132.5 mm</li>
+                            <li>Width: 99.8 mm</li>
+                            <li>Depth: 51.4 mm</li>
+                            <li>Weight: 164 g</li>
+                        </ul>
+                    </div>
+            </div>
+            
+             
+                <div class="compat-main">
+                    <button type="button" class="-compatibility">Specs & Details</button>
+                    <div class="compat">
+                        <ul>
+                            <li>Windows 10, 11 or later</li>
+                            <li>macOS 12 or later</li>
+                            <li>Linux</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <!--=============== REASONS TO BUY ==========-->
-
-        <section class="reason">
-            <div class="reason-content">
-                <p><b>Buying on GamerHub has its loads of perks</b></p>
+</div>        
             </div>
+    </div>
 
-            <div class="reason-content">
-                <div class="icones">
-                    <a href="#"><i class='bx bxs-package'></i></a>
-                </div>
-                <a><b>Free shipping</b> around all of UK</a>
-            </div>
-            <div class="reason-content">
-                <div class="icones">
-                    <a href="#"><i class='bx bx-check-shield' ></i></a>
-                </div>
-                <a><b>Extended warranty</b> with <b>30 days refunded</b> warranty.</a>
-            </div>
+</div>
 
-            <div class="reason-content">
-                <div class="icones">
-                    <a href="#"><i class='bx bx-credit-card'></i></a>
-                </div>
-                <a><b>Pay in three times</b> with <b>no additional cost</b></a>
-            </div>
-        </section>
 
-        <!--=============== PRODUCT ===============-->
+<script>
 
-        <section class="section products">
-            <div class="container">
+    var coll = document.getElementsByClassName("spec-det");
+    var i;
     
-              <h2 class="h2 section-title">Different Products</h2>
-    
-              <ul class="product-list">
-    
-                <li class="w-50">
-                  <a href="#" class="product-card">
-    
-                    <figure class="card-banner">
-                      <img src="{{ url('/images/mouse.jpg') }}" class="img-cover">
-                    </figure>
-    
-                    <div class="card-content">
-    
-                      <h3 class="h3 card-title">Mouse</h3>
-                    </div>
-    
-                  </a>
-                </li>
-    
-                <li class="w-50">
-                  <a href="#" class="product-card">
-    
-                    <figure class="card-banner">
-                      <img src="{{ url('/images/mouse.jpg') }}" class="img-cover">
-                    </figure>
-    
-                    <div class="card-content">
-    
-                      <h3 class="h3 card-title">Mouse</h3>
-                    </div>
-    
-                  </a>
-                </li>
-    
-                <li class="w-50">
-                  <a href="#" class="product-card">
-    
-                    <figure class="card-banner">
-                      <img src="{{ url('/images/mouse.jpg') }}" class="img-cover">
-                    </figure>
-    
-                    <div class="card-content">
-    
-                      <h3 class="h3 card-title">Mouse</h3>
-                    </div>
-    
-                  </a>
-                </li>
-    
-    
-                <li>
-                  <a href="#" class="product-card">
-    
-                    <figure class="card-banner">
-                      <img src="{{ url('/images/keyboard.jpg') }}" class="img-cover">
-                    </figure>
-    
-                    <div class="card-content">
-    
-                      <h3 class="h3 card-title">Keyboard</h3>
-                    </div>
-    
-                  </a>
-                </li>
-    
-                <li>
-                  <a href="#" class="product-card">
-    
-                    <figure class="card-banner">
-                      <img src="{{ url('/images/keyboard.jpg') }}" class="img-cover">
-                    </figure>
-    
-                    <div class="card-content">
-    
-                       <h3 class="h3 card-title">Keyboard</h3>
-                    </div>
-    
-                </a>
-                </li>
-    
-    
-            </ul>
-    
-            </div>
-        </section>
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
 
+    </script>
+
+        <!-- MAIN JS -->
+        <script src="assets/js/main.js"></script>
+
+  
+    </body> 
+
+    <br> <br> <br> <br>
+    <footer>
         <!--=============== FOOTER ===============-->
         <section class="footer">
             <div class="footer-content">
-                <img src="{{ url('/images/GamerHubLogo.png') }}">      <!--=== TO DO ==-->
+                <img src="Our logo">      <!--=== TO DO ==-->
                 <p>aaaaaaaaaa aaaaaaaaa aaaaaaaaaa aaaaaaaaaaa aaaaaaaaaa aaaaaaa</p>
 
                 <div class="icons">
@@ -420,13 +421,12 @@
 
             <div class="footer-content">
                 <h4>Support</h4>
-                <li><a href="{{ url('/about') }}">About Us</a></li>
-                <li><a href="{{ url('/contact') }}">Contact Us</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
             </div>
 
         </section>
 
-        <!--=============== MAIN JS ===============-->
-        <script src="{{ url('/js/front.js')}}"></script>
-    </body>
+    </footer>  
+
 </html>

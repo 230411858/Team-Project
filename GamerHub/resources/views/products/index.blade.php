@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!--=============== REMIXICONS ===============-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,8 +15,8 @@
         <!--=============== REMIXICONS ===============-->
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
-    <!--=============== REMIXICONS ===============-->
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="{{ url('/css/front.css') }}">
 
         <title>GAMERHUB</title>
     </head>
@@ -59,7 +59,7 @@
                                             <i class="ri-mouse-line"></i>
                                         </div>
     
-                                        <a href="#" class="dropdown__title">Mouses</a>
+                                        <a href="#" class="dropdown__title">Mice</a>
     
                                         <ul class="dropdown__list">
                                             <li>
@@ -280,7 +280,7 @@
                 <div class="icones">
                     <a href="#"><i class='bx bxs-package'></i></a>
                 </div>
-                <a><b>Free shipping</b> around all of UK</a>
+                <a><b>Free shipping</b> within UK mainland</a>
             </div>
             <div class="reason-content">
                 <div class="icones">
@@ -305,83 +305,34 @@
               <h2 class="h2 section-title">Different Products</h2>
     
               <ul class="product-list">
-    
+
+            @foreach ($products as $product)
                 <li class="w-50">
-                  <a href="#" class="product-card">
+                  <a href="{{ url('/products') }}/{{ $product->id }}" class="product-card">
     
                     <figure class="card-banner">
-                      <img src="{{ url('/images/mouse.jpg') }}" class="img-cover">
+                        @php
+                        $image = $images->firstWhere('product', $product->id);
+                        if ($image != null) 
+                        {
+                            $file = $image->file;
+                        }
+                        else 
+                        {
+                            $file = "cover.png";
+                        }
+                        @endphp
+                      <img src="{{ url('/images') }}/{{ $product->category }}/{{ $file }}" class="img-cover">
                     </figure>
     
                     <div class="card-content">
     
-                      <h3 class="h3 card-title">Mouse</h3>
+                      <h3 class="h3 card-title">{{ $product->name }}</h3>
                     </div>
     
                   </a>
                 </li>
-    
-                <li class="w-50">
-                  <a href="#" class="product-card">
-    
-                    <figure class="card-banner">
-                      <img src="{{ url('/images/mouse.jpg') }}" class="img-cover">
-                    </figure>
-    
-                    <div class="card-content">
-    
-                      <h3 class="h3 card-title">Mouse</h3>
-                    </div>
-    
-                  </a>
-                </li>
-    
-                <li class="w-50">
-                  <a href="#" class="product-card">
-    
-                    <figure class="card-banner">
-                      <img src="{{ url('/images/mouse.jpg') }}" class="img-cover">
-                    </figure>
-    
-                    <div class="card-content">
-    
-                      <h3 class="h3 card-title">Mouse</h3>
-                    </div>
-    
-                  </a>
-                </li>
-    
-    
-                <li>
-                  <a href="#" class="product-card">
-    
-                    <figure class="card-banner">
-                      <img src="{{ url('/images/keyboard.jpg') }}" class="img-cover">
-                    </figure>
-    
-                    <div class="card-content">
-    
-                      <h3 class="h3 card-title">Keyboard</h3>
-                    </div>
-    
-                  </a>
-                </li>
-    
-                <li>
-                  <a href="#" class="product-card">
-    
-                    <figure class="card-banner">
-                      <img src="{{ url('/images/keyboard.jpg') }}" class="img-cover">
-                    </figure>
-    
-                    <div class="card-content">
-    
-                       <h3 class="h3 card-title">Keyboard</h3>
-                    </div>
-    
-                </a>
-                </li>
-    
+            @endforeach
     
             </ul>
     
@@ -391,7 +342,7 @@
         <!--=============== FOOTER ===============-->
         <section class="footer">
             <div class="footer-content">
-                <img src="{{ url('/images/GamerHubLogo.png') }}">      <!--=== TO DO ==-->
+                <img src="{{ url('/images/logo.png') }}">      <!--=== TO DO ==-->
                 <p>aaaaaaaaaa aaaaaaaaa aaaaaaaaaa aaaaaaaaaaa aaaaaaaaaa aaaaaaa</p>
 
                 <div class="icons">
@@ -404,7 +355,7 @@
 
             <div class="footer-content">
                 <h4>Products</h4>
-                <li><a href="#">Mouses</a></li>
+                <li><a href="#">Mice</a></li>
                 <li><a href="#">Keyboards</a></li>
                 <li><a href="#">Monitor</a></li>
                 <li><a href="#">Microphone</a></li>

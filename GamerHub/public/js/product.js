@@ -74,46 +74,18 @@ const removeStyle = () =>{
 addEventListener('resize', removeStyle)
 
 
-//Basket stuff
-const basketButon = document.querySelector('.nav_basket');
-const basketModal = document.querySelector('basket-modal');
-const basketItemsContainer = document.querySelector('.basket-items');
-const totalPriceElement = document.querySelector('.total-price');
-let basketItems = []
+// Add To Cart
 
-basketButton.addEventListener('click', () => {
-    basketModal.classList.toggle('show-basket')
-});
+function changeImage(imageSrc) {
+    document.getElementById('Mainpicture').src = imageSrc;
+  }  
+  // Image Changer
 
-const addToBasket = (item) => {
-    basketItems.push(item);
-    updateBasketUI();
-};
+  function updateTotal() {
+    const price = parseFloat(document.getElementById('price').textContent);
+    const quantity = parseInt(document.getElementById('quantity').value);
+    const total = price * quantity;
+    document.getElementById('total').textContent = total.toFixed(2);
+  }
 
-const updateBasketUI = () => {
-    basketItemsContainer.innerHTML = '';
-    let totalPrice = 0
-
-    basketItems.forEach((item, index) => {
-        totalPrice +=item.price;
-
-        basketItemsContainer.innerHTML +=
-          <li class="basket-item">
-            <span>${item.name}</span>
-            <span>£${item.price.toFixed(2)}</span>
-            <button class="remove-item" data-index="${index}">Remove</button>
-          </li>
-          ;
-    });
-    totalPriceElement.textContent - '£${totalPrice.toFixed(2)}';
-    document.querySelector('.basket-count').textContent = basketItems.length;
-    
-};
-
-basketItemsContainer.addEventListener('click', (e) => {
-    if (e.target.classList.contains('remove-item')) {
-        const index = e.target.dataset.index;
-        basketItems.splice(index, 1);
-        updateBasketUI();
-    }
-});
+  // Total Price

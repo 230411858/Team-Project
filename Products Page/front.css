@@ -1,276 +1,3 @@
-/* PRODUCT PAGE BODY */
-
-#pagebody{
-    padding: 0px;
-}
-
-
-/* TOP/TEXT SECTION OF MAIN BODY*/
-
-#pagebody-top{
-    padding-top: 50px;
-    display: flex;
-    justify-content: center;
-
-}
-
-#productwrapper{
-    background-color: #f0f4f8;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-}
-
-#textsection{
-    width:45%;  
-    padding: 0px 20px; 
-}
-
-#textsection h2{
-    color: orange;
-    font-family: sans-serif;
-    font-style: italic;
-    font-size: 50px;
-    padding-bottom: 0px;
-    margin: 10px 0px;
-}
-
-#textsection p{
-    color: #333;
-    font-family: sans-serif;
-    font-style: italic;
-    font-size: 15px;
-}
-
-/* TOP/IMAGE SECTION OF MAIN BODY*/
-
-#imagesection{
-    background-color: white;
-    width: 30vw;
-    height: 30vw;
-    border-radius: 50%; /* Makes the container circular */
-    display: flex;
-    justify-content: center;
-    place-items: center;
-    margin: 50px auto;  /* Allows horizontal centering*/
-    box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-}
-
-#imagesection img{
-    height: 50%;
-    width: auto;
-    border-radius: 50%;
-}
-
-#imagesection:hover{
-    animation: animation 0.5s linear infinite;
-    cursor:pointer;
-}
-
-@keyframes animation{
-    0%{
-        transform: rotate(0deg);
-    }
-    25%{
-        transform: rotate(3deg);
-    }
-    50%{
-        transform: rotate(0deg);
-    }
-    75%{
-        transform: rotate(-3deg);
-    }
-    100%{
-        transform: rotate(0deg);
-    }
-}
-
-/* BANNER OF BODY SECTION*/
-
-#pagebody-bottom {
-    margin: 0;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-}
-
-#bottombanner {
-    display: flex;
-    flex-direction: row; /* Place text and button side by side */
-    align-items: center;
-    gap: 15px; /* Add space between text and button */
-
-}
-
-
-#pagebody-bottom p{
-    color: black;
-    font-family: sans-serif;
-    font-size: 20px;
-    font-weight: bold;
-    margin:0;
-}
-
-#pagebody-bottom button{
-    padding: 8px 16px;
-    border: none;
-    outline: none;
-    color: #FFF;
-    cursor: pointer;
-    position: relative;
-    z-index: 1;
-    border-radius: 15px;
-    background-color:white;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-
-#pagebody-bottom button::after{
-    content: "";
-    z-index: -1;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    left: 0;
-    top: 0;
-    border-radius: 15px;
-    transition: background-color 0.3s ease-in-out;
-}
-
-#pagebody-bottom button::before{
-    content: "";
-    background: linear-gradient(
-        45deg,#FF0000, #FF7300, #FFFB00, #48FF00,
-        #00FFD5, #002BFF, #FF00C8, #FF0000
-    );
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    background-size: 600%;
-    z-index: -2;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    filter: blur(8px);
-    animation: glowing 20s linear infinite;
-    transition: opacity.3s ease-in-out;
-    border-radius: 10px;
-    opacity: 0;
-}
-
-@keyframes glowing{
-    0% {background-position: 0 0;}
-    50%{background-position: 400% 0;}
-    100%{background-position: 0 0;}
-}
-
-#pagebody-bottom button::before{
-    opacity: 1;
-}
-
-#pagebody-bottom button:hover::after {
-    background-color: darkorange; /* Set dark background shadow on hover */
-}
-
-
-
-
-
-/* Product Section*/
-
-.page-layout{
-    background-color: #f0f4f8;
-    display: flex;
-    gap: 50px;
-    padding: 10px 20px;
-}
-
-.filtersection{
-    width: 20%; /* Takes up 20% of the page width */
-    padding: 20px;
-    border-right: 1px solid #ddd; /* Adds a separator line */
-    font-family: Arial;
-}
-
-
-.productsmice{
-    text-align: center;
-}
-
-.productcontainer{
-    width: 80%;
-    display: grid;
-    gap: 50px;
-    grid-template-columns: repeat(3, 1fr); /* 3 products per row */
-    align-items: start;
-}
-
-.products{
-    width: 100%;
-    padding: 15px;
-    margin: 5px 10px;
-    border: 1px solid black;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.1);
-    transition: 0.2s ease-in-out;
-    display: flex;
-    text-align: start;
-    position: relative;
-    flex-direction: column;
-}
-
-
-.products:hover{
-    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.2);
-
-}
-
-.products img{
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-
-.products h4{
-    color: lightgreen;
-    font-weight: bold;
-    font-size: 15px;
-}
-
-.cart{
-    background-color: lightblue;
-    color: blue;
-    font-weight: 500;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 10px;
-    right: 10px
-}
-
-.star i{
-    font-size: 12px;
-    color: rgb(255, 247, 3);
-
-}
-
-
-/*Haroun Code*/
 /*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
@@ -631,6 +358,158 @@ box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   position: relative;
   top: 2px;
 }
+/*=============== HERO SECTION ===============*/
+
+.hero-section{
+  background-image: url("../images/background.jpg");
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0px 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.hero-section h1{
+  font-family: "Offside", sans-serif;
+  font-weight: 400;
+  font-size: 64px;
+  width: 400px;
+  text-transform: capitalize;
+  position: relative;
+  right: 350px;
+}
+span{
+  color: #ef5e41;
+}
+
+.hero-section button{
+  font-family:"OpenSans-Bold";
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+  width: 170px;
+  height: 65px;
+  border-radius: 30px 0px 30px 0px;
+  background-color: #ef5e41;
+  border: none;
+  position: relative;
+  margin-top: 40px;
+  right: 320px;
+}
+
+/*=============== REASONS SECTION ===============*/
+
+
+section.reason{
+  text-decoration: none;
+  list-style: none;
+  font-family: 'Work Sans', sans-serif;
+  padding: 50px 10% 50px;
+}
+
+.reason{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,auto));
+  gap: 2rem;
+  background: lightgray;
+  position: relative;
+}
+
+.reason-content h4{
+  color: black;
+  margin-bottom: 1.5rem;
+  font-size: 23px;
+}
+
+.reason-content a{
+  display: block;
+  color: black;
+  margin-top: 12px;
+  margin-right: 40px;
+  line-height: 25px;
+  font-size: 18px;
+  font-weight: 400;
+  transition: all .40s ease;
+}
+
+.reason-content p{
+  color: black;
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.icones a {
+  font-size: 70px;
+  color: black;
+  margin-top: -20px;
+}
+
+
+/*=============== PRODUCT SECTION ===============*/
+
+.products{
+  background-color: white;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+
+.products .section-title {
+  text-align: center;
+  font-size: 3rem;
+  font-family: var(--body-font) ; 
+  margin-bottom: 20px;
+  color: black;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.product-card {
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  inset: 0;
+}
+
+.product-card img { transition: 0.35s ease; }
+
+.product-card:is(:hover, :focus) img { transform: scale(1.1); }
+
+.w-50 .product-card .card-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  z-index: 1;
+}
+
+.product-card .card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  z-index: 1;
+}
+
+
+.product-card .card-title {
+  color: black;
+  font-size: 2rem;
+  font-family: var(--body-font);
+}
+
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 /*=============== FOOTER SECTION ===============*/
 section.footer{
@@ -816,6 +695,28 @@ section.footer{
   }
 }
 
+
+/*=============== HERO SECTION ===============*/
+
+@media (max-width: 884px) {
+  .container-hero {
+    margin-top: 10px;
+    flex-direction: column;
+  }
+  .hero-text {
+    width: 100%;
+    text-align: center;
+  }
+  .hero-text h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 678px) {
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+}
 
 /*=============== Basket Section Stuff ===============*/
 .show-basket {

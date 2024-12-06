@@ -15,9 +15,9 @@
         <!--=============== REMIXICONS ===============-->
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="{{ url('/css/category.css') }}">
         <script src="https://kit.fontawesome.com/6d6a721856.js" crossorigin="anonymous"></script>
-        <title>Mice | GAMERHUB</title>
+        <title>{{ ucfirst($category) }} | GAMERHUB</title>
     </head>
     <body>
      <!--=============== HEADER ===============-->
@@ -266,8 +266,8 @@
                 <div id ="pagebody-top">
                     <div id="productwrapper">
                         <div id="textsection">
-                            <h2>Mice</h2>  
-                            <p>Traverse through the top of the range mice, making navigation easy</p>
+                            <h2>{{ ucfirst($category) }}</h2>  
+                            <p>Traverse through top of the range {{ $category }}</p>
                         </div>
                         <div id="imagesection">
                             <img src="ProductImages/Mice/Mice(Cover).png" alt="Wireless Black Mouse">
@@ -289,6 +289,7 @@
                 <!-- Filter Section -->
                 <div class="filtersection">
                     <h3>Filters</h3>
+
                     <ul>
                         <li><input type="checkbox"> Wireless</li>
                         <li><input type="checkbox"> Wired</li>
@@ -296,86 +297,39 @@
                         <li><input type="checkbox"> Gaming</li>
                         <li><input type="checkbox"> Stylus</li>
                     </ul>
+
                 </div>
             <div class="productcontainer">
-                <div class="products">
-                    <a href="mouse.html">
-                    <img src="ProductImages/Mice/WirelessMouse(1).png">
-                    </a>
-                    <h5>Wireless Mouse</h5>
-                    <div class="star">
-                        <i class="fa-solid fa-star"></i> 
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
+                @foreach ($products as $product)
+                @php
+                $image = $images->firstWhere('product', $product->id);
+                if ($image == null)
+                {
+                    $file = 'cover.png';
+                }
+                else
+                {
+                    $file = $image->file;
+                }
+                @endphp
+                    <div class="products">
+                        <a href="{{ url('/products') }}/{{ $product->id }}">
+                        <img src="{{ url('/images') }}/{{ $category }}/{{ $file }}">
+                        </a>
+                        <h5>{{ $product->name }}</h5>
+                        <div class="star">
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <h4>£{{ $product->price / 100 }}</h4>
+                        <a href="#" class="cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
                     </div>
-                    <h4>£20</h4>
-                    <a href="#" class="cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                </div>
-                <div class="products">
-                    <img src="ProductImages/Mice/WiredMouse(1).png">
-                    <h5>Wired Mouse</h5>
-                    <div class="star">
-                        <i class="fa-solid fa-star"></i> 
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <h4>£20</h4>
-                    <a href="#" class="cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                </div>
-                <div class="products">
-                    <img src="ProductImages/Mice/ErgonomicMice(1).png">
-                    <h5>Ergonomic Mouse</h5>
-                    <div class="star">
-                        <i class="fa-solid fa-star"></i> 
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <h4>£20</h4>
-                    <a href="#" class="cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                </div>
-                <div class="products">
-                    <img src="ProductImages/Mice/StylusPen(1).png">
-                    <h5>Stylus Mouse</h5>
-                    <div class="star">
-                        <i class="fa-solid fa-star"></i> 
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <h4>£20</h4>
-                    <a href="#" class="cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                </div>
-                <div class="products">
-                    <img src="ProductImages/Mice/GamingMice(1).png">
-                    <h5>Gaming Mouse</h5>
-                    <div class="star">
-                        <i class="fa-solid fa-star"></i> 
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <h4>£20</h4>
-                    <a href="#" class="cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                </div>
-            </div>
+                @endforeach
             
         </section>
         <!--=============== FOOTER ===============-->
