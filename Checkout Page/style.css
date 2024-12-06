@@ -2,12 +2,12 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f8f9fa;
     color: #333;
 }
 
 header {
-    background-color: #fff;
+    background-color: #8bc8f7;
     text-align: center;
     padding: 1rem;
     font-size: 1rem;
@@ -16,7 +16,7 @@ header {
 
 .checkout-section {
     text-align: center;
-    background-color: #f4f4f4;
+    background-color: #f8f9fa;
     padding: 1rem 1rem;
     margin-bottom: 2rem;
 }
@@ -25,6 +25,7 @@ header {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
     font-weight: bold;
+    color: #8bc8f7;
 }
 
 .checkout-section p {
@@ -34,7 +35,7 @@ header {
 }
 
 .checkout-section a {
-    color: #000000;
+    color: #ff6661;
     font-weight: bold;
     text-decoration: none;
 }
@@ -75,7 +76,7 @@ input,
 select {
     width: 100%;
     padding: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 1rem;
     background-color: #fff;
@@ -85,7 +86,7 @@ select {
 
 input:focus,
 select:focus {
-    border-color: #0078d7;
+    border-color: #a8d8e2;
     outline: none;
     background-color: #fff;
 }
@@ -117,7 +118,7 @@ input[type="checkbox"] {
     display: block;
     width: 100%;
     padding: 1rem;
-    background-color: #0078d7;
+    background-color: #ff6661;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -128,7 +129,7 @@ input[type="checkbox"] {
 }
 
 .submit-btn:hover {
-    background-color: #005bb5;
+    background-color: #ec5b5b;
 }
 
 .summary {
@@ -139,18 +140,18 @@ input[type="checkbox"] {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: 1px solid #ddd;
     position: sticky;
-    top: 20px; 
+    top: 20px;
     font-family: Arial, sans-serif;
-    max-height: fit-content; 
+    max-height: fit-content;
     overflow: hidden;
-    margin-top: 0rem; 
+    margin-top: 0rem;
 }
 
 .summary h3 {
     font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 1.5rem;
-    color: #333;
+    color: #8bc8f7;
 }
 
 .summary-item {
@@ -160,6 +161,21 @@ input[type="checkbox"] {
     margin-bottom: 1rem;
     font-size: 1rem;
     color: #333;
+}
+
+#savings-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+#savings-price {
+    color: #ff6661;
+    font-weight: bold;
 }
 
 .product-details {
@@ -189,8 +205,6 @@ input[type="checkbox"] {
     display: inline-block;
 }
 
-/* Promo code and summary adjustments */
-
 .promo-code {
     margin-top: 1.5rem;
 }
@@ -199,13 +213,13 @@ input[type="checkbox"] {
     width: calc(100% - 120px);
     padding: 0.5rem;
     margin-right: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 8px;
 }
 
 .promo-code button {
     padding: 0.5rem 1rem;
-    background-color: #0078d7;
+    background-color: #ff6661;
     color: white;
     border: none;
     border-radius: 8px;
@@ -213,15 +227,13 @@ input[type="checkbox"] {
 }
 
 .promo-code button:hover {
-    background-color: #005bb5;
+    background-color: #ec5b5b;
 }
 
 #promo-message {
     margin-top: 0.5rem;
     color: green;
 }
-
-/* Divider styles */
 
 .divider {
     width: 100%;
@@ -242,8 +254,161 @@ input[type="checkbox"] {
 }
 
 .logo {
-    width: 200px; /* Adjust the width as needed */
+    width: 200px;
     height: auto;
     display: block;
-    margin: 0 auto; /* Center the logo horizontally */
+    margin: 0 auto;
+}
+
+#compressed-view {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    margin-bottom: 2rem;
+}
+
+#shipping-method-section {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+}
+
+#compressed-view-method {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    margin-bottom: 1.5rem;
+}
+
+#shipping-method-section h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.shipping-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.method {
+    padding: 1rem;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.method input[type="radio"] {
+    display: none;
+}
+
+.method input[type="radio"]:checked + label {
+    border: 2px solid #000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 1px;
+}
+
+.method label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 10px;
+    background: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.method label strong {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000;
+    margin-right: auto;
+}
+
+.method label span {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.method .price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.method:hover label {
+    background-color: #f8f9fa;
+}
+
+.save-and-continue-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: #00ffe0;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1.5rem;
+}
+
+.save-and-continue-btn:hover {
+    background-color: #00d9c4;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.quantity-btn {
+    padding: 0.25rem 0.50rem;
+    background-color: #ff6661;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.quantity-btn:hover {
+    background-color: #ec5b5b;
+}
+
+.quantity-section {
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.quantity-label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+#quantity-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 0.5rem;
+}
+
+.summary-item img {
+    display: inline-block;
 }
