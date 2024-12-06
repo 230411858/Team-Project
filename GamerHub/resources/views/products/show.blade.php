@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!--Title-->
-    <head>
-        <meta charset="UTF-8">
-        <meta name = "viewport" content="width=device-width, initial-scale=1.0">
-        <!--=============== REMIXICONS ===============-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap">
 
-        <!--=============== REMIXICONS ===============-->
-        <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!--=============== REMIXICONS ===============-->
-        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!--=============== REMIXICONS ===============-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap">
 
-        <link rel="stylesheet" href="styles.css">
-        <script src="https://kit.fontawesome.com/6d6a721856.js" crossorigin="anonymous"></script>
-        <title>Mice | GAMERHUB</title>
-    </head>
-    <body>
-     <!--=============== HEADER ===============-->
-     <header class="header">
+    <!--=============== REMIXICONS ===============-->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <!--=============== REMIXICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="{{ url('/css/product.css') }}">
+
+    <title>{{ $product->name }} | GAMERHUB</title>
+</head>
+
+<body>
+    <!--=============== HEADER ===============-->
+    <header class="header">
         <nav class="nav container">
             <div class="nav__data">
                 <a href="#" class="nav__logo">
-                    </i> GAMERHUB
+                    <img src="{{ url('/images/logo.png') }}" width="130" height="auto">
                 </a>
-
                 <div class="nav__toggle" id="nav-toggle">
                     <i class="ri-menu-line nav__toggle-menu"></i>
                     <i class="ri-close-line nav__toggle-close"></i>
@@ -42,11 +44,11 @@
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li>
-                        <a href="/Front_Page/index.html" class="nav__link">Home</a>
+                        <a href="#" class="nav__link">Home</a>
                     </li>
-                    
+
                     <!--=============== DROPDOWN 1 ===============-->
-                    <li class="dropdown__item">                      
+                    <li class="dropdown__item">
                         <div class="nav__link dropdown__button">
                             Products <i class="ri-arrow-down-s-line dropdown__arrow"></i>
                         </div>
@@ -58,7 +60,7 @@
                                         <i class="ri-mouse-line"></i>
                                     </div>
 
-                                    <a href="#" class="dropdown__title">Mice</a>
+                                    <a href="#" class="dropdown__title">Mouses</a>
 
                                     <ul class="dropdown__list">
                                         <li>
@@ -222,7 +224,7 @@
                         </div>
                     </li>
 
-                    
+
 
                     <li>
                         <a href="#" class="nav__link">Contact Us</a>
@@ -230,12 +232,12 @@
                     <li>
                         <div class="box">
                             <input type="text" placeholder="Search...">
-                                <a href="#"><i class="ri-search-line"></i></a>
+                            <a href="#"><i class="ri-search-line"></i></a>
                         </div>
                     </li>
                     <li>
                         <div class="login">
-                                <a href="#"><i class="ri-user-line"></i></a>
+                            <a href="#"><i class="ri-user-line"></i></a>
                         </div>
                     </li>
                     <li>
@@ -259,170 +261,170 @@
             </div>
         </nav>
     </header>
-        
-        <!-----MAIN BODY----->
-        <section id="pagebody">
-                <!--TOP SECTION-->
-                <div id ="pagebody-top">
-                    <div id="productwrapper">
-                        <div id="textsection">
-                            <h2>Mice</h2>  
-                            <p>Traverse through the top of the range mice, making navigation easy</p>
+
+    <!-- Products part -->
+    <h1 class="name-p">{{ $product->name }}</h1>
+    <div class="page-p container">
+
+        <div class="main-p">
+
+            <div class="images-p">
+
+                <div class="image-main-p">
+
+                    <img src="{{ url('/images') }}/{{ $product->category }}/{{ $images->first()->file }}" alt="Product Image" id="Mainpicture">
+                </div>
+
+                <div class="thumbnails">
+                    @foreach ($images as $image)
+                    @php
+                    $file = "$product->category/$image->file"
+                    @endphp
+                    <img src="{{ url('/images') }}/{{ $file }}" alt="thumbnail1" onclick="changeImage('{{ url('/') }}/images/{{ $file }}')">
+                    @endforeach
+                </div>
+
+            </div>
+
+
+            <div class="details-p">
+
+                <p class="description-p">
+                    {{ $product->description }}
+                </p>
+                <p class="price-p">Price: £<span id="price">{{ $product->price / 100 }}</span></p>
+
+                <div class="quantity-section">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" value="1" min="1" onchange="updateTotal()">
+                    <p>Total: £<span id="total">{{ $product->price / 100 }}</span></p>
+                </div>
+                <button class="cart-butt" aria-label="Add to Cart">Add to Cart</button>
+
+
+                <div class="extra-info">
+                    <div class="info-section">
+                        <h3>Free Shipping and Returns</h3>
+                        <p>Experience peak comfort and performance with MX Ergo S advanced wireless trackball...</p>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>Items We Suggest</h3>
+                        <ul>
+                            <li>ERGO K860 - £99.99</li>
+                            <li>Zone Vibe 100 - £99.99</li>
+                        </ul>
+                    </div>
+
+                    <div class="extra-info">
+                        <div class="info-section">
+                            <h3>Free Shipping and Returns</h3>
+                            <p>Experience peak comfort and performance with MX Ergo S advanced wireless trackball...</p>
                         </div>
-                        <div id="imagesection">
-                            <img src="ProductImages/Mice/Mice(Cover).png" alt="Wireless Black Mouse">
+
+                        <div class="info-section">
+                            <h3>Items We Suggest</h3>
+                            <ul>
+                                <li>ERGO K860 - £99.99</li>
+                                <li>Zone Vibe 100 - £99.99</li>
+                            </ul>
+                        </div>
+
+
+                        <div class="specs-main">
+                            <button type="button" class="spec-det">Specs & Details</button>
+                            <div class="specstable">
+                                <ul>
+                                    <li>Height: 132.5 mm</li>
+                                    <li>Width: 99.8 mm</li>
+                                    <li>Depth: 51.4 mm</li>
+                                    <li>Weight: 164 g</li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div class="compat-main">
+                            <button type="button" class="-compatibility">Specs & Details</button>
+                            <div class="compat">
+                                <ul>
+                                    <li>Windows 10, 11 or later</li>
+                                    <li>macOS 12 or later</li>
+                                    <li>Linux</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-
-                </div>
-                <!---BOTTOM SECTION--->
-                <div id="pagebody-bottom">
-                    <div id="bottombanner">
-                        <p>EXCLUSIVE DISCOUNT TO NEW USERS</p>
-                        <button id="signup-button">SIGN UP NOW</button>
-                    </div>
-                </div>
-        </section>
-
-        <section id="productsmice">
-            <div class="page-layout">
-                <!-- Filter Section -->
-                <div class="filtersection">
-                    <h3>Filters</h3>
-                    <ul>
-                        <li><input type="checkbox"> Wireless</li>
-                        <li><input type="checkbox"> Wired</li>
-                        <li><input type="checkbox"> Ergonomic</li>
-                        <li><input type="checkbox"> Gaming</li>
-                        <li><input type="checkbox"> Stylus</li>
-                    </ul>
-                </div>
-            <div class="productcontainer">
-                <div class="products">
-                    <a href="mouse.html">
-                    <img src="ProductImages/Mice/WirelessMouse(1).png">
-                    </a>
-                    <h5>Wireless Mouse</h5>
-                    <div class="star">
-                        <i class="fa-solid fa-star"></i> 
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <h4>£20</h4>
-                    <a href="#" class="cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                </div>
-                <div class="products">
-                    <img src="ProductImages/Mice/WiredMouse(1).png">
-                    <h5>Wired Mouse</h5>
-                    <div class="star">
-                        <i class="fa-solid fa-star"></i> 
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <h4>£20</h4>
-                    <a href="#" class="cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                </div>
-                <div class="products">
-                    <img src="ProductImages/Mice/ErgonomicMice(1).png">
-                    <h5>Ergonomic Mouse</h5>
-                    <div class="star">
-                        <i class="fa-solid fa-star"></i> 
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <h4>£20</h4>
-                    <a href="#" class="cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                </div>
-                <div class="products">
-                    <img src="ProductImages/Mice/StylusPen(1).png">
-                    <h5>Stylus Mouse</h5>
-                    <div class="star">
-                        <i class="fa-solid fa-star"></i> 
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <h4>£20</h4>
-                    <a href="#" class="cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                </div>
-                <div class="products">
-                    <img src="ProductImages/Mice/GamingMice(1).png">
-                    <h5>Gaming Mouse</h5>
-                    <div class="star">
-                        <i class="fa-solid fa-star"></i> 
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <h4>£20</h4>
-                    <a href="#" class="cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
                 </div>
             </div>
-            
-        </section>
-        <!--=============== FOOTER ===============-->
-        <section class="footer">
-            <div class="footer-content">
-                <img src="Our logo">      <!--=== TO DO ==-->
-                <p>aaaaaaaaaa aaaaaaaaa aaaaaaaaaa aaaaaaaaaaa aaaaaaaaaa aaaaaaa</p>
+        </div>
 
-                <div class="icons">
-                    <a href="#"><i class='bx bxl-meta'></i></a>
-                    <a href="#"><i class='bx bxl-instagram' ></i></a>
-                    <a href="#"><i class='bx bxl-twitter' ></i></a>
-                    <a href="#"><i class='bx bxl-reddit' ></i></a>
-                </div>
+    </div>
+
+
+    <script>
+        var coll = document.getElementsByClassName("spec-det");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+    <!-- MAIN JS -->
+    <script src="{{ url('/js/product.js') }}"></script>
+
+
+</body>
+
+<br> <br> <br> <br>
+<footer>
+    <!--=============== FOOTER ===============-->
+    <section class="footer">
+        <div class="footer-content">
+            <img src="{{ url('/images/logo.png') }}"> <!--=== TO DO ==-->
+            <p>aaaaaaaaaa aaaaaaaaa aaaaaaaaaa aaaaaaaaaaa aaaaaaaaaa aaaaaaa</p>
+
+            <div class="icons">
+                <a href="#"><i class='bx bxl-meta'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-reddit'></i></a>
             </div>
+        </div>
 
-            <div class="footer-content">
-                <h4>Products</h4>
-                <li><a href="#">Mice</a></li>
-                <li><a href="#">Keyboards</a></li>
-                <li><a href="#">Monitor</a></li>
-                <li><a href="#">Microphone</a></li>
-                <li><a href="#">Headset</a></li>
-            </div>
+        <div class="footer-content">
+            <h4>Products</h4>
+            <li><a href="#">Mouses</a></li>
+            <li><a href="#">Keyboards</a></li>
+            <li><a href="#">Monitor</a></li>
+            <li><a href="#">Microphone</a></li>
+            <li><a href="#">Headset</a></li>
+        </div>
 
-            <div class="footer-content">
-                <h4>Deals</h4>
-                <li><a href="#">Discounted items</a></li>
-                <li><a href="#">Black Friday</a></li>
-                <li><a href="#">Bundles</a></li>
-            </div>
+        <div class="footer-content">
+            <h4>Deals</h4>
+            <li><a href="#">Discounted items</a></li>
+            <li><a href="#">Black Friday</a></li>
+            <li><a href="#">Bundles</a></li>
+        </div>
 
-            <div class="footer-content">
-                <h4>Support</h4>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </div>
+        <div class="footer-content">
+            <h4>Support</h4>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </div>
 
-        </section>
-        
-    
+    </section>
 
+</footer>
 
-
-
-
-
-
-    </body>
 </html>
