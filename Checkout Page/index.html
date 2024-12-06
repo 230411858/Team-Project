@@ -8,22 +8,15 @@
 </head>
 <body>
 
-    <header class="header">
-        <nav class="nav container">
-            <div class="nav__data">
-                <a href="#" class="nav__logo">
-                    <img src="GamerHubLogo.png" alt="GamerHub Logo" class="logo">
-                </a>
-    
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class="ri-menu-line nav__toggle-menu"></i>
-                    <i class="ri-close-line nav__toggle-close"></i>
-                </div>
-            </div>
-    
-            <!-- Add navigation items similar to the main page -->
-        </nav>
-    </header>
+<header class="header">
+    <nav class="nav container">
+        <div class="nav__data">
+            <a href="#" class="nav__logo">
+                <img src="GamerHubLogo.png" alt="GamerHub Logo" class="logo">
+            </a>
+        </div>
+    </nav>
+</header>
 
 <section class="checkout-section">
     <h2>Checkout</h2>
@@ -47,7 +40,7 @@
             <div class="form-group">
                 <label for="country">Country <span class="required">*</span></label>
                 <select id="country" name="country" required>
-                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="United Kingdom" selected>United Kingdom</option>
                     <option value="United States">United States</option>
                     <option value="Canada">Canada</option>
                     <option value="Australia">Australia</option>
@@ -87,40 +80,93 @@
             </div>
 
             <div class="form-group">
-                <label for="company">Company</label>
-                <input type="text" id="company" name="company" placeholder="Enter your company name (optional)">
-            </div>
-
-            <div class="form-group">
                 <label for="phone-number">Phone Number <span class="required">*</span></label>
                 <input type="tel" id="phone-number" name="phone-number" required placeholder="Enter your phone number">
             </div>
 
-            <button type="submit" class="submit-btn">Submit</button>
+            <button type="submit" class="submit-btn">Save And Continue</button>
         </form>
-    </section>
 
-    <section class="summary">
+        <div id="compressed-view" style="display: none;">
+            <h3>Shipping <span style="color: green;">✔</span></h3>
+            <div class="compressed-block">
+                <h4>Shipping Address</h4>
+                <p id="compressed-shipping"></p>
+            </div>
+            <div class="compressed-block">
+                <h4>Billing Address</h4>
+                <p id="compressed-billing"></p>
+            </div>
+            <a href="#" id="edit-shipping">Edit</a>
+        </div>
+
+<div id="compressed-view-method" class="compressed-view" style="display: none;">
+    <h3>Shipping Method <span style="color: green;">✔</span></h3>
+    <div class="compressed-block">
+        <h4 id="compressed-method">Standard Shipping - Free</h4>
+        <p id="compressed-method-details">2-3 business days*</p>
+    </div>
+    <a href="#" id="edit-method">Edit</a>
+</div>
+
+            <div id="shipping-method-section" style="display: none;">
+                <h3>Shipping Method</h3>
+                <div class="shipping-methods">
+                    <div class="method">
+                        <input type="radio" id="standard-shipping" name="shipping-method" value="Standard Shipping" data-details="2-3 business days*" checked>
+                        <label for="standard-shipping">
+                            <strong>Standard Shipping</strong>
+                            <span>2-3 business days*</span>
+                            <span class="price">Free</span>
+                        </label>
+                    </div>
+                    <div class="method">
+                        <input type="radio" id="expedited-shipping" name="shipping-method" value="Expedited Shipping" data-details="1-2 business days*">
+                        <label for="expedited-shipping">
+                            <strong>Expedited Shipping</strong>
+                            <span>1-2 business days*</span>
+                            <span class="price">Free</span>
+                        </label>
+                    </div>
+                </div>
+                <button class="save-and-continue-btn">Continue</button>
+            </div>
+        </section>
+
+   <section class="summary">
         <h3>Summary</h3>
         <div class="summary-item">
             <img src="Mouse.jpg" alt="Placeholder Image" class="product-image">
             <div class="product-details">
                 <p class="product-name">MX Anywhere 3S for Mac</p>
-                <p class="product-quantity">Quantity: 1</p>
-                <p class="product-price">Price: £89.99</p>
+                <div class="quantity-section"> 
+                    <p class="quantity-label">Quantity:</p>
+                <div class="quantity-control">
+                    <button id="decrease-quantity" class="quantity-btn">-</button>
+                    <span id="quantity-value">1</span>
+                    <button id="increase-quantity" class="quantity-btn">+</button>
+                </div>
+            </div>
+                <p class="product-price">Price: £0.99</p>
             </div>
         </div>
-        <div class="divider small-divider"></div> <!-- Divider between image and subtotal -->
+        <div class="divider small-divider"></div> 
     
         <div class="summary-item">
             <p>Subtotal</p>
-            <p id="subtotal-price">£89.99</p>
+            <p id="subtotal-price">£0.99</p>
         </div>
-        <div class="divider thick-divider"></div> <!-- Thicker divider between subtotal and total -->
+
+        <div id="savings-section" class="summary-item" style="display: none;">
+            <p>Savings</p>
+            <p id="savings-price">£0.00</p>
+        </div>
+
+        <div class="divider thick-divider"></div> 
     
         <div class="summary-item total">
             <p>Total</p>
-            <p id="total-price">£89.99</p>
+            <p id="total-price">£0.99</p>
         </div>
         <div class="promo-code">
             <label for="promo-input">Promo Code:</label>
@@ -128,6 +174,7 @@
             <button id="apply-promo">Apply</button>
             <p id="promo-message"></p>
         </div>
+        <div id="paypal-button-container"></div>
     </section>
 </div>
 
@@ -136,5 +183,6 @@
 </footer>
 
 <script src="script.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AWijUcO1_gYQ4twvve6K-0sChf3-rTdVDd3ANH2etbNjRCpl_f9Ryig1R7r9PX4-mlb8VAvHkNmiAAaM&currency=GBP"></script>
 </body>
 </html>
