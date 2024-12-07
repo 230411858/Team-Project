@@ -133,6 +133,7 @@
             </div>
         </section>
 
+    <!-- Summary section: displays the selected products, their quantities, and total prices - implemented by Jayden Beach -->
    <section class="summary">
         <h3>Summary</h3>
         <div class="summary-item">
@@ -147,27 +148,29 @@
                     <button id="increase-quantity" class="quantity-btn">+</button>
                 </div>
             </div>
-                <p class="product-price">Price: £0.99</p>
+                <p class="product-price">Price: £89.99</p>
             </div>
         </div>
         <div class="divider small-divider"></div> 
     
         <div class="summary-item">
             <p>Subtotal</p>
-            <p id="subtotal-price">£0.99</p>
+            <p id="subtotal-price">£89.99</p>
         </div>
 
+        <!-- Savings section: displays discounts if applicable - implemented by Jayden Beach -->
         <div id="savings-section" class="summary-item" style="display: none;">
             <p>Savings</p>
             <p id="savings-price">£0.00</p>
         </div>
 
         <div class="divider thick-divider"></div> 
-    
+        <!--Total Price Section - implemented by Jayden Beach -->
         <div class="summary-item total">
             <p>Total</p>
-            <p id="total-price">£0.99</p>
+            <p id="total-price">£89.99</p>
         </div>
+        <!--Promo code input and application section - implemented by Jayden Beach -->
         <div class="promo-code">
             <label for="promo-input">Promo Code:</label>
             <input type="text" id="promo-input" placeholder="Enter promo code">

@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const quantityValue = document.getElementById("quantity-value");
     const decreaseButton = document.getElementById("decrease-quantity");
     const increaseButton = document.getElementById("increase-quantity");
-    const pricePerItem = 0.99;
+    const pricePerItem = 89.99;
     let isShippingDetailsCompleted = false;
     let isShippingMethodCompleted = false;
 
@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }).render("#paypal-button-container");
 
+    // Function to recalculate and update the subtotal and total prices - implemented by Jayden Beach
     function updateTotals() {
         const quantity = parseInt(quantityValue.textContent, 10);
         const newSubtotal = pricePerItem * quantity;
@@ -67,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
         totalElement.textContent = `£${discountedTotal.toFixed(2)}`;
     }
 
+    // Event listener for decreasing product quantity - implemented by Jayden Beach
     decreaseButton.addEventListener("click", function () {
         let quantity = parseInt(quantityValue.textContent, 10);
         if (quantity > 1) {
@@ -76,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // Event listener for increasing product quantity - implemented by Jayden Beach   
     increaseButton.addEventListener("click", function () {
         let quantity = parseInt(quantityValue.textContent, 10);
         quantity += 1;
@@ -83,6 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateTotals();
     });
 
+    // Event listener for applying promo codes - implemented by Jayden Beach
     applyPromoButton.addEventListener("click", function () {
         const promoCode = promoInput.value.trim().toLowerCase();
         const subtotal = parseFloat(subtotalElement.textContent.replace("£", ""));
