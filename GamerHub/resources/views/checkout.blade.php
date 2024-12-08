@@ -1,30 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Page</title>
-    <link rel="stylesheet" href="{{ url('/css/checkout.css') }}">
-</head>
-<body>
+@extends('layouts.layout')
 
-    <header class="header">
-        <nav class="nav container">
-            <div class="nav__data">
-                <a href="#" class="nav__logo">
-                    <img src="/iamges/GamerHubLogo.png" alt="GamerHub Logo" class="logo">
-                </a>
-    
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class="ri-menu-line nav__toggle-menu"></i>
-                    <i class="ri-close-line nav__toggle-close"></i>
-                </div>
-            </div>
-    
-            <!-- Add navigation items similar to the main page -->
-        </nav>
-    </header>
+@section('css')
+<link rel="stylesheet" href="{{ url('/css/checkout.css') }}">
+@endsection
 
+@section('title')
+<title>Checkout | GAMERHUB</title>
+
+@section('content')
 <section class="checkout-section">
     <h2>Checkout</h2>
     <p>
@@ -103,7 +86,7 @@
     <section class="summary">
         <h3>Summary</h3>
         <div class="summary-item">
-            <img src="Mouse.jpg" alt="Placeholder Image" class="product-image">
+            <img src="{{ url('/images/mice/cover.png') }}" alt="Placeholder Image" class="product-image">
             <div class="product-details">
                 <p class="product-name">MX Anywhere 3S for Mac</p>
                 <p class="product-quantity">Quantity: 1</p>
@@ -131,10 +114,5 @@
     </section>
 </div>
 
-<footer>
-    <p>&copy; 2024 GamerHub. All rights reserved.</p>
-</footer>
-
-<script src="/js/checkout.js"></script>
-</body>
-</html>
+<script src="{{ url('/js/checkout.js') }}"></script>
+@endsection
