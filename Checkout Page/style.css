@@ -253,6 +253,16 @@ input[type="checkbox"] {
     margin: 1.5rem 0;
 }
 
+.navbar_logo { 
+cursor: pointer;
+transition: transform 0.2 ease;
+}
+
+.navbar_logo:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
 .logo {
     width: 200px;
     height: auto;

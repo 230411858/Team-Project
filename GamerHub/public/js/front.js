@@ -117,3 +117,8 @@ basketItemsContainer.addEventListener('click', (e) => {
         updateBasketUI();
     }
 });
+
+document.querySelector('.checkout-btn').addEventListener('click', () => {
+    window.location.href = "{{ route('checkout')}}";
+
+});

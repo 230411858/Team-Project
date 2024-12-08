@@ -123,28 +123,11 @@
                                         <i class="ri-headphone-line"></i>
                                     </div>
 
-                                    <a href="{{ url('/products/category/audio') }}" class="dropdown__title">Headset</a>
+                                    <a href="{{ url('/products/category/audio') }}" class="dropdown__title">Audio</a>
 
                                     <ul class="dropdown__list">
                                         <li>
                                             <a href="#" class="dropdown__link">Bluetooth</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="dropdown__link">Combos</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="dropdown__group">
-                                    <div class="dropdown__icon">
-                                        <i class="ri-mic-line"></i>
-                                    </div>
-
-                                    <a href="#" class="dropdown__title">Microphone</a>
-
-                                    <ul class="dropdown__list">
-                                        <li>
-                                            <a href="#" class="dropdown__link">ddd</a>
                                         </li>
                                         <li>
                                             <a href="#" class="dropdown__link">Combos</a>
@@ -226,19 +209,21 @@
 
                     <!--=============== Basket ===============-->
                     <li>
-                        <div class="nav_basket">
-                            <i class="ri-shopping-cart-line"></i>
-                            <span class="basket-count">0</span>
-                        </div>
-                        <div class="basket-modal" id="basket-modal">
-                            <div class="basket-content">
-                                <h2 href="test">Your Basket</h2>
-                                <ul class="basket-items"></ul>
-                                <div class="basket-total">
-                                    <span>Total:</span>
-                                    <span class="total-price">£0.00</span>
+                        <div class="basket-container">
+                            <div class="nav_basket">
+                                <i class="ri-shopping-cart-line"></i>
+                                <span class="basket-count">0</span>
+                            </div>
+                            <div class="basket-modal" id="basket-modal">
+                                <div class="basket-content">
+                                    <h2 href="test">Your Basket</h2>
+                                    <ul class="basket-items"></ul>
+                                    <div class="basket-total">
+                                        <span>Total:</span>
+                                        <span class="total-price">£0.00</span>
+                                    </div>
+                                    <a href="../Checkout Page/index.html" class="checkout-btn">Checkout</a>
                                 </div>
-                                <button class="checkout-btn">Checkout</button>
                             </div>
                         </div>
                     </li>
