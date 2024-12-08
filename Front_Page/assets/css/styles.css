@@ -729,7 +729,7 @@ section.footer{
   font-weight: var(--font-semi-bold);
 }
 
-.checkout.btn {
+.checkout-btn {
   background-color: var(--first-color);
   color: #fff;
   padding: 10xp;
@@ -762,7 +762,7 @@ section.footer{
   background: var(--body-color);
   box-shadow: -2px 0 8px rgba(0,0,0,0.1);
   transform: translateX(100%);
-  transition: transform 0.4s;
+  transition: transform 0.4s ease-in-out;
   z-index: var(--z-fixed);
 }
 
@@ -789,4 +789,10 @@ section.footer{
   font-size: 1.5rem;
   color: var(--title-color);
 }
+
+.basket-container:hover .basket-modal {
+  transform: translateX(0);
+}
+
+
 
