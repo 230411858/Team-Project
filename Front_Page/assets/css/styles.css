@@ -722,12 +722,14 @@ section.footer{
 .show-basket {
   transform: translateX(0)
 }
+/* the basket itself  */
 
 .basket-total {
   display: flex;
   justify-content: space-between;
   font-weight: var(--font-semi-bold);
 }
+/* total in baset */
 
 .checkout-btn {
   background-color: var(--first-color);
@@ -738,20 +740,25 @@ section.footer{
   border-radius: 5px;
   text-align: center;
 }
+/* the checkout button in basket */
 
 .basket-items {
   list-style: none;
   overflow-y: auto;
   flex-grow: 1;
 }
+/* items in basket */
+
 
 .basket-content {
   padding: 1rem;
+  margin-bottom: 1rem;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content:space-between;
 }
+/* inside basket */
 
 .basket-modal {
   position: fixed;
@@ -765,6 +772,7 @@ section.footer{
   transition: transform 0.4s ease-in-out;
   z-index: var(--z-fixed);
 }
+/* basket modal  */
 
 .nav_basket{
   display: flex;
@@ -773,6 +781,7 @@ section.footer{
   right: 80px;
   cursor: pointer;
 }
+/* nav var basket */
 
 .basket-count {
   position: absolute;
@@ -784,15 +793,28 @@ section.footer{
   padding: 2px 6px;
   border-radius: 50%;
 }
+/* basket count */
 
 .nav_basket .ri-shopping-cart-line {
   font-size: 1.5rem;
   color: var(--title-color);
 }
+/* bask in nav bar */
 
 .basket-container:hover .basket-modal {
   transform: translateX(0);
 }
+/* hover over basket */
 
-
+.remove-item {
+  background-color: var(--second-color); 
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+/* the remove box *//* the remove box */
 
