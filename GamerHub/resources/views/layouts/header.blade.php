@@ -209,19 +209,21 @@
 
                     <!--=============== Basket ===============-->
                     <li>
-                        <div class="nav_basket">
-                            <i class="ri-shopping-cart-line"></i>
-                            <span class="basket-count">0</span>
-                        </div>
-                        <div class="basket-modal" id="basket-modal">
-                            <div class="basket-content">
-                                <h2 href="test">Your Basket</h2>
-                                <ul class="basket-items"></ul>
-                                <div class="basket-total">
-                                    <span>Total:</span>
-                                    <span class="total-price">£0.00</span>
+                        <div class="basket-container">
+                            <div class="nav_basket">
+                                <i class="ri-shopping-cart-line"></i>
+                                <span class="basket-count">0</span>
+                            </div>
+                            <div class="basket-modal" id="basket-modal">
+                                <div class="basket-content">
+                                    <h2 href="test">Your Basket</h2>
+                                    <ul class="basket-items"></ul>
+                                    <div class="basket-total">
+                                        <span>Total:</span>
+                                        <span class="total-price">£0.00</span>
+                                    </div>
+                                    <a href="../Checkout Page/index.html" class="checkout-btn">Checkout</a>
                                 </div>
-                                <button class="checkout-btn">Checkout</button>
                             </div>
                         </div>
                     </li>
