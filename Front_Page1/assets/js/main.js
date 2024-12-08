@@ -96,7 +96,6 @@ Switch.addEventListener("click", () =>{
 })
 
 
-
 /*=============== SEARCH BAR ===============*/
 
 function openPage() {
