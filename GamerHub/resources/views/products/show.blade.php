@@ -55,14 +55,14 @@
                 <label for="quantity">Quantity:</label>
                 <input type="number" id="quantity" value="1" min="1" onchange="updateTotal()">
                 <p>Total: £<span id="total">{{ $product->price / 100 }}</span></p>
-            </div> 
+            </div>
             <button class="cart-butt" aria-label="Add to Cart">Add to Cart</button>
 
 
             <div class="extra-info">
                 <div class="info-section">
                     <h3>Free Shipping and Returns</h3>
-                    <p>Experience peak comfort and performance with MX Ergo S advanced wireless trackball...</p>
+                    <p>{{ $product->description }}</p>
                 </div>
 
                 <div class="info-section">
@@ -73,48 +73,34 @@
                     </ul>
                 </div>
 
-                <div class="extra-info">
-                    <div class="info-section">
-                        <h3>Free Shipping and Returns</h3>
-                        <p>Experience peak comfort and performance with MX Ergo S advanced wireless trackball...</p>
-                    </div>
 
-                    <div class="info-section">
-                        <h3>Items We Suggest</h3>
+                <div class="specs-main">
+                    <button type="button" class="spec-det">Specs & Details</button>
+                    <div class="specstable">
                         <ul>
-                            <li>ERGO K860 - £99.99</li>
-                            <li>Zone Vibe 100 - £99.99</li>
+                            <li>Height: 132.5 mm</li>
+                            <li>Width: 99.8 mm</li>
+                            <li>Depth: 51.4 mm</li>
+                            <li>Weight: 164 g</li>
                         </ul>
                     </div>
+                </div>
 
 
-                    <div class="specs-main">
-                        <button type="button" class="spec-det">Specs & Details</button>
-                        <div class="specstable">
-                            <ul>
-                                <li>Height: 132.5 mm</li>
-                                <li>Width: 99.8 mm</li>
-                                <li>Depth: 51.4 mm</li>
-                                <li>Weight: 164 g</li>
-                            </ul>
-                        </div>
-                    </div>
-
-
-                    <div class="compat-main">
-                        <button type="button" class="-compatibility">Specs & Details</button>
-                        <div class="compat">
-                            <ul>
-                                <li>Windows 10, 11 or later</li>
-                                <li>macOS 12 or later</li>
-                                <li>Linux</li>
-                            </ul>
-                        </div>
+                <div class="compat-main">
+                    <button type="button" class="-compatibility">Specs & Details</button>
+                    <div class="compat">
+                        <ul>
+                            <li>Windows 10, 11 or later</li>
+                            <li>macOS 12 or later</li>
+                            <li>Linux</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 </div>
 
