@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BasketController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -22,13 +23,7 @@ Route::get('/products/category/{category}', [ProductController::class, 'category
 
 Route::get('/products/{id}', [ProductController::class, 'show']);
 
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/register', function () {
-    return view('register');
-});
+Route::get('/products/{id}/add', [BasketController::class, 'add']);
 
 Route::get('/checkout', function () {
     return view('checkout');
