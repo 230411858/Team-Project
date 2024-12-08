@@ -36,6 +36,9 @@
 <section id="productsmice">
     <div class="page-layout">
         <!-- Filter Section -->
+        @switch($category)
+
+        @case('mice')
         <div class="filtersection">
             <h3>Filters</h3>
             <button class="active" data-name="all">Show all</button>
@@ -45,7 +48,40 @@
             <button data-name="stylus">Stylus</button>
             <button data-name="gaming">Gaming</button>
         </div>
+        @break
+        @case('keyboards')
+        <div class="filtersection">
+            <h3>Filters</h3>
+            <button class="active" data-name="all">Show all</button>
+            <button data-name="membrane">Membrane</button>
+            <button data-name="mechanical">Mechanical</button>
+        </div>
+        @break
+        @case('monitors')
+        <div class="filtersection">
+            <h3>Filters</h3>
+            <button class="active" data-name="all">Show all</button>
+            <button data-name="144hz">144hz</button>
+            <button data-name="240hz">240hz</button>
+        </div>
+        @break
+        @case('audio')
+        <div class="filtersection">
+            <h3>Filters</h3>
+            <button class="active" data-name="all">Show all</button>
+            <button data-name="wireless">Wireless</button>
+            <button data-name="wired">Wired</button>
+        </div>
+        @break
+        @default
+        <div class="filtersection">
+            <h3>Filters</h3>
+            <button class="active" data-name="all">Not applicable</button>
+        </div>
+        @endswitch
+
         <div class="productcontainer">
+
             @foreach ($products as $product)
             @php
             $image = $images->firstWhere('product', $product->id);
@@ -58,6 +94,7 @@
             $file = $image->file;
             }
             @endphp
+
             <div class="products" data-name="{{ $product->sub_category }}">
                 <a href="{{ url('/products') }}/{{ $product->id }}">
                     <img src="{{ url('/images') }}/{{ $category }}/{{ $file }}">

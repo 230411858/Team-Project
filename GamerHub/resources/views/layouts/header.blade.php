@@ -123,28 +123,11 @@
                                         <i class="ri-headphone-line"></i>
                                     </div>
 
-                                    <a href="{{ url('/products/category/audio') }}" class="dropdown__title">Headset</a>
+                                    <a href="{{ url('/products/category/audio') }}" class="dropdown__title">Audio</a>
 
                                     <ul class="dropdown__list">
                                         <li>
                                             <a href="#" class="dropdown__link">Bluetooth</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="dropdown__link">Combos</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="dropdown__group">
-                                    <div class="dropdown__icon">
-                                        <i class="ri-mic-line"></i>
-                                    </div>
-
-                                    <a href="#" class="dropdown__title">Microphone</a>
-
-                                    <ul class="dropdown__list">
-                                        <li>
-                                            <a href="#" class="dropdown__link">ddd</a>
                                         </li>
                                         <li>
                                             <a href="#" class="dropdown__link">Combos</a>
