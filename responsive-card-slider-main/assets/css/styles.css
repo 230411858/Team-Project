@@ -1,0 +1,312 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap');
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Offside&display=swap');
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --title-color: hsl(220, 48%, 28%);
+  --title-list-color: hsl(220, 68%, 54%);
+  --text-color: hsl(220, 12%, 45%);
+  --body-color: hsl(208, 19%, 85%);
+  --reason_color: hsl(225, 3%, 71%);
+  --reason_text: hsl(0, 0%, 0%);
+  --card-color: rgba(255, 255, 255, 0.5);
+  --background-color: #f8f9fa;
+  --pop-color: hsl(220, 68%, 54%);
+  --gray: #ededed;
+
+  /*========== Font and typography ==========*/
+  --body-font: "Poppins", sans-serif;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+  /*========== Font weight ==========*/
+  --font-medium: 500;
+  --font-semi-bold: 600;
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+.darkmode{
+  --title-list-color: hsl(18, 97%, 38%);
+  --text-color: hsl(220, 12%, 45%);
+  --body-color: hsl(247, 81%, 6%);
+  --reason_color: hsl(0, 4%, 10%);
+  --reason_text: hsl(225, 3%, 71%);
+  --pop-color: hsl(18, 97%, 38%);
+  --background-color: hsl(214, 89%, 7%);
+  
+}
+
+
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body{
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+
+.lg-title,
+.md-title,
+.sm-title{
+    font-family: 'Roboto', sans-serif;
+    padding: 0.6rem 0;
+    text-transform: capitalize;
+    color: var(--reason_text);
+}
+
+.lg-title{
+    font-size: 2.5rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 1.3rem 0;
+    opacity: 0.9;
+}
+.md-title{
+    font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+}
+.sm-title{
+    font-weight: 300;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+.text-light{
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 0.4rem 0;
+    color: var(--reason_text);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+li { list-style: none; }
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== CARD ===============*/
+.container_swip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card__container {
+  padding-block: 1rem;
+}
+
+.card__content {
+  margin-inline: 0.25rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.card__article {
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.slide{
+  margin: 2rem;
+  position: relative;
+}
+.slide-content{
+  background: var(--gray);
+  padding: 3rem 0.5rem 2rem 0.5rem;
+  cursor: pointer;
+  border-radius: 0px 30px 0px 0px;
+}
+.slide-img{
+  background: var(--card-color);
+  box-shadow: 0 0 20px 10px var(--card-color);
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+  transition: background 0.5s ease;
+}
+.slide-btns{
+  display: flex;
+  justify-content: center;
+  margin-top: 1.4rem;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.btn-cart, .btn-buy{
+  background: transparent;
+  border: 1px solid black;
+  padding: 0.8rem 0;
+  width: 125px;
+  font-family: inherit;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.6s ease;
+}
+.btn-cart{
+  background: black;
+  color: white;
+}
+.btn-cart:hover{
+  background: var(--pop-color);
+}
+.btn-buy{
+  background: white;
+}
+.btn-buy:hover{
+  background: var(--pop-color);
+  color: #fff;
+}
+.slide-info{
+  background: white;
+  padding: 2rem;
+}
+.slide-info-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.rating span{
+  color: var(--pop-color);
+}
+.slide-name{
+  color: black;
+  display: block;
+  text-decoration: none;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.slide-price{
+  padding-top: 0.6rem;
+  padding-right: 0.6rem;
+  display: inline-block;
+}
+.slide-price:first-of-type{
+  text-decoration: line-through;
+  color: var(--pop-color);
+}
+.slide-img img{
+  transition: transform 0.6s ease;
+}
+.slide:hover .slide-img img{
+  transform: scale(1.1);
+}
+.slide:hover .slide-img{
+  background: var(--pop-color);
+}
+.slide:hover .slide-btns{
+  opacity: 1;
+}
+.off-info .sm-title{
+  background: var(--pop-color);
+  color: white;
+  display: inline-block;
+  padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  z-index: 1;
+  letter-spacing: 3px;
+  cursor: pointer;
+}
+
+
+/* Swiper class */
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  content: "";
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: initial;
+  height: initial;
+  font-size: 3rem;
+  color: var(--pop-color);
+  display: none;
+}
+
+.swiper-button-prev {
+  left: 0;
+}
+
+.swiper-button-next {
+  right: 0;
+}
+
+.swiper-pagination-bullet {
+  background-color: hsl(212, 32%, 40%);
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--pop-color);
+}
+
+/*=============== BREAKPOINTS ===============*/
+
+/* For medium devices */
+@media screen and (min-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: block;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1120px) {
+  .card__container {
+    max-width: 1400px;
+  }
+
+  .swiper-button-prev {
+    left: -1rem;
+  }
+  .swiper-button-next {
+    right: -1rem;
+  }
+}
+
+

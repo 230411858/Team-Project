@@ -113,23 +113,21 @@ ul {
 
 a {
   text-decoration: none;
+  display: block;
 }
 
 li { list-style: none; }
 
-a{ display: block; }
-
 img {
   display: block;
-  max-width: 100%;
-  height: auto;
+  max-width: 80%;
 }
 
 :focus-visible { outline-offset: 5px; }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
-  max-width: 120px;
+  max-width: 1110px;
   margin-inline: 1.5rem;
 }
 
@@ -505,12 +503,14 @@ span{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 110vh;
 }
 
 .card__container {
-  width: 88vw;
+  width: 80vw;
   padding-block: 1rem;
+  margin-left: 150px;
+  margin-right: 150px;
 }
 
 .card__content {
@@ -524,26 +524,26 @@ span{
   overflow: hidden;
 }
 
-.product{
-  margin: 2rem;
+.slide{
+  margin: 1rem;
   position: relative;
 }
-.product-content{
+.slide-content{
   background: var(--gray);
   padding: 3rem 0.5rem 2rem 0.5rem;
   cursor: pointer;
   border-radius: 0px 30px 0px 0px;
 }
-.product-img{
+.slide-img{
   background: var(--card-color);
   box-shadow: 0 0 20px 10px var(--card-color);
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 20px;
   margin: 0 auto;
   border-radius: 50%;
   transition: background 0.5s ease;
 }
-.product-btns{
+.slide-btns{
   display: flex;
   justify-content: center;
   margin-top: 1.4rem;
@@ -575,11 +575,11 @@ span{
   background: var(--pop-color);
   color: #fff;
 }
-.product-info{
+.slide-info{
   background: white;
   padding: 2rem;
 }
-.product-info-top{
+.slide-info-top{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -587,7 +587,7 @@ span{
 .rating span{
   color: var(--pop-color);
 }
-.product-name{
+.slide-name{
   color: black;
   display: block;
   text-decoration: none;
@@ -595,25 +595,25 @@ span{
   text-transform: uppercase;
   font-weight: bold;
 }
-.product-price{
+.slide-price{
   padding-top: 0.6rem;
   padding-right: 0.6rem;
   display: inline-block;
 }
-.product-price:first-of-type{
+.slide-price:first-of-type{
   text-decoration: line-through;
   color: var(--pop-color);
 }
-.product-img img{
+.slide-img img{
   transition: transform 0.6s ease;
 }
-.product:hover .product-img img{
+.slide:hover .slide-img img{
   transform: scale(1.1);
 }
-.product:hover .product-img{
+.slide:hover .slide-img{
   background: var(--pop-color);
 }
-.product:hover .product-btns{
+.slide:hover .slide-btns{
   opacity: 1;
 }
 .off-info .sm-title{
@@ -741,6 +741,7 @@ section.reason{
 .products{
   background-color: var(--body-color);
   height: 110vh;
+  max-width: 1000px;
 }
 
 .products .section-title {
