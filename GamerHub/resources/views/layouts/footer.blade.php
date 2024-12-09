@@ -37,7 +37,6 @@
         </section>
 
         <!--=============== MAIN JS ===============-->
-        <script src="{{ url('/js/front.js') }}"></script>
+        <script src="{{ url('/js/products.js') }}"></script>
         </body>
-
-        </html>
+</html>

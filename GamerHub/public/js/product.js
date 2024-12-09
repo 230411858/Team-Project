@@ -89,3 +89,10 @@ function changeImage(imageSrc) {
   }
 
   // Total Price
+
+  function getQuantity() {
+    const quantity = parseInt(document.getElementById('quantity').value);
+    return quantity;
+  }
+
+  

@@ -108,9 +108,12 @@
                     <i class="fa-solid fa-star"></i>
                 </div>
                 <h4>£{{ $product->price / 100 }}</h4>
-                <a href="{{ url('/basket/add') }}" class="cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </a>
+                <form class="cart" action="{{ url('/add') }}" method="POST">
+                    @csrf
+                    <input hidden type="number" name="product" value="{{ $product->id }}">
+                    <input hidden name="quantity" value="1">
+                    <button class="fa-solid fa-cart-shopping" aria-label="Add to Cart" type="submit" value="Add to Cart">🛒</button>
+                </form>
             </div>
             @endforeach
         </div>
