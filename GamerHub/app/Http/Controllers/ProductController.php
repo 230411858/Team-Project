@@ -107,4 +107,16 @@ class ProductController extends Controller
         }
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        //search with name or  desc
+        $products = Product::where('name','like','%'.$query.'%')
+                            ->orWhere('description','like','%'.$query.'%')
+            ->get();
+
+        //return the results to the search
+        return view('products.search-results',compact('products','query'));
+    }
 }
