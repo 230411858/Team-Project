@@ -1,15 +1,14 @@
 // Initialize EmailJS for contact form submissions
-//https://stackoverflow.com/questions/58791656/send-email-directly-from-javascript-using-emailjs
-emailjs.init("l_sqHPwRue0BZ7XSc"); 
+emailjs.init("l_sqHPwRue0BZ7XSc");
 
 // Handle Contact Form Submission
-document.getElementById('contact-form').addEventListener('submit', function (event) {
+document.getElementById('contact-form')?.addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent page refresh on form submission
 
     // Collect form input values
     const form = event.target;
-    const serviceID = 'service_ebhd949'; /
-    const templateID = 'template_8mq346a'; 
+    const serviceID = 'service_ebhd949';
+    const templateID = 'template_8mq346a';
 
     const params = {
         from_name: form['from-name'].value,
@@ -46,7 +45,7 @@ document.getElementById('contact-form').addEventListener('submit', function (eve
 function showCategory(categoryName) {
     // Hide the product selection section
     document.getElementById("product-section").classList.add("hidden");
-    
+
     // Show the selected category section
     document.getElementById("category-section").classList.remove("hidden");
 
@@ -55,6 +54,7 @@ function showCategory(categoryName) {
     const productSeriesSelect = document.getElementById("product-series");
     const selectedMouseImage = document.getElementById("selected-mouse-image");
     const selectedMouseTitle = document.getElementById("selected-mouse-title");
+    const faqButton = document.getElementById("faq-button");
 
     categoryTitle.textContent = `${categoryName} Support and Services`;
 
@@ -70,10 +70,13 @@ function showCategory(categoryName) {
             `;
             selectedMouseImage.src = "images/products/mice/WirelessMouse(1).png";
             selectedMouseTitle.textContent = "Wireless Mouse";
+            faqButton.href = "faq.html?product=WirelessMouse";
             break;
 
         default:
             selectedMouseTitle.textContent = "Product Not Found";
+            selectedMouseImage.src = "";
+            faqButton.href = "#";
             break;
     }
 }
@@ -85,14 +88,70 @@ function showProductSection() {
     document.getElementById("category-section").classList.add("hidden");
 }
 
-// FAQ Toggle Logic
-const faqQuestions = document.querySelectorAll('.faq-question');
+// Update product information when selecting a series
+document.getElementById("product-series")?.addEventListener("change", (event) => {
+    const selectedProduct = event.target.value;
+    const selectedMouseImage = document.getElementById("selected-mouse-image");
+    const selectedMouseTitle = document.getElementById("selected-mouse-title");
+    const faqButton = document.getElementById("faq-button");
 
-faqQuestions.forEach(question => {
+    const productData = {
+        Wireless: {
+            image: "images/products/mice/WirelessMouse(1).png",
+            title: "Wireless Mouse",
+            faqLink: "faq.html?product=WirelessMouse",
+        },
+        Wired: {
+            image: "images/products/mice/WiredMouse(1).png",
+            title: "Wired Mouse",
+            faqLink: "faq.html?product=WiredMouse",
+        },
+        Ergonomic: {
+            image: "images/products/mice/ErgonomicMice(1).png",
+            title: "Ergonomic Mouse",
+            faqLink: "faq.html?product=ErgonomicMouse",
+        },
+        Stylus: {
+            image: "images/products/mice/StylusPen(1).png",
+            title: "Stylus Pen",
+            faqLink: "faq.html?product=StylusPen",
+        },
+        Gaming: {
+            image: "images/products/mice/GamingMice(1).png",
+            title: "Gaming Mouse",
+            faqLink: "faq.html?product=GamingMouse",
+        },
+    };
+
+    const product = productData[selectedProduct];
+
+    if (product) {
+        selectedMouseImage.src = product.image;
+        selectedMouseImage.onerror = () => {
+            // Fallback to a placeholder image if the specified image is missing
+            selectedMouseImage.src = "images/products/mice/placeholder.png";
+        };
+        selectedMouseTitle.textContent = product.title;
+        faqButton.href = product.faqLink;
+    } else {
+        selectedMouseImage.src = "images/products/mice/placeholder.png";
+        selectedMouseTitle.textContent = "Product Not Found";
+        faqButton.href = "#";
+    }
+});
+
+
+// FAQ Toggle Logic
+document.querySelectorAll('.faq-question').forEach(question => {
     question.addEventListener('click', () => {
         const faqAnswer = question.nextElementSibling;
 
-        // Toggle visibility of the answer section
+        // Collapse other answers
+        document.querySelectorAll('.faq-answer').forEach(answer => {
+            if (answer !== faqAnswer) answer.style.display = 'none';
+        });
+
+        // Toggle the selected FAQ answer
         faqAnswer.style.display = faqAnswer.style.display === 'block' ? 'none' : 'block';
     });
 });
