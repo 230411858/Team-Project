@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - GamerHub</title>
+
+  <!-- Link to the main stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Remixicon for icons used on the page - GPT assistance -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header Section with Logo and Navigation Links -->
+  <header class="header">
+    <nav class="nav container">
+      <div class="nav__data">
+        <!-- Logo linking back to the homepage -->
+        <a href="index.html" class="nav__logo">
+          <img src="images/products/companystuff/GamerHubLogo.png" alt="GamerHub Logo" width="130">
+        </a>
+
+        <!-- Shopping cart icon with a dynamic item counter -->
+        <div class="nav_basket">
+          <i class="ri-shopping-cart-line"></i>
+          <span class="basket-count">0</span>
+        </div>
+      </div>
+
+      <!-- Navigation menu with essential page links -->
+      <div class="nav__menu">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Home</a></li>
+          <li><a href="shop.html" class="nav__link">Products</a></li>
+          <li><a href="contact.html" class="nav__link">Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Top Section for Product Info -->
+  <section class="faq-top-section">
+    <div class="faq-product-info">
+      <!-- Placeholder for dynamic product image -->
+      <img id="product-image" src="" alt="Product Image">
+      <!-- Placeholder for dynamic product title -->
+      <h1 id="product-title">Product Name</h1>
+    </div>
+  </section>
+
+  <!-- Main FAQ Section -->
+  <section class="faq-section">
+    <h1 class="faq-title">Frequently Asked Questions</h1>
+    <!-- FAQ list will be dynamically generated here -->
+    <div id="faq-list" class="faq-list"></div>
+  </section>
+
+  <!-- Contact Us Prompt Section -->
+  <section class="contact-prompt">
+    <h1>Still need help?</h1>
+    <p>If your question isn’t answered in the FAQs, feel free to contact us.</p>
+    <!-- Link to the contact page -->
+    <a href="contact.html" class="contact-link">Contact Us</a>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2024 GamerHub. All rights reserved.</p>
+  </footer>
+
+  <!-- FAQ JavaScript File -->
+  <script src="faq.js"></script>
+</body>
+</html>
