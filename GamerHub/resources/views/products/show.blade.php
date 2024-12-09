@@ -9,29 +9,40 @@
 @endsection
 
 @section('content')
+<nav>
+    <ul class="breadcrumb">
+        <li><a href="{{ url('/') }}">Home</a></li>
+        <li><a href="shop.html">{{ ucfirst($product->category) }}</a></li>
+        <li>{{ $product->name }}</li>
+    </ul>
+</nav>
+
 <!-- Products part -->
 <h1 class="name-p">{{ $product->name }}</h1>
+
 <div class="page-p container">
+
 
     <div class="main-p">
 
         <div class="images-p">
 
+            <!-- main picture (big one) -->
+            @php
+            $image = $images->firstWhere('product', $product->id);
+
+            $file = 'cover.png';
+
+            if ($image != null)
+            {
+            $file = $image->file;
+            }
+            @endphp
             <div class="image-main-p">
-                @php
-                $image = $images->firstWhere('product', $product->id);
-                if ($image == null)
-                {
-                $file = $product->category . '/' . 'cover.png';
-                }
-                else
-                {
-                $file = $product->category . '/' . $image->file;
-                }
-                @endphp
-                <img src="{{ url('/images') }}/{{ $file }}" alt="Product Image" id="Mainpicture">
+                <img src="{{ url('/images') }}/{{ $product->category }}/{{ $file }}" alt="Product Image" id="Mainpicture">
             </div>
 
+            <!-- little thumbnails to click to change pics-->
             <div class="thumbnails">
                 @foreach ($images as $image)
                 @php
@@ -40,38 +51,35 @@
                 <img src="{{ url('/images') }}/{{ $file }}" alt="thumbnail1" onclick="changeImage('{{ url('/') }}/images/{{ $file }}')">
                 @endforeach
             </div>
-
         </div>
 
 
-        <div class="details-p">
 
+        <div class="details-p">
             <p class="description-p">
                 {{ $product->description }}
             </p>
             <p class="price-p">Price: £<span id="price">{{ $product->price / 100 }}</span></p>
-
             <div class="quantity-section">
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" value="1" min="1" onchange="updateTotal()">
-                <p>Total: £<span id="total">{{ $product->price / 100 }}</span></p>
+                <form action="{{ url('/add') }}" method="POST">
+                    @csrf
+                    <label for="quantity">Quantity:</label>
+                    <input hidden type="number" name="product" value="{{ $product->id }}">
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" onchange="updateTotal()">
+                    Total: £<span id="total">{{ $product->price / 100 }}</span>
+                    <button class="cart-butt" aria-label="Add to Cart" type="submit" value="Add to Cart">Add to Cart</button>
+                </form>
             </div>
-            <button class="cart-butt" aria-label="Add to Cart">Add to Cart</button>
 
-
+            <!-- description on the right -->
             <div class="extra-info">
                 <div class="info-section">
                     <h3>Free Shipping and Returns</h3>
-                    <p>{{ $product->description }}</p>
+                    <p>Experience peak comfort and performance with our wireless mouse...</p>
+                    <!-- add to cart button -->
                 </div>
 
-                <div class="info-section">
-                    <h3>Items We Suggest</h3>
-                    <ul>
-                        <li>ERGO K860 - £99.99</li>
-                        <li>Zone Vibe 100 - £99.99</li>
-                    </ul>
-                </div>
+                <br>
 
 
                 <div class="specs-main">
@@ -84,44 +92,41 @@
                             <li>Weight: 164 g</li>
                         </ul>
                     </div>
+                    <!-- spec button -->
+                    <br> <br>
                 </div>
-
-
                 <div class="compat-main">
-                    <button type="button" class="-compatibility">Specs & Details</button>
+                    <button type="button" class="compat-js">Compatibility</button>
                     <div class="compat">
+                        <br>
                         <ul>
-                            <li>Windows 10, 11 or later</li>
+                            <li>Windows 10 or later</li>
                             <li>macOS 12 or later</li>
                             <li>Linux</li>
                         </ul>
+                        <!-- compatibility button -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 </div>
+<!-- full container for right side -->
 
+<div class="reviews-section container">
+    <h2>Customer Reviews</h2>
 
-<script>
-    var coll = document.getElementsByClassName("spec-det");
-    var i;
+    <div class="review-form">
+        <h3>Write a Review</h3>
+        <textarea id="review-text" rows="4" placeholder="Write your review here..."></textarea>
+        <input type="text" id="reviewer-name" placeholder="Your name" />
+        <button onclick="addReview()">Submit Review</button>
+    </div>
 
-    for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            } else {
-                content.style.display = "block";
-            }
-        });
-    }
-</script>
-
-<!-- MAIN JS -->
-<script src="{{ url('/js/product.js') }}"></script>
+    <div class="reviews-list" id="reviews-list">
+        <p id="no-reviews-message">No reviews yet. Please leave a review</p>
+    </div>
+</div>
+<!-- reviews section -->
 @endsection

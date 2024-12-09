@@ -23,11 +23,11 @@ Route::get('/products/category/{category}', [ProductController::class, 'category
 
 Route::get('/products/{id}', [ProductController::class, 'show']);
 
-Route::get('/products/{id}/add', [BasketController::class, 'add']);
+Route::post('/add', [ProductController::class, 'addBasketItem']);
 
-Route::get('/checkout', function () {
-    return view('checkout');
-});
+Route::post('/remove', [ProductController::class, 'removeBasketItem']);
+
+Route::get('/checkout', [ProductController::class, 'checkout']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
