@@ -193,7 +193,7 @@
 
                     <!--=============== About ===============-->
                     <li>
-                        <a href="{{ url('/') }}" class="nav__link">About</a>
+                        <a href="{{ url('/about') }}" class="nav__link">About</a>
                     </li>
 
                     <!--=============== Search ===============-->
