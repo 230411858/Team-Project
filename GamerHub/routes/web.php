@@ -29,6 +29,8 @@ Route::post('/remove', [ProductController::class, 'removeBasketItem']);
 
 Route::get('/checkout', [ProductController::class, 'checkout']);
 
+Route::get('/search', [ProductController::class, 'search'])->name('search');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
