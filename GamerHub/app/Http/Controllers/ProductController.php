@@ -106,12 +106,11 @@ class ProductController extends Controller
             return redirect('login');
         }
     }
-
     public function search(Request $request)
     {
         $query = $request->input('query');
 
-        //search with name or  desc
+        //search with name or desc
         $products = Product::where('name','like','%'.$query.'%')
                             ->orWhere('description','like','%'.$query.'%')
             ->get();

@@ -20,6 +20,51 @@
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="{{ url('/css/reuse.css') }}">
     <link rel="stylesheet" href="{{ url('/css/swiper-bundle.min.css') }}">
+    <style>
+        /*container*/
+        .search-container {
+            margin: 25px 0 0 20px;
+            text-align: center;
+
+        }
+
+        /*  form */
+        form {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        /* input */
+        .search-input {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            max-width: 150px;
+
+        }
+
+        /* button */
+        .search-button {
+            background-color: #ef5e41;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /*darker colour*/
+        .search-button:hover {
+            background-color: #d24a37;
+        }
+    </style>
 
     @yield('css')
 
@@ -198,9 +243,13 @@
 
                     <!--=============== Search ===============-->
                     <li>
-                        <div class="box">
-                            <input type="text" placeholder="Search...">
-                            <a href="#"><i class="ri-search-line"></i></a>
+                        <div class="search-container">
+                            <form action="{{ route('search') }}" method="GET">
+                                <input type="text" name="query" class="search-input" placeholder="Search..." required>
+                                <button type="submit" class="search-button">
+                                    <i class="ri-search-line"></i>
+                                </button>
+                            </form>
                         </div>
                     </li>
 
@@ -293,3 +342,4 @@
             </div>
         </nav>
     </header>
+    {{--CSS for Search bar--}}
