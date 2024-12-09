@@ -222,7 +222,7 @@
                                         <span>Total:</span>
                                         <span class="total-price">£0.00</span>
                                     </div>
-                                    <a href="../Checkout Page/index.html" class="checkout-btn">Checkout</a>
+                                    <a href="{{ route('checkout')}}" class="checkout-btn">Checkout</a>
                                 </div>
                             </div>
                         </div>
