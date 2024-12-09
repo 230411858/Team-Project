@@ -129,4 +129,5 @@
     </div>
 </div>
 <!-- reviews section -->
+ <script src="{{ url('/js/product.js') }}"></script>
 @endsection
