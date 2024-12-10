@@ -28,7 +28,9 @@
     <div id="pagebody-bottom">
         <div id="bottombanner">
             <p>EXCLUSIVE DISCOUNT TO NEW USERS</p>
-            <button id="signup-button">SIGN UP NOW</button>
+            <a href="{{ url('/register') }}">
+                <button id="signup-button">SIGN UP NOW</button>
+            </a>
         </div>
     </div>
 </section>
@@ -108,11 +110,11 @@
                     <i class="fa-solid fa-star"></i>
                 </div>
                 <h4>£{{ $product->price / 100 }}</h4>
-                <form class="cart" action="{{ url('/add') }}" method="POST">
+                <form action="{{ url('/add') }}" method="POST">
                     @csrf
                     <input hidden type="number" name="product" value="{{ $product->id }}">
                     <input hidden name="quantity" value="1">
-                    <button class="fa-solid fa-cart-shopping" aria-label="Add to Cart" type="submit" value="Add to Cart">🛒</button>
+                    <button class="cart ri-shopping-cart-line" aria-label="Add to Cart" type="submit" value="Add to Cart"></button>
                 </form>
             </div>
             @endforeach

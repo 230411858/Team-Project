@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\BasketItem;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
@@ -25,29 +28,29 @@ class ProductController extends Controller
 
         $images = ProductImage::where('product', $id)->get();
 
-        return view('products.show', ['product' => $product, 'images' => $images]);
+        $reviews = Review::where('product', $id)->get();
+
+        return view('products.show', ['product' => $product, 'images' => $images, 'reviews' => $reviews]);
     }
 
     public function category($category)
     {
-        if (in_array($category, ['mice','keyboards','monitors','audio']))
-        {
+        if (in_array($category, ['mice', 'keyboards', 'monitors', 'audio'])) {
             $products = Product::where('category', $category)->get();
 
             $images = ProductImage::all();
 
-        return view('products.category', ['products' => $products, 'images' => $images, 'category' => $category]);
-        }
-        else
-        {
+            return view('products.category', ['products' => $products, 'images' => $images, 'category' => $category]);
+        } else {
             abort(404);
         }
     }
 
     public function addBasketItem()
     {
-        if (Auth::check())
-        {
+        $old_basket_item = BasketItem::firstWhere([['user', '=', Auth::id()], ['product', '=', request('product')]]);
+
+        if ($old_basket_item == null) {
             $basket_item = new BasketItem();
 
             $basket_item->user = Auth::id();
@@ -56,66 +59,111 @@ class ProductController extends Controller
 
             $basket_item->quantity = request('quantity');
 
-            $old_basket_item = BasketItem::where([[ 'user', '=', $basket_item->user ], ['product', '=', $basket_item->product]])->first();
-
-            if ($old_basket_item == null)
-            {
-                $basket_item->save();
-            }
-            else
-            {
-                $old_basket_item->quantity = $old_basket_item->quantity + $basket_item->quantity;
-
-                $old_basket_item->save();
+            if ($basket_item->quantity < 1) {
+                $basket_item->quantity = 1;
+            } elseif ($basket_item->quantity > 99) {
+                $basket_item->quantity = 99;
             }
 
-            return back();
+            $basket_item->save();
         }
         else
         {
-            return redirect('login');
+            $old_basket_item->quantity = $old_basket_item->quantity + request('quantity');
+
+            if ($old_basket_item->quantity < 1) {
+                $old_basket_item->quantity = 1;
+            } elseif ($old_basket_item->quantity > 99) {
+                $old_basket_item->quantity = 99;
+            }
+
+            $old_basket_item->save();
         }
+
+        return back();
     }
 
     public function removeBasketItem()
     {
-        if(Auth::id() == request('user'))
-        {
+        $basket_item = BasketItem::firstWhere('id', request('id'));
+        if ($basket_item != null && Auth::id() == $basket_item->user) {
             BasketItem::destroy(request('id'));
-
             return back();
-        }
-        else
-        {
+        } else {
             abort(403);
         }
     }
 
     public function checkout()
     {
-        if (Auth::check())
-        {
-            $basket = BasketItem::where('user', Auth::id())->get();
+        $basket = BasketItem::where('user', Auth::id())->get();
 
-            $products = Product::all();
+        $products = Product::all();
 
-            return view('checkout', ['basket' => $basket, 'products' => $products]);
-        }
-        else
-        {
-            return redirect('login');
-        }
+        return view('checkout', ['basket' => $basket, 'products' => $products]);
+
+        return redirect('login');
     }
+
+    public function placeOrder()
+    {
+        $order = new Order();
+
+        $order->user = Auth::id();
+
+        $order->save();
+
+        $basket_items = BasketItem::where('user', Auth::id());
+        foreach ($basket_items as $basket_item) {
+            $order_item = new OrderItem();
+
+            $order_item->oid = $order->id;
+
+            $order_item->product = $basket_item->product;
+
+            $order_item->quantity = $basket_item->quantity;
+
+            $order_item->save();
+
+            $basket_item->delete();
+        }
+
+        return redirect('/');
+    }
+
+    public function review($id)
+    {
+        $old_review = Review::where([['user', '=', Auth::id()], ['product', '=', $id]])->first();
+
+        if ($old_review == null) {
+            $review = new Review();
+
+            $review->user = Auth::id();
+
+            $review->product = $id;
+
+            $review->text = request('review-text');
+
+            $review->save();
+        } else {
+            $old_review->text = request('review-text');
+
+            $old_review->save();
+        }
+
+        return back();
+    }
+
     public function search(Request $request)
     {
         $query = $request->input('query');
 
         //search with name or desc
-        $products = Product::where('name','like','%'.$query.'%')
-                            ->orWhere('description','like','%'.$query.'%')
+        $products = Product::where('name', 'like', '%' . $query . '%')
+            ->orWhere('description', 'like', '%' . $query . '%')
             ->get();
 
         //return the results to the search
-        return view('products.search-results',compact('products','query'));
+        return view('products.search-results', compact('products', 'query'));
     }
 }

@@ -9,8 +9,16 @@ Route::get('/', function () {
     return redirect('/products');
 });
 
+Route::get('/support', function () {
+    return view('support.support');
+});
+
 Route::get('/contact', function () {
-    return view('contact');
+    return view('support.contact');
+});
+
+Route::get('/faq', function () {
+    return view('support.faq');
 });
 
 Route::get('/about', function () {
@@ -23,11 +31,15 @@ Route::get('/products/category/{category}', [ProductController::class, 'category
 
 Route::get('/products/{id}', [ProductController::class, 'show']);
 
-Route::post('/add', [ProductController::class, 'addBasketItem']);
+Route::post('/add', [ProductController::class, 'addBasketItem'])->middleware('auth');
 
-Route::post('/remove', [ProductController::class, 'removeBasketItem']);
+Route::post('/remove', [ProductController::class, 'removeBasketItem'])->middleware('auth');
 
-Route::get('/checkout', [ProductController::class, 'checkout']);
+Route::get('/checkout', [ProductController::class, 'checkout'])->middleware('auth');
+
+Route::post('/checkout', [ProductController::class, 'placeOrder'])->middleware('auth');
+
+Route::post('/review/{id}', [ProductController::class, 'review'])->middleware('auth');
 
 Route::get('/search', [ProductController::class, 'search'])->name('search');
 
