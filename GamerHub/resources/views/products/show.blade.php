@@ -66,7 +66,7 @@
                     <label for="quantity">Quantity:</label>
                     <input hidden type="number" name="product" value="{{ $product->id }}">
                     <input type="number" id="quantity" name="quantity" value="1" min="1" onchange="updateTotal()">
-                    Total: £<span id="total">{{ $product->price / 100 }}</span>
+                    £<span id="total">{{ $product->price / 100 }}</span>
                     <button class="cart-butt" aria-label="Add to Cart" type="submit" value="Add to Cart">Add to Cart</button>
                 </form>
             </div>
@@ -119,15 +119,26 @@
 
     <div class="review-form">
         <h3>Write a Review</h3>
-        <textarea id="review-text" rows="4" placeholder="Write your review here..."></textarea>
-        <input type="text" id="reviewer-name" placeholder="Your name" />
-        <button onclick="addReview()">Submit Review</button>
+        <form action="{{ url('/review')}}/{{ $product->id }}" method="POST">
+            @csrf
+            <input type="text" maxlength="1000" id="review-text" name="review-text" rows="4" placeholder="Write your review here...">
+            <button type="submit">Submit Review</button>
+        </form>
     </div>
 
     <div class="reviews-list" id="reviews-list">
+        @if ($reviews == null)
         <p id="no-reviews-message">No reviews yet. Please leave a review</p>
+        @else
+        @foreach ($reviews as $review)
+        <div class="review-item">
+            <strong>{{ \App\Models\User::find($review->user)->name }}</strong>
+            <p>{{ $review->text }}</p>
+        </div>
+        @endforeach
+        @endif
     </div>
 </div>
 <!-- reviews section -->
- <script src="{{ url('/js/product.js') }}"></script>
+<script src="{{ url('/js/product.js') }}"></script>
 @endsection

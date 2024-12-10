@@ -29,7 +29,7 @@
         }
 
         /*  form */
-        form {
+        #search {
             display: inline-flex;
             align-items: center;
             border: 1px solid #ccc;
@@ -141,9 +141,6 @@
                                         <li>
                                             <a href="#" class="dropdown__link">Membrane</a>
                                         </li>
-                                        <li>
-                                            <a href="#" class="dropdown__link">Combos</a>
-                                        </li>
                                     </ul>
                                 </div>
 
@@ -161,9 +158,6 @@
                                         <li>
                                             <a href="#" class="dropdown__link">240Hz</a>
                                         </li>
-                                        <li>
-                                            <a href="#" class="dropdown__link">Dual Monitor</a>
-                                        </li>
                                     </ul>
                                 </div>
 
@@ -176,10 +170,10 @@
 
                                     <ul class="dropdown__list">
                                         <li>
-                                            <a href="#" class="dropdown__link">Bluetooth</a>
+                                            <a href="#" class="dropdown__link">Headphones</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="dropdown__link">Combos</a>
+                                            <a href="#" class="dropdown__link">Speakers</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -197,7 +191,7 @@
                             <div class="dropdown__content">
                                 <div class="dropdown__group">
                                     <div class="dropdown__icon">
-                                        <i class="ri-discount-percent-line"></i>
+                                        <i class="ri-money-pound-circle-line"></i>
                                     </div>
                                     <a href="{{ url('/products/deals') }}" class="dropdown__title">Discounts</a>
 
@@ -230,12 +224,31 @@
                             </div>
                         </div>
                     </li>
+                    <!--=============== DROPDOWN 3 ===============-->
+                    <li class="dropdown__item">
+                        <div class="nav__link dropdown__button">
+                            Support <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                        </div>
 
-                    <!--=============== Contact ===============-->
-                    <li>
-                        <a href="{{ url('/contact') }}" class="nav__link">Contact</a>
+                        <div class="dropdown__container">
+                            <div class="dropdown__content">
+                                <div class="dropdown__group">
+                                    <div class="dropdown__icon">
+                                        <i class="ri-customer-service-line"></i>
+                                    </div>
+                                    <a href="{{ url('/support') }}" class="dropdown__title">Support</a>
+                                    <ul class="dropdown__list">
+                                        <li>
+                                            <a href="{{ url('/contact') }}" class="dropdown__link">Contact</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ url('/faq') }}" class="dropdown__link">FAQ</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </li>
-
                     <!--=============== About ===============-->
                     <li>
                         <a href="{{ url('/about') }}" class="nav__link">About</a>
@@ -244,7 +257,7 @@
                     <!--=============== Search ===============-->
                     <li>
                         <div class="search-container">
-                            <form action="{{ route('search') }}" method="GET">
+                            <form id="search" action="{{ route('search') }}" method="GET">
                                 <input type="text" name="query" class="search-input" placeholder="Search..." required>
                                 <button type="submit" class="search-button">
                                     <i class="ri-search-line"></i>
@@ -288,6 +301,7 @@
                                 $basket_count = $basket_count + $basket_item->quantity;
                                 $total = $total + ($products->firstWhere('id', $basket_item->product)->price * $basket_item->quantity);
                                 }
+                                $total = $total / 100;
                                 }
                                 @endphp
                                 <i class="ri-shopping-cart-line"></i>
@@ -320,18 +334,37 @@
                                             <img height="60px" width="80px" src="{{ url('/images') }}/{{ $product->category }}/{{ $file }}" alt="">
                                             <p class="nav__link">{{ $product->name }}</p>
                                             <p class="nav__link">x{{ $basket_item->quantity }}</p>
-                                            <form action="{{ url('/remove') }}" method="POST">
+                                            @if($basket_item->quantity < 100)
+                                                <form action="{{ url('/add') }}" method="POST">
                                                 @csrf
-                                                <input hidden name="id" value="{{ $basket_item->id }}">
-                                                <input hidden name="user" value="{{ $basket_item->user }}">
-                                                <button class="cart-butt" aria-label="Add to Cart" type="submit" value="Add to Cart">Delete</button>
-                                            </form>
+                                                <input hidden type="number" name="product" value="{{ $product->id }}">
+                                                <input hidden type="number" id="quantity" name="quantity" value="1">
+                                                <button id="increase-quantity" class="quantity-btn" type="submit">+</button>
+                                                </form>
+                                                @endif
+                                                @if($basket_item->quantity > 1)
+                                                <form action="{{ url('/add') }}" method="POST">
+                                                    @csrf
+                                                    <input hidden type="number" name="product" value="{{ $product->id }}">
+                                                    <input hidden type="number" id="quantity" name="quantity" value="-1">
+                                                    <button id="decrease-quantity" class="quantity-btn" type="submit">-</button>
+                                                </form>
+                                                @endif
+                                                <form action="{{ url('/remove') }}" method="POST">
+                                                    @csrf
+                                                    <input hidden name="id" value="{{ $basket_item->id }}">
+                                                    <input hidden name="user" value="{{ $basket_item->user }}">
+                                                    <button id="remove_from_cart" class="ri-close-circle-line" aria-label="Remove from Cart" type="submit" value="Remove from Cart"></button>
+                                                </form>
+                                        </li>
+                                        <li>
+                                        <span class="total-price">£{{ number_format(($product->price * $basket_item->quantity) / 100, 2) }} &nbsp </span> | £{{ number_format($product->price / 100, 2) }}/item
                                         </li>
                                         @endforeach
                                     </ul>
                                     <div class="basket-total">
                                         <span>Total:</span>
-                                        <span class="total-price">£{{ $total / 100 }}</span>
+                                        <span class="total-price">£{{ number_format($total, 2) }}</span>
                                     </div>
                                     <a href="{{ url('/checkout') }}" class="checkout-btn">Checkout</a>
                                 </div>
@@ -342,4 +375,3 @@
             </div>
         </nav>
     </header>
-    {{--CSS for Search bar--}}

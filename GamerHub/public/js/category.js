@@ -1,10 +1,10 @@
+/*Implemented by Isa Abdur-Rahman*/
 const filterButtons = document.querySelectorAll(".filtersection button");
 const filterableProducts = document.querySelectorAll(".productcontainer .products");
 
 const filterProducts = e => {
     document.querySelector(".active").classList.remove("active");
     e.target.classList.add("active");
-
 
 filterableProducts.forEach(products =>{
     products.classList.add("hide");

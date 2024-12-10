@@ -20,7 +20,7 @@
   --background-color: #f8f9fa;
   --pop-color: hsl(220, 68%, 54%);
   --gray: #ededed;
-  --lala: url("background.jpg");
+  --lala: url("../images/background.jpg");
 
   /*========== Font and typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
@@ -54,7 +54,7 @@
   --reason_text: hsl(225, 3%, 71%);
   --pop-color: hsl(18, 97%, 38%);
   --background-color: hsl(214, 89%, 7%);
-  --lala: url("background2.jpg")
+  --lala: url("../images/background2.jpg")
   
 }
 
