@@ -8,11 +8,11 @@
   --header-height: 3.5rem;
   /*========== Colors ==========*/
   /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(220, 68%, 54%);
+  --first-color-lighten: hsl(220, 68%, 97%);
   --title-color: hsl(220, 48%, 28%);
-  --title-list-color: hsl(220, 68%, 54%);
+  --text-color: hsl(220, 12%, 45%);
   --body-color: hsl(220, 100%, 99%);
-  --lala: url("../images/background.jpg");
-
   /*========== Font and typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
   --body-font: "Poppins", sans-serif;
@@ -34,20 +34,6 @@
   }
 }
 
-.darkmode{
-  --first-color: hsl(220, 95%, 70%);
-  --first-color-lighten: hsl(18, 97%, 38%);
-  --title-color: hsl(220, 89%, 69%);
-  --title-list-color: hsl(18, 97%, 38%);
-  --text-color: hsl(220, 12%, 45%);
-  --body-color: hsl(0, 0%, 0%);
-  --reason_color: hsl(0, 4%, 10%);
-  --reason_text: hsl(225, 3%, 71%);
-  --pop-color: hsl(18, 97%, 38%);
-  --background-color: hsl(214, 89%, 7%);
-  --lala: url("../images/background2.jpg")
-  
-}
 /*=============== BASE ===============*/
 * ,
 *::before,
@@ -64,39 +50,6 @@ body {
   color: var(--text-color);
 }
 
-.lg-title,
-.md-title,
-.sm-title{
-    font-family: 'Roboto', sans-serif;
-    padding: 0.6rem 0;
-    text-transform: capitalize;
-    color: var(--reason_text);
-}
-
-.lg-title{
-    font-size: 2.5rem;
-    font-weight: 500;
-    text-align: center;
-    padding: 1.3rem 0;
-    opacity: 0.9;
-}
-.md-title{
-    font-size: 2rem;
-    font-family: 'Roboto', sans-serif;
-}
-.sm-title{
-    font-weight: 300;
-    font-size: 1rem;
-    text-transform: uppercase;
-}
-.text-light{
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.5;
-    margin: 0.4rem 0;
-    color: var(--reason_text);
-}
-
 ul {
   list-style: none;
 }
@@ -107,18 +60,14 @@ a {
 
 li { list-style: none; }
 
-a{ display: block; }
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
+a,
+img{ display: block; }
 
 :focus-visible { outline-offset: 5px; }
+
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
-  max-width: 120px;
+  max-width: 1120px;
   margin-inline: 1.5rem;
 }
 
@@ -134,6 +83,7 @@ img {
 }
 
 /*=============== NAV ===============*/
+
 .nav {
   height: var(--header-height);
   display: flex;
@@ -147,7 +97,7 @@ img {
 .nav__logo {
   display: inline-flex;
   position: absolute;
-  left: 50px;
+  left: 10px;
   color: var(--title-color);
   font-weight: var(--font-semi-bold);
   transition: color 0.3s;
@@ -155,9 +105,7 @@ img {
 .nav__logo i {
   font-size: 1.25rem;
 }
-.nav__logo:hover {
-  color: var(--first-color);
-}
+
 .nav__toggle {
   position: relative;
   width: 32px;
@@ -270,7 +218,7 @@ img {
   transition: color 0.3s;
 }
 .dropdown__title:hover {
-  color: var(--title-list-color);
+  color: black;
 }
 .dropdown__list {
   row-gap: 0.25rem;
@@ -290,42 +238,6 @@ img {
 .show-dropdown .dropdown__arrow {
   transform: rotate(180deg);
 }
-
-#switch{
-  height: 45px;
-  width: 50px;
-  padding: 0;
-  border-radius: 50%;
-  background-color: var(--base-variant);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  right: 220px;
-  top: 20px;
-  border: none;
-  cursor: pointer;
-}
-
-#switch svg{
-  fill: var(--title-color);
-  height: 30px;
-  width: 30px;
-}
-
-#switch svg:last-child{
-  display: none;
-}
-
-.darkmode #switch svg:first-child{
-  display: none;
-}
-
-.darkmode #switch svg:last-child{
-  display: block;
-}
-
-/*=============== LOGIN BUTTON ===============*/
 
 .login{
   height: 45px;
@@ -347,7 +259,6 @@ img {
   top: 2px;
 }
 
-/*=============== BASKET BUTTON ===============*/
 
 .show-basket {
   transform: translateX(0)
@@ -424,6 +335,7 @@ padding: 10px 20px;
 background: #fff;
 border-radius: 30px;
 align-items: baseline;
+
 box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -445,29 +357,6 @@ box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   font-size: 18px;
   position: relative;
   top: 2px;
-}
-/*=============== BREAKPOINTS ===============*/
-
-/* For medium devices */
-@media screen and (min-width: 768px) {
-  .swiper-button-next,
-  .swiper-button-prev {
-    display: block;
-  }
-}
-
-/* For large devices */
-@media screen and (min-width: 1120px) {
-  .card__container {
-    max-width: 1400px;
-  }
-
-  .swiper-button-prev {
-    left: -1rem;
-  }
-  .swiper-button-next {
-    right: -1rem;
-  }
 }
 /*=============== FOOTER SECTION ===============*/
 section.footer{
@@ -542,6 +431,8 @@ section.footer{
 
   .product-list .w-50 { width: calc(33.33% - 20px); }
 }
+
+
 /*=============== BREAKPOINTS ===============*/
 
 /*=============== NAVBAR SECTION ===============*/
@@ -565,7 +456,7 @@ section.footer{
   }
   .nav__list {
     display: flex;
-    column-gap: 3rem;
+    column-gap: 2.6rem;
     height: 100%;
   }
   .nav li {
@@ -647,14 +538,65 @@ section.footer{
 }
 @media screen and (min-width: 1152px) {
   .container {
-    max-width: 1200px;
+    margin-inline: auto;
   }
 }
+
+#switch{
+  height: 45px;
+  width: 50px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: var(--base-variant);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 220px;
+  margin-right: -2   0px;
+  top: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+#switch svg{
+  fill: var(--title-color);
+  margin-right: -60px;
+  height: 30px;
+  width: 30px;
+}
+
+#switch svg:last-child{
+  display: none;
+}
+
+.darkmode #switch svg:first-child{
+  display: none;
+}
+
+.darkmode #switch svg:last-child{
+  display: block;
+}
+
+.darkmode{
+  --first-color: hsl(220, 95%, 70%);
+  --first-color-lighten: white;
+  --title-color: hsl(220, 89%, 69%);
+  --title-list-color: white;
+  --text-color: hsl(220, 12%, 45%);
+  --body-color: hsl(0, 0%, 0%);
+  --reason_color: hsl(0, 4%, 10%);
+  --reason_text: hsl(225, 3%, 71%);
+  --pop-color: hsl(18, 97%, 38%);
+  --background-color: hsl(214, 89%, 7%);
+  --lala: url("../images/background2.jpg")
+  
+}
+
 /*=============== Basket Section Stuff ===============*/
 .show-basket {
   transform: translateX(0)
 }
-
 /* basket transition */
 
 .basket-total {
@@ -662,7 +604,6 @@ section.footer{
   justify-content: space-between;
   font-weight: var(--font-semi-bold);
 }
-
 /* basket total cost  */
 
 
@@ -675,7 +616,6 @@ section.footer{
   border-radius: 5px;
   text-align: center;
 }
-
 /* checkout button  */
 
 .basket-items {
@@ -683,7 +623,6 @@ section.footer{
   overflow-y: auto;
   flex-grow: 1;
 }
-
 /* items in basket */
 
 .basket-item {
@@ -692,13 +631,11 @@ section.footer{
   align-items: center;
   margin-bottom: 10px;
 }
-
 /* item in basket name amount quant and remove button  */
 
 .basket-item span {
-  margin-right: 25px;
+  margin-right: 25px; 
 }
-
 /* gap between the items in basket  */
 
 .basket-content {
@@ -706,9 +643,8 @@ section.footer{
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content:space-between;
 }
-
 /* content in basket  */
 
 .basket-modal {
@@ -718,23 +654,21 @@ section.footer{
   width: 300px;
   height: 100vh;
   background: var(--body-color);
-  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  box-shadow: -2px 0 8px rgba(0,0,0,0.1);
   transform: translateX(100%);
   transition: transform 0.4s ease-in-out;
   z-index: var(--z-fixed);
 }
-
 /* basket modal */
 
 
-.nav_basket {
+.nav_basket{
   display: flex;
   margin-left: 150px;
   position: absolute;
   right: 80px;
   cursor: pointer;
 }
-
 /* nav bar basket  */
 
 
@@ -749,7 +683,6 @@ section.footer{
   border-radius: 50%;
 
 }
-
 /* basket counter  */
 
 
@@ -757,14 +690,12 @@ section.footer{
   font-size: 1.5rem;
   color: var(--title-color);
 }
-
 /* nav bar basket */
 
 
 .basket-container:hover .basket-modal {
   transform: translateX(0);
 }
-
 /* container basket hovered  */
 
 .remove-item {
@@ -778,100 +709,14 @@ section.footer{
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 /* the remove button */
 
 .remove-item:hover {
   background-color: orange;
 }
-
 /* the remove button hovered */
-.cart-butt {
-  padding: 0.75rem 2rem;
-  background-color: var(--first-color);
-  ;
-  border: none;
-  color: white;
-  font-weight: bold;
-  font-size: 1rem;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+span{
+  color: #ef5e41;
 }
+/* text highlight in modal */
 
-/* the add to cart button  */
-
-.cart-butt:hover {
-  color: white;
-  background-color: orange;
-}
-
-.show-basket {
-  transform: translateX(0)
-}
-
-.basket-total {
-  display: flex;
-  justify-content: space-between;
-  font-weight: var(--font-semi-bold);
-}
-
-.checkout.btn {
-  background-color: var(--first-color);
-  color: #fff;
-  padding: 10xp;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  text-align: center;
-}
-
-.basket-items {
-  list-style: none;
-  overflow-y: auto;
-  flex-grow: 1;
-}
-
-.basket-content {
-  padding: 1rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.basket-modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 300px;
-  height: 100vh;
-  background: var(--body-color);
-  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
-  transform: translateX(100%);
-  transition: transform 0.4s;
-  z-index: var(--z-fixed);
-}
-
-.nav_basket {
-  position: absolute;
-  top: 30px;
-  right: 80px;
-  cursor: pointer;
-}
-
-.basket-count {
-  position: absolute;
-  top: -5px;
-  right: -10px;
-  background-color: var(--first-color);
-  color: #fff;
-  font-size: 0.75rem;
-  padding: 2px 6px;
-  border-radius: 50%;
-}
-
-.nav_basket .ri-shopping-cart-line {
-  font-size: 1.5rem;
-  color: var(--title-color);
-}
