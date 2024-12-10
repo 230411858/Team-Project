@@ -31,6 +31,21 @@
     --smaller-font-size: .813rem;
   }
 }
+
+.darkmode{
+  --first-color: hsl(220, 95%, 70%);
+  --first-color-lighten: hsl(18, 97%, 38%);
+  --title-color: hsl(220, 89%, 69%);
+  --title-list-color: hsl(18, 97%, 38%);
+  --text-color: hsl(220, 12%, 45%);
+  --body-color: hsl(0, 0%, 0%);
+  --reason_color: hsl(0, 4%, 10%);
+  --reason_text: hsl(225, 3%, 71%);
+  --pop-color: hsl(18, 97%, 38%);
+  --background-color: hsl(214, 89%, 7%);
+  --lala: url("../images/background2.jpg")
+  
+}
 /*=============== BASE ===============*/
 * ,
 *::before,
