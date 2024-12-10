@@ -31,6 +31,7 @@
         <section class="shipping-form" id="buy-now">
             <h3>Shipping</h3>
             <form id="checkout-form" action="#" method="POST">
+                @csrf
                 <h4>Contact Info</h4>
                 <div class="form-group">
                     <label for="email">Email <span class="required">*</span></label>
