@@ -66,7 +66,7 @@
                     <label for="quantity">Quantity:</label>
                     <input hidden type="number" name="product" value="{{ $product->id }}">
                     <input type="number" id="quantity" name="quantity" value="1" min="1" onchange="updateTotal()">
-                    £<span id="total">{{ $product->price / 100 }}</span>
+                    £<span id="total">{{ number_format($product->price / 100, 2) }}</span>
                     <button class="cart-butt" aria-label="Add to Cart" type="submit" value="Add to Cart">Add to Cart</button>
                 </form>
             </div>

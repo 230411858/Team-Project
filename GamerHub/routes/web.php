@@ -31,6 +31,8 @@ Route::get('/products/category/{category}', [ProductController::class, 'category
 
 Route::get('/products/{id}', [ProductController::class, 'show']);
 
+Route::get('/deals', [ProductController::class, 'deals']);
+
 Route::post('/add', [ProductController::class, 'addBasketItem'])->middleware('auth');
 
 Route::post('/remove', [ProductController::class, 'removeBasketItem'])->middleware('auth');

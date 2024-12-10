@@ -36,5 +36,6 @@
 
         <!--=============== MAIN JS ===============-->
         <script src="{{ url('/js/products.js') }}"></script>
+        <script src="{{ url('/js/swiper-bundle.min.js') }}"></script>
         </body>
 </html>
