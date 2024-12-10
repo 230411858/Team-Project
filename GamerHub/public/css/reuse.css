@@ -8,6 +8,8 @@
   --header-height: 3.5rem;
   /*========== Colors ==========*/
   /*Color mode HSL(hue, saturation, lightness)*/
+  --title-color: hsl(220, 48%, 28%);
+  --title-list-color: hsl(220, 68%, 54%);
   --body-color: hsl(220, 100%, 99%);
   --lala: url("../images/background.jpg");
 
