@@ -1,3 +1,11 @@
+function updateTotal() {
+    const price = parseFloat(document.getElementById('price').textContent);
+    const quantity = parseInt(document.getElementById('quantity').value);
+    const total = price * quantity;
+    console.log(price, quantity, total);
+    document.getElementById('total').textContent = total.toFixed(2);
+}
+// update the price when quantity increases  
 var coll = document.getElementsByClassName("spec-det");
 var i;
     
@@ -67,25 +75,3 @@ imageElement.addEventListener('click', function() {
 });
 
 //zoom
-
-/*=============== DARKMODE ===============*/
-
-let darkmode = localStorage.getItem('darkmode')
-const Switch = document. getElementById('switch')
-
-const enableDarkode = () =>{
-    document.body.classList.add('darkmode')
-    localStorage.setItem('darkmode','active')
-}
-
-const diableDarkmode = () => {
-    document.body.classList.remove('darkmode')
-    localStorage.setItem('darkmode', null)
-}
-
-if(darkmode === "active") enableDarkode()
-
-Switch.addEventListener("click", () =>{
-    darkmode = localStorage.getItem('darkmode')
-    darkmode !== "active" ? enableDarkode() : diableDarkmode()
-})

@@ -11,6 +11,8 @@ use App\Models\OrderItem;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isEmpty;
+
 class ProductController extends Controller
 {
     public function index()
@@ -44,6 +46,13 @@ class ProductController extends Controller
         } else {
             abort(404);
         }
+    }
+
+    public function deals()
+    {
+        $discount_items = Product::where('discount', '>', 0)->get();
+
+        return view('deals', ['discount_items' => $discount_items]);
     }
 
     public function addBasketItem()
@@ -165,5 +174,24 @@ class ProductController extends Controller
 
         //return the results to the search
         return view('products.search-results', compact('products', 'query'));
+    }
+
+    public function getImages($id)
+    {
+        $images = ProductImage::where('product', $id)->get();
+
+        return $images;
+    }
+
+    public static function getCoverImage($id)
+    {
+        $image = ProductImage::firstWhere('product', $id);
+
+        if ($image == null)
+        {
+            $image = 'cover.png';
+        }
+
+        return $image->file;
     }
 }

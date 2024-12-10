@@ -193,31 +193,11 @@
                                     <div class="dropdown__icon">
                                         <i class="ri-money-pound-circle-line"></i>
                                     </div>
-                                    <a href="{{ url('/products/deals') }}" class="dropdown__title">Discounts</a>
+                                    <a href="{{ url('/deals') }}" class="dropdown__title">Discounts</a>
 
                                     <ul class="dropdown__list">
                                         <li>
-                                            <a href="#" class="dropdown__link">Black Friday</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="dropdown__link">Discounted items</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="dropdown__group">
-                                    <div class="dropdown__icon">
-                                        <i class="ri-arrow-right-up-line"></i>
-                                    </div>
-
-                                    <a href="#" class="dropdown__title">Bundles</a>
-
-                                    <ul class="dropdown__list">
-                                        <li>
-                                            <a href="#" class="dropdown__link">M&K</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="dropdown__link">Full setup</a>
+                                            <a href="{{ url('/deals') }}" class="dropdown__link">Discounted items</a>
                                         </li>
                                     </ul>
                                 </div>
