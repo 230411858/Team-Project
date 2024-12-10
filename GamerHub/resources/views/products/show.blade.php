@@ -127,7 +127,7 @@
     </div>
 
     <div class="reviews-list" id="reviews-list">
-        @if ($reviews == null)
+        @if ($reviews->isEmpty())
         <p id="no-reviews-message">No reviews yet. Please leave a review</p>
         @else
         @foreach ($reviews as $review)
