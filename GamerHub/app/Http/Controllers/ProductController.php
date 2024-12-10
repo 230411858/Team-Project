@@ -137,7 +137,7 @@ class ProductController extends Controller
             $basket_item->delete();
         }
 
-        return redirect('/');
+        return back();
     }
 
     public function review($id)
