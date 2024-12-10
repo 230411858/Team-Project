@@ -22,8 +22,8 @@
 
             <div class="footer-content">
                 <h4>Deals</h4>
-                <li><a href="#">Deals</a></li>
-                <li><a href="#">Bundles</a></li>
+                <li><a href="{{ url('/deals') }}">Deals</a></li>
+                <li><a href="{{ url('/deals') }}">Discounted</a></li>
             </div>
 
             <div class="footer-content">
