@@ -109,7 +109,7 @@
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                 </div>
-                <h4>£{{ $product->price / 100 }}</h4>
+                <h4>£{{ number_format($product->price / 100, 2) }}</h4>
                 <form action="{{ url('/add') }}" method="POST">
                     @csrf
                     <input hidden type="number" name="product" value="{{ $product->id }}">
