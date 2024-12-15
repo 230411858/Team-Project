@@ -14,7 +14,9 @@
     <div class="hero-section">
         <div class="hero-content">
             <h1><b>The way to <span>compete</span> with excellence</b></h1>
+            <a href="{{ url('/deals') }}">
             <button>Discover our Offers</button>
+            </a>
         </div>
     </div>
 </section>

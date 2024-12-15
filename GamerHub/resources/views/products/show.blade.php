@@ -12,7 +12,7 @@
 <nav>
     <ul class="breadcrumb">
         <li><a href="{{ url('/') }}">Home</a></li>
-        <li><a href="shop.html">{{ ucfirst($product->category) }}</a></li>
+        <li><a href="{{ url('/') }}/{{ $product->category }}">{{ ucfirst($product->category) }}</a></li>
         <li>{{ $product->name }}</li>
     </ul>
 </nav>
@@ -52,8 +52,6 @@
                 @endforeach
             </div>
         </div>
-
-
 
         <div class="details-p">
             <p class="description-p">
