@@ -11,6 +11,23 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
                 </div>
+                @php
+                use Illuminate\Support\Facades\Auth;
+                if (Auth::user()->account_type == 'admin')
+                {
+                    <ul>
+                    foreach (\App\Models\User::all() as $user) 
+                    {
+                        <li>
+                            $user->name;
+                        </li>
+                        <li>
+                            $user->email;
+                        </li>
+                    }
+                    </ul>
+                }
+                @endphp
             </div>
         </div>
     </div>
