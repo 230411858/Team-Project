@@ -9,24 +9,20 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-                @php
-                if (Illuminate\Support\Facades\Auth::user()->account_type == 'admin')
-                {
+                    {{ __("You're logged in!") }}<br>
+                    @if (Illuminate\Support\Facades\Auth::user()->account_type == 'admin')
+
+                    List of currently registered users:
+                    <br>
+                    Name    Email    Account type<br>
                     <ul>
-                    foreach (\App\Models\User::all() as $user) 
-                    {
+                    @foreach (\App\Models\User::all() as $user) 
                         <li>
-                            $user->name;
+                            {{ $user->name }} {{ $user->email }} {{ $user->account_type }}<br>
                         </li>
-                        <li>
-                            $user->email;
-                        </li>
-                    }
+                    @endforeach
                     </ul>
-                }
-                @endphp
+                    @endif
             </div>
         </div>
     </div>
