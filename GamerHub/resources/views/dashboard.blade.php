@@ -12,8 +12,7 @@
                     {{ __("You're logged in!") }}
                 </div>
                 @php
-                use Illuminate\Support\Facades\Auth;
-                if (Auth::user()->account_type == 'admin')
+                if (Illuminate\Support\Facades\Auth::user()->account_type == 'admin')
                 {
                     <ul>
                     foreach (\App\Models\User::all() as $user) 
