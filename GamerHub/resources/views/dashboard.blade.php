@@ -14,14 +14,20 @@
 
                     List of currently registered users:
                     <br>
-                    Name    Email    Account type<br>
-                    <ul>
-                    @foreach (\App\Models\User::all() as $user) 
-                        <li>
-                            {{ $user->name }} {{ $user->email }} {{ $user->account_type }}<br>
-                        </li>
-                    @endforeach
-                    </ul>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Account Type</th>
+                        </tr>
+                        @foreach (\App\Models\User::all() as $user) 
+                        <tr>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->account_type }}</td>
+                        </tr>
+                        @endforeach
+                    </table>
                     @endif
             </div>
         </div>

@@ -132,7 +132,10 @@
                         </label>
                     </div>
                 </div>
-                <button class="save-and-continue-btn">Continue</button>
+                <form action="{{ url('/checkout/save') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="save-and-continue-btn">Continue</button>
+                </form>
             </div>
         </section>
 
