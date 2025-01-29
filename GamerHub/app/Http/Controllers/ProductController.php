@@ -114,7 +114,7 @@ class ProductController extends Controller
         return redirect('login');
     }
 
-    public function placeOrder()
+    public function saveOrder()
     {
         $order = new Order();
 
@@ -122,7 +122,7 @@ class ProductController extends Controller
 
         $order->save();
 
-        $basket_items = BasketItem::where('user', Auth::id());
+        $basket_items = BasketItem::where('user', Auth::id())->get();
         foreach ($basket_items as $basket_item) {
             $order_item = new OrderItem();
 

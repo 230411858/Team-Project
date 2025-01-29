@@ -39,6 +39,8 @@ Route::post('/remove', [ProductController::class, 'removeBasketItem'])->middlewa
 
 Route::get('/checkout', [ProductController::class, 'checkout'])->middleware('auth');
 
+Route::post('/checkout/save', [ProductController::class, 'saveOrder'])->middleware('auth');
+
 Route::post('/checkout', [ProductController::class, 'placeOrder'])->middleware('auth');
 
 Route::post('/review/{id}', [ProductController::class, 'review'])->middleware('auth');
