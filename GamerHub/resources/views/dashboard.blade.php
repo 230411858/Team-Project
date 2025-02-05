@@ -28,6 +28,25 @@
                         </tr>
                         @endforeach
                     </table>
+                    <br>
+                    <table>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                        </tr>
+                        @foreach (\App\Models\Product::all() as $product) 
+                        <tr>
+                            <td>{{ $product->id }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->category }}</td>
+                            <td>{{ $product->price }}</td>
+                            <td>{{ $product->stock }}</td>
+                        </tr>
+                        @endforeach
+                    </table>
                     @endif
             </div>
         </div>
