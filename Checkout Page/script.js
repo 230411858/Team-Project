@@ -44,8 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         onApprove: function (data, actions) {
             return actions.order.capture().then(function (details) {
-                alert("Transaction completed by " + details.payer.name.given_name);
-                console.log(details);
+                window.location.href = "thankyou.html"; // Redirect to Thank You page
             });
         },
         onError: function (err) {
