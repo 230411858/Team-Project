@@ -22,6 +22,7 @@
                         </tr>
                         @foreach (\App\Models\User::all() as $user) 
                         <tr>
+                            <td><a href="{{ url('/edit/user')}}/{{ $user->id }}">{{ $user->id }}</a></td>
                             <td>{{ ucfirst($user->name) }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ ucfirst($user->account_type) }}</td>
@@ -38,9 +39,8 @@
                             <th>Stock</th>
                         </tr>
                         @foreach (\App\Models\Product::all() as $product) 
-                        <tr>
-                            <td>{{ $product->id }}</td>
-                            <td>{{ ucfirst($product->name) }}</td>
+                            <td><a href="{{ url('/edit/product')}}/{{ $product->id }}">{{ $product->id }}</a></td>
+                            <td>{{ ucwords($product->name) }}</td>
                             <td>{{ ucfirst($product->category) }}</td>
                             <td>£{{ number_format($product->price / 100, 2) }}</td>
                             <td>{{ $product->stock }}</td>
