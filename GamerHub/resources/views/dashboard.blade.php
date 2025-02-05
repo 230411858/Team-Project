@@ -22,9 +22,9 @@
                         </tr>
                         @foreach (\App\Models\User::all() as $user) 
                         <tr>
-                            <td>{{ $user->name }}</td>
+                            <td>{{ ucfirst($user->name) }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->account_type }}</td>
+                            <td>{{ ucfirst($user->account_type) }}</td>
                         </tr>
                         @endforeach
                     </table>
@@ -40,9 +40,9 @@
                         @foreach (\App\Models\Product::all() as $product) 
                         <tr>
                             <td>{{ $product->id }}</td>
-                            <td>{{ $product->name }}</td>
-                            <td>{{ $product->category }}</td>
-                            <td>{{ $product->price }}</td>
+                            <td>{{ ucfirst($product->name) }}</td>
+                            <td>{{ ucfirst($product->category) }}</td>
+                            <td>£{{ number_format($product->price / 100, 2) }}</td>
                             <td>{{ $product->stock }}</td>
                         </tr>
                         @endforeach
