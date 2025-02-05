@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\BasketController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -39,13 +39,15 @@ Route::post('/remove', [ProductController::class, 'removeBasketItem'])->middlewa
 
 Route::get('/checkout', [ProductController::class, 'checkout'])->middleware('auth');
 
-Route::post('/checkout', [ProductController::class, 'doNothing'])->middleware('auth');
-
 Route::post('/checkout/save', [ProductController::class, 'saveOrder'])->middleware('auth');
 
 Route::post('/review/{id}', [ProductController::class, 'review'])->middleware('auth');
 
 Route::get('/search', [ProductController::class, 'search'])->name('search');
+
+Route::get('/edit/user/{id}', [UserController::class, 'edit'])->middleware('auth');
+
+Route::get('/edit/product/{id}', [ProductController::class, 'editProduct'])->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
