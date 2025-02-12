@@ -12,7 +12,6 @@
                     {{ __("You're logged in! ") }}<br>
 
                     @if (Illuminate\Support\Facades\Auth::user()->account_type == 'admin')
-
                         <h3>List of currently registered customers:</h3>
                         <table>
                             <tr>
@@ -35,7 +34,6 @@
                                 </tr>
                             @endforeach
                         </table>
-
                     @endif
                 </div>
             </div>
