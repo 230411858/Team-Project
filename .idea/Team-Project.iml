@@ -6,6 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/GamerHub/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
       <sourceFolder url="file://$MODULE_DIR$/GamerHub/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
       <sourceFolder url="file://$MODULE_DIR$/GamerHub/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/GamerHub/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/GamerHub/tests/Unit" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/GamerHub/vendor/brianium/paratest" />
       <excludeFolder url="file://$MODULE_DIR$/GamerHub/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/GamerHub/vendor/carbonphp/carbon-doctrine-types" />
