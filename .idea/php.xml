@@ -146,6 +146,11 @@
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
   </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/GamerHub/phpunit.xml" custom_loader_path="$PROJECT_DIR$/GamerHub/vendor/autoload.php" paratest_path="$PROJECT_DIR$/GamerHub/vendor/bin/paratest_for_phpstorm" use_configuration_file="true" />
+    </phpunit_settings>
+  </component>
   <component name="PsalmOptionsConfiguration">
     <option name="transferred" value="true" />
   </component>
