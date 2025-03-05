@@ -11,8 +11,6 @@ use App\Models\OrderItem;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 
-use function PHPUnit\Framework\isEmpty;
-
 class ProductController extends Controller
 {
     public function index()
