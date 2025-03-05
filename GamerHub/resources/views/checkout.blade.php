@@ -20,22 +20,24 @@
         </nav>
     </header>
 
+    @if (!Auth::check())
     <section class="checkout-section">
         <h2>Checkout</h2>
         <p>
             <a href="{{ url('/login') }}">Sign in</a> or <a href="{{ url('/register') }}">Create Account</a> to track orders and see items you may have added using another device.
         </p>
     </section>
+    @endif
 
     <div class="main-content">
         <section class="shipping-form" id="buy-now">
             <h3>Shipping</h3>
-            <form id="checkout-form" action="#" method="POST">
+            <form action="{{ url('/checkout') }}" id="checkout-form" method="POST">
                 @csrf
                 <h4>Contact Info</h4>
                 <div class="form-group">
                     <label for="email">Email <span class="required">*</span></label>
-                    <input type="email" value="{{ Auth::user()->email }}" id="email" name="email" required placeholder="Enter your email">
+                    <input type="text" value="{{ Auth::user()->email }}" id="email" name="email" required placeholder="Enter your email">
                     <p class="helper-text">Order updates will be sent to this address.</p>
                 </div>
 
@@ -52,23 +54,23 @@
 
                 <div class="form-row">
                     <div class="form-group half">
-                        <label for="first-name">First Name <span class="required">*</span></label>
-                        <input type="text" id="first-name" name="first-name" required placeholder="Enter your first name" value="{{ Auth::user()->name }}">
+                        <label for="first_name">First Name <span class="required">*</span></label>
+                        <input type="text" id="first_name" name="first_name" required placeholder="Enter your first name" value="{{ Auth::user()->name }}">
                     </div>
                     <div class="form-group half">
-                        <label for="last-name">Last Name <span class="required">*</span></label>
-                        <input type="text" id="last-name" name="last-name" required placeholder="Enter your last name">
+                        <label for="last_name">Last Name <span class="required">*</span></label>
+                        <input type="text" id="last_name" name="last_name" required placeholder="Enter your last name">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="address">Address 1 <span class="required">*</span></label>
-                    <input type="text" id="address" name="address" required placeholder="Start typing your street address">
+                    <label for="address_line_1">Address 1 <span class="required">*</span></label>
+                    <input type="text" id="address_line_1" name="address_line_1" required placeholder="Start typing your street address">
                 </div>
 
                 <div class="form-group">
-                    <label for="address2">+ Add Apt, Suite, Building (Optional)</label>
-                    <input type="text" id="address2" name="address2" placeholder="Apartment, suite, or building">
+                    <label for="address_line_2">+ Add Apt, Suite, Building (Optional)</label>
+                    <input type="text" id="address_line_2" name="address_line_2" placeholder="Apartment, suite, or building">
                 </div>
 
                 <div class="form-row">
@@ -77,14 +79,14 @@
                         <input type="text" id="city" name="city" required placeholder="Enter your city">
                     </div>
                     <div class="form-group half">
-                        <label for="postal-code">Postal Code <span class="required">*</span></label>
-                        <input type="text" id="postal-code" name="postal-code" required placeholder="Enter your postal code">
+                        <label for="postcode">Postal Code <span class="required">*</span></label>
+                        <input type="text" id="postcode" name="postcode" required placeholder="Enter your postal code">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="phone-number">Phone Number <span class="required">*</span></label>
-                    <input type="tel" id="phone-number" name="phone-number" required placeholder="Enter your phone number">
+                    <label for="phone_number">Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="phone_number" name="phone_number" required placeholder="Enter your phone number">
                 </div>
 
                 <button type="submit" class="submit-btn">Save And Continue</button>
@@ -116,26 +118,23 @@
                 <h3>Shipping Method</h3>
                 <div class="shipping-methods">
                     <div class="method">
-                        <input type="radio" id="standard-shipping" name="shipping-method" value="Standard Shipping" data-details="2-3 business days*" checked>
-                        <label for="standard-shipping">
+                        <input type="radio" id="standard_shipping" name="shipping_method" value="Standard Shipping" data-details="2-3 business days*" checked>
+                        <label for="standard_shipping">
                             <strong>Standard Shipping</strong>
                             <span>2-3 business days*</span>
                             <span class="price">Free</span>
                         </label>
                     </div>
                     <div class="method">
-                        <input type="radio" id="expedited-shipping" name="shipping-method" value="Expedited Shipping" data-details="1-2 business days*">
-                        <label for="expedited-shipping">
-                            <strong>Expedited Shipping</strong>
+                        <input type="radio" id="express_shipping" name="shipping-method" value="Express Shipping" data-details="1-2 business days*">
+                        <label for="express_shipping">
+                            <strong>Express Shipping</strong>
                             <span>1-2 business days*</span>
                             <span class="price">Free</span>
                         </label>
                     </div>
                 </div>
-                <form action="{{ url('/checkout/save') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="save-and-continue-btn">Continue</button>
-                </form>
+                <button type="submit" class="save-and-continue-btn">Continue</button>
             </div>
         </section>
 
@@ -234,11 +233,31 @@
         </section>
     </div>
     <footer>
-        <p>&copy; 2024 GamerHub. All rights reserved.</p>
+        <p>&copy; 2025 GamerHub. All rights reserved.</p>
     </footer>
 
-    <script src="{{ url('/js/checkout.js') }}"></script>
+    <!-- <script src="{{ url('/js/checkout.js') }}"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=AWijUcO1_gYQ4twvve6K-0sChf3-rTdVDd3ANH2etbNjRCpl_f9Ryig1R7r9PX4-mlb8VAvHkNmiAAaM&currency=GBP"></script>
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $('#checkout-form').on('submit', function(e)
+        {
+            e.preventDefault();
+            jQuery.ajax({
+                url:"{{ url('/checkout') }}",
+                data:jQuery('#checkout-form').serialize(),
+                type:'post',
+
+                success:function(result)
+                {
+
+                }
+            })
+        }); 
+        });
+</script>
 </body>
 
 </html>

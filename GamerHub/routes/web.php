@@ -33,7 +33,7 @@ Route::get('/deals', [ProductController::class, 'deals']);
 Route::post('/add', [ProductController::class, 'addBasketItem'])->middleware('auth');
 Route::post('/remove', [ProductController::class, 'removeBasketItem'])->middleware('auth');
 Route::get('/checkout', [ProductController::class, 'checkout'])->middleware('auth');
-Route::post('/checkout/save', [ProductController::class, 'saveOrder'])->middleware('auth');
+Route::post('/checkout', [ProductController::class, 'saveOrder'])->middleware('auth');
 Route::post('/review/{id}', [ProductController::class, 'review'])->middleware('auth');
 Route::get('/search', [ProductController::class, 'search'])->name('search');
 

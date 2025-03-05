@@ -27,10 +27,12 @@
     <!---BOTTOM SECTION--->
     <div id="pagebody-bottom">
         <div id="bottombanner">
+            @if (!Auth::check())
             <p>EXCLUSIVE DISCOUNT TO NEW USERS</p>
             <a href="{{ url('/register') }}">
                 <button id="signup-button">SIGN UP NOW</button>
             </a>
+            @endif
         </div>
     </div>
 </section>

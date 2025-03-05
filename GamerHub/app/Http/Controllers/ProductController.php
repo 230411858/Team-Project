@@ -112,15 +112,36 @@ class ProductController extends Controller
         return redirect('login');
     }
 
-    public function saveOrder()
+    public function saveOrder(Request $request)
     {
+        $basket_items = BasketItem::where('user', Auth::id())->get();
+
+        if ($basket_items->first() == null)
+        {
+            abort(403); 
+        }
+
         $order = new Order();
 
         $order->user = Auth::id();
 
-        $order->save();
+        $order->email = $request->email;
 
-        $basket_items = BasketItem::where('user', Auth::id())->get();
+        $order->first_name = $request->first_name;
+
+        $order->last_name = $request->last_name;
+
+        $order->address_line_1 = $request->address_line_1;
+
+        $order->address_line_2 = $request->address_line_2;
+
+        $order->city = $request->city;
+
+        $order->postcode = $request->postcode;
+
+        $order->phone_number = $request->phone_number;
+
+        $order->save();
 
         foreach ($basket_items as $basket_item) {
             $order_item = new OrderItem();
@@ -132,11 +153,9 @@ class ProductController extends Controller
             $order_item->quantity = $basket_item->quantity;
 
             $order_item->save();
-
-            $basket_item->delete();
         }
 
-        return back();
+        return response()->json([]);
     }
 
     public function review($id)
