@@ -144,10 +144,6 @@
 
 #pagebody-bottom button::before{
   content: "";
-  background: linear-gradient(
-      45deg,#FF0000, #FF7300, #FFFB00, #48FF00,
-      #00FFD5, #002BFF, #FF00C8, #FF0000
-  );
   position: absolute;
   top: -2px;
   left: -2px;
