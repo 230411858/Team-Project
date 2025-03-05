@@ -164,6 +164,7 @@ class ProductController extends Controller
         return back();
     }
 
+
     public function search(Request $request)
     {
         $query = $request->input('query');

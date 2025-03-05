@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class AdminCustomerController extends Controller
+class  AdminCustomerController extends Controller
 {
     // Show all customers
     public function index()

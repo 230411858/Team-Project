@@ -25,7 +25,9 @@
                         <label class="block">Email:</label>
                         <input type="email" name="email" value="{{ $customer->email }}" required class="block w-full border p-2"><br>
 
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2">Update</button>
+                        <button type="submit" class="manage-customers-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Update
+                        </button>
                     </form>
 
                     <a href="{{ route('admin.customers.index') }}" class="text-blue-500 mt-4 inline-block">Back to Customers</a>
@@ -33,4 +35,21 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .manage-customers-btn {
+            background-color: #007bff; /* Default blue */
+            color: white;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .manage-customers-btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+        }
+    </style>
 </x-app-layout>
