@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("#checkout-form");
     const compressedView = document.querySelector("#compressed-view");
-    const shippingMethodSection = document.querySelector("#shipping-method-section");
+    const shippingMethodForm = document.querySelector("#shipping-method-form");
     const compressedViewMethod = document.querySelector("#compressed-view-method");
     const editShippingLink = document.querySelector("#edit-shipping");
     const editMethodLink = document.querySelector("#edit-method");
-    const submitMethodBtn = document.querySelector("#shipping-method-section .save-and-continue-btn");
     const paypalContainer = document.querySelector("#paypal-button-container");
     const applyPromoButton = document.querySelector("#apply-promo");
     const promoInput = document.querySelector("#promo-input");
@@ -52,22 +51,86 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }).render("#paypal-button-container");
 
-    // Function to recalculate and update the subtotal and total prices - implemented by Jayden Beach
-    function updateTotals() {
-        const quantity = parseInt(quantityValue.textContent, 10);
-        const newSubtotal = pricePerItem * quantity;
-        subtotalElement.textContent = `£${newSubtotal.toFixed(2)}`;
-        let discountedTotal = newSubtotal;
-        const savingsSection = document.getElementById("savings-section");
-        if (savingsSection && savingsSection.style.display === "flex") {
-            const discount = newSubtotal * 0.2;
-            discountedTotal = newSubtotal - discount;
-            document.getElementById("savings-price").textContent = `£${(newSubtotal - discountedTotal).toFixed(2)}`;
-        }
-        totalElement.textContent = `£${discountedTotal.toFixed(2)}`;
-    }
+    // ✅ Show Shipping Method Form After Shipping Address Submission
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-    // Event listener for decreasing product quantity - implemented by Jayden Beach
+        let isValid = true;
+        const email = document.querySelector("#email");
+        const firstName = document.querySelector("#first-name");
+        const lastName = document.querySelector("#last-name");
+        const address = document.querySelector("#address");
+        const city = document.querySelector("#city");
+        const postalCode = document.querySelector("#postal-code");
+        const phoneNumber = document.querySelector("#phone-number");
+
+        if (!email.value.includes("@")) isValid = false;
+        if (firstName.value.trim() === "") isValid = false;
+        if (lastName.value.trim() === "") isValid = false;
+        if (address.value.trim() === "") isValid = false;
+        if (city.value.trim() === "") isValid = false;
+        if (postalCode.value.trim() === "") isValid = false;
+        if (phoneNumber.value.trim() === "") isValid = false;
+
+        if (isValid) {
+            const formattedAddress = `
+            <strong>${firstName.value} ${lastName.value}</strong><br>
+            ${address.value}<br>
+            ${city.value}, ${postalCode.value}<br>
+            ${phoneNumber.value}<br>
+            ${email.value}
+        `;
+        
+        document.querySelector("#compressed-shipping").innerHTML = formattedAddress;
+        document.querySelector("#compressed-billing").innerHTML = formattedAddress;
+            // ✅ Hide Shipping Form & Show Compressed View
+            form.style.display = "none";
+            compressedView.style.display = "block";
+            isShippingDetailsCompleted = true;
+
+            // ✅ Show Shipping Method Form
+            shippingMethodForm.style.display = "block"; 
+            console.log("Shipping Method Form should now be visible:", shippingMethodForm.style.display);
+        }
+    });
+
+    // ✅ Handle Shipping Method Selection and Continue
+    shippingMethodForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const selectedMethod = document.querySelector('input[name="shipping-method"]:checked');
+        if (selectedMethod) {
+            document.querySelector("#compressed-method").textContent = selectedMethod.value;
+            document.querySelector("#compressed-method-details").textContent = selectedMethod.dataset.details;
+            
+            // ✅ Show compressed view of selected shipping method
+            compressedViewMethod.style.display = "block";
+            
+            // ✅ Hide Shipping Method Form
+            shippingMethodForm.style.display = "none";
+            isShippingMethodCompleted = true;
+        } else {
+            alert("Please select a shipping method.");
+        }
+    });
+
+    // ✅ Edit Shipping Address
+    editShippingLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        form.style.display = "block";
+        compressedView.style.display = "none";
+        compressedViewMethod.style.display = "none";
+        shippingMethodForm.style.display = "none";
+    });
+
+    // ✅ Edit Shipping Method
+    editMethodLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        compressedViewMethod.style.display = "none";
+        shippingMethodForm.style.display = "block";
+    });
+
+    // ✅ Quantity Increase/Decrease
     decreaseButton.addEventListener("click", function () {
         let quantity = parseInt(quantityValue.textContent, 10);
         if (quantity > 1) {
@@ -77,7 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Event listener for increasing product quantity - implemented by Jayden Beach   
     increaseButton.addEventListener("click", function () {
         let quantity = parseInt(quantityValue.textContent, 10);
         quantity += 1;
@@ -85,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateTotals();
     });
 
-    // Event listener for applying promo codes - implemented by Jayden Beach
+    // ✅ Promo Code
     applyPromoButton.addEventListener("click", function () {
         const promoCode = promoInput.value.trim().toLowerCase();
         const subtotal = parseFloat(subtotalElement.textContent.replace("£", ""));
@@ -107,64 +169,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        let isValid = true;
-        const email = document.querySelector("#email");
-        const firstName = document.querySelector("#first-name");
-        const lastName = document.querySelector("#last-name");
-        const address = document.querySelector("#address");
-        const city = document.querySelector("#city");
-        const postalCode = document.querySelector("#postal-code");
-        const phoneNumber = document.querySelector("#phone-number");
-        resetErrors();
+    // ✅ Price Update Function
+    function updateTotals() {
+        const quantity = parseInt(quantityValue.textContent, 10);
+        const newSubtotal = pricePerItem * quantity;
+        subtotalElement.textContent = `£${newSubtotal.toFixed(2)}`;
+        let discountedTotal = newSubtotal;
 
-        if (!validateEmail(email.value)) {
-            showError(email, "Please enter a valid email address.");
-            isValid = false;
+        const savingsSection = document.getElementById("savings-section");
+        if (savingsSection && savingsSection.style.display === "flex") {
+            const discount = newSubtotal * 0.2;
+            discountedTotal = newSubtotal - discount;
+            document.getElementById("savings-price").textContent = `£${(newSubtotal - discountedTotal).toFixed(2)}`;
         }
-        if (firstName.value.trim() === "") {
-            showError(firstName, "First name is required.");
-            isValid = false;
-        }
-        if (lastName.value.trim() === "") {
-            showError(lastName, "Last name is required.");
-            isValid = false;
-        }
-        if (address.value.trim() === "") {
-            showError(address, "Address is required.");
-            isValid = false;
-        }
-        if (city.value.trim() === "") {
-            showError(city, "City is required.");
-            isValid = false;
-        }
-        if (postalCode.value.trim() === "") {
-            showError(postalCode, "Postal code is required.");
-            isValid = false;
-        }
-        if (!validatePhone(phoneNumber.value)) {
-            showError(phoneNumber, "Please enter a valid phone number.");
-            isValid = false;
-        }
+        totalElement.textContent = `£${discountedTotal.toFixed(2)}`;
+    }
+});
 
-        if (isValid) {
-            const formattedAddress = `
-                <strong>${firstName.value} ${lastName.value}</strong><br>
-                ${address.value}<br>
-                ${city.value}, GB ${postalCode.value}<br>
-                ${phoneNumber.value}<br>
-                ${email.value}
-            `;
-            document.querySelector("#compressed-shipping").innerHTML = formattedAddress;
-            document.querySelector("#compressed-billing").innerHTML = formattedAddress;
-            form.style.display = "none";
-            compressedView.style.display = "block";
-            isShippingDetailsCompleted = true;
-            shippingMethodSection.style.display = "block";
-            compressedViewMethod.style.display = "none";
-        }
-    });
+
 
     editShippingLink.addEventListener("click", function (e) {
         e.preventDefault();
@@ -174,19 +196,22 @@ document.addEventListener("DOMContentLoaded", function () {
         shippingMethodSection.style.display = "block";
     });
 
-    submitMethodBtn.addEventListener("click", function () {
+    shippingMethodForm.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent default form submission
+    
         const selectedMethod = document.querySelector('input[name="shipping-method"]:checked');
         if (selectedMethod) {
             const methodDetails = selectedMethod.dataset.details;
             document.querySelector("#compressed-method").textContent = selectedMethod.value;
             document.querySelector("#compressed-method-details").textContent = methodDetails;
             compressedViewMethod.style.display = "block";
-            shippingMethodSection.style.display = "none";
+            shippingMethodForm.style.display = "none"; // Hide form after submission
             isShippingMethodCompleted = true;
         } else {
             alert("Please select a shipping method.");
         }
     });
+    
 
     editMethodLink.addEventListener("click", function (e) {
         e.preventDefault();
@@ -216,4 +241,4 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".error-message").forEach((el) => el.remove());
         document.querySelectorAll("input").forEach((input) => (input.style.borderColor = ""));
     }
-});
+
