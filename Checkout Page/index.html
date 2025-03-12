@@ -100,38 +100,42 @@
             <a href="#" id="edit-shipping">Edit</a>
         </div>
 
-<div id="compressed-view-method" class="compressed-view" style="display: none;">
-    <h3>Shipping Method <span style="color: green;">✔</span></h3>
-    <div class="compressed-block">
-        <h4 id="compressed-method">Standard Shipping - Free</h4>
-        <p id="compressed-method-details">2-3 business days*</p>
-    </div>
-    <a href="#" id="edit-method">Edit</a>
-</div>
 
-            <div id="shipping-method-section" style="display: none;">
-                <h3>Shipping Method</h3>
-                <div class="shipping-methods">
-                    <div class="method">
-                        <input type="radio" id="standard-shipping" name="shipping-method" value="Standard Shipping" data-details="2-3 business days*" checked>
-                        <label for="standard-shipping">
-                            <strong>Standard Shipping</strong>
-                            <span>2-3 business days*</span>
-                            <span class="price">Free</span>
-                        </label>
-                    </div>
-                    <div class="method">
-                        <input type="radio" id="expedited-shipping" name="shipping-method" value="Expedited Shipping" data-details="1-2 business days*">
-                        <label for="expedited-shipping">
-                            <strong>Expedited Shipping</strong>
-                            <span>1-2 business days*</span>
-                            <span class="price">Free</span>
-                        </label>
-                    </div>
-                </div>
-                <button class="save-and-continue-btn">Continue</button>
-            </div>
-        </section>
+
+<form id="shipping-method-form" style="display: none;">
+    <h3>Shipping Method</h3>
+    <div class="shipping-methods">
+        <div class="method">
+            <input type="radio" id="standard-shipping" name="shipping-method" value="Standard Shipping" data-details="2-3 business days*" checked>
+            <label for="standard-shipping">
+                <strong>Standard Shipping</strong>
+                <span>2-3 business days*</span>
+                <span class="price">Free</span>
+            </label>
+        </div>
+        <div class="method">
+            <input type="radio" id="expedited-shipping" name="shipping-method" value="Expedited Shipping" data-details="1-2 business days*">
+            <label for="expedited-shipping">
+                <strong>Expedited Shipping</strong>
+                <span>1-2 business days*</span>
+                <span class="price">Free</span>
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="save-and-continue-btn">Continue</button>
+</form>
+
+    <!-- Compressed View for Shipping Method -->
+    <div id="compressed-view-method" style="display: none;">
+        <h3>Shipping Method <span style="color: green;">✔</span></h3>
+        <div class="compressed-block">
+            <h4 id="compressed-method">Standard Shipping - Free</h4>
+            <p id="compressed-method-details">2-3 business days*</p>
+        </div>
+        <a href="#" id="edit-method">Edit</a>
+    </div>
+</section>
+
 
     <!-- Summary section: displays the selected products, their quantities, and total prices - implemented by Jayden Beach -->
    <section class="summary">
