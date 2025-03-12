@@ -35,6 +35,29 @@
                             @endforeach
                         </table>
                     @endif
+</div>
+<div class="p-6 text-gray-900 dark:text-gray-100">
+                    <h3>My orders:</h3>
+                        <table>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Order Date</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                            </tr>
+                            @foreach (\App\Models\Order::where('user', Auth::id())->get() as $order)
+                                <tr>
+                                    <td>{{ $order->id }}</td>
+                                    <td>{{ substr( $order->created_at, 0, 10) }}</td>
+                                    <td>{{ $order->email }}</td>
+                                    <td>{{ $order->status }}</td>
+                                    <td>
+                                        <a href="{{ url('/orders') }}/{{ $order->id }}" class="text-blue-500">View</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+</div>
                 </div>
             </div>
         </div>

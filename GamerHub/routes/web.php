@@ -4,6 +4,7 @@ use App\Http\Controllers\BasketController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,8 @@ Route::post('/add', [ProductController::class, 'addBasketItem'])->middleware('au
 Route::post('/remove', [ProductController::class, 'removeBasketItem'])->middleware('auth');
 Route::get('/checkout', [ProductController::class, 'checkout'])->middleware('auth');
 Route::post('/checkout', [ProductController::class, 'saveOrder'])->middleware('auth');
+Route::get('/orders/{id}', [OrderController::class, 'show'])->middleware('auth');
+Route::get('/orders', [OrderController::class, 'index'])->middleware('auth');
 Route::post('/review/{id}', [ProductController::class, 'review'])->middleware('auth');
 Route::get('/search', [ProductController::class, 'search'])->name('search');
 

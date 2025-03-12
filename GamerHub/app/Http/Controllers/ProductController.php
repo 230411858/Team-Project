@@ -137,6 +137,8 @@ class ProductController extends Controller
 
         $order->city = $request->city;
 
+        $order->country = $request->country;
+
         $order->postcode = $request->postcode;
 
         $order->phone_number = $request->phone_number;
@@ -153,6 +155,14 @@ class ProductController extends Controller
             $order_item->quantity = $basket_item->quantity;
 
             $order_item->save();
+
+            $product = Product::where('id', $order_item->product)->first();
+
+            $product->stock = $product->stock - $order_item->quantity;
+
+            $product->save();
+
+            BasketItem::destroy($basket_item->id);
         }
 
         return response()->json([]);
@@ -211,5 +221,16 @@ class ProductController extends Controller
         }
 
         return $image->file;
+    }
+
+    public function edit($id)
+    {
+        if (!Auth::user()->account_type == 'admin')
+        {
+            abort(403);
+        }  
+
+        return view('edit', ['id' => $id]);
+
     }
 }
