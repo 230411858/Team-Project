@@ -276,19 +276,13 @@
                     <div id="textsection">
                         <h2>Mice</h2>  
                         <p>Traverse through the top of the range mice, making navigation easy</p>
+                        <button id="signup-button" onclick="location.href='/Front_Page1/login and sign up/login and sign up.html'">
+                            SIGN UP NOW
+                        </button>
                     </div>
                     <div id="imagesection">
                         <img src="ProductImages/Mice/Mice(Cover).png" alt="Wireless Black Mouse">
                     </div>
-                </div>
-            </div>
-            <div id="pagebody-bottom">
-                <div id="bottombanner">
-                    <p>EXCLUSIVE DISCOUNT TO NEW USERS</p>
-
-                    <a href="/Front_Page1/login and sign up/login and sign up.html"> 
-                    <button id="signup-button">SIGN UP NOW</button> 
-                    </a>
                 </div>
             </div>
     </section>
@@ -296,16 +290,27 @@
     <section id="productsmice">
         <div class="page-layout">
             <div class="filtersection">
-                <h3>Filters</h3>
+                <div class ="category">
+                    <h3>Category</h3>
                     <button class="active" data-name="all">Show all</button>
                     <button data-name="wireless">Wireless</button>
                     <button data-name="wired">Wired</button>
                     <button data-name="ergonomic">Ergonomic</button>
                     <button data-name="stylus">Stylus</button>
                     <button data-name="gaming">Gaming</button>
+                </div>
+                <div class = "price">
+                    <h3>Price</h3>
+                    <button class="active" data-price="all">Show all</button>
+                    <button data-price="10-20">£10 - £20</button>
+                    <button data-price="20-40">£20 - £40</button>
+                    <button data-price="40-60">£40 - £60</button>
+                    <button data-price="60-80">£60 - £80</button>
+                    <button data-price="80+">£80+</button>
+                </div>                    
             </div>
         <div class="productcontainer">
-            <div class="products" data-name="wireless">
+            <div class="products" data-name="wireless" data-price="20">
                 <a href="mouse.html">
                 <img src="ProductImages/Mice/WirelessMouse(1).png">
                 </a>
@@ -322,7 +327,7 @@
                 <i class="fa-solid fa-cart-shopping"></i>
                 </a>
             </div>
-            <div class="products" data-name="wired">
+            <div class="products" data-name="wired" data-price="35">
                 <img src="ProductImages/Mice/WiredMouse(1).png">
                 <h5>Wired Mouse</h5>
                 <div class="star">
@@ -332,12 +337,12 @@
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                 </div>
-                <h4>£20</h4>
+                <h4>£35</h4>
                 <a href="#" class="cart">
                 <i class="fa-solid fa-cart-shopping"></i>
                 </a>
             </div>
-            <div class="products" data-name="ergonomic">
+            <div class="products" data-name="ergonomic" data-price="33">
                 <img src="ProductImages/Mice/ErgonomicMice(1).png">
                 <h5>Ergonomic Mouse</h5>
                 <div class="star">
@@ -347,12 +352,12 @@
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                 </div>
-                <h4>£20</h4>
+                <h4>£33</h4>
                 <a href="#" class="cart">
                 <i class="fa-solid fa-cart-shopping"></i>
                 </a>
             </div>
-            <div class="products" data-name="stylus">
+            <div class="products" data-name="stylus" data-price="48">
                 <img src="ProductImages/Mice/StylusPen(1).png">
                 <h5>Stylus Mouse</h5>
                 <div class="star">
@@ -362,12 +367,12 @@
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                 </div>
-                <h4>£20</h4>
+                <h4>£48</h4>
                 <a href="#" class="cart">
                 <i class="fa-solid fa-cart-shopping"></i>
                 </a>
             </div>
-            <div class="products" data-name="gaming">
+            <div class="products" data-name="gaming" data-price="40">
                 <img src="ProductImages/Mice/GamingMice(1).png">
                 <h5>Gaming Mouse</h5>
                 <div class="star">
@@ -377,11 +382,12 @@
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                 </div>
-                <h4>£20</h4>
+                <h4>£40</h4>
                 <a href="#" class="cart">
                 <i class="fa-solid fa-cart-shopping"></i>
                 </a>
             </div>
+            
         </div>
         
     </section>
