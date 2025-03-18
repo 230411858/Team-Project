@@ -11,7 +11,7 @@
 }
 
 #productwrapper{
-  background-color: #f0f4f8;
+  background-color: #8ac7f6;
   width: 100%;
   overflow: hidden;
   border-radius: 5px;
@@ -28,7 +28,7 @@
 }
 
 #textsection h2{
-  color: orange;
+  color: #ef5e41;
   font-family: sans-serif;
   font-style: italic;
   font-size: 50px;
@@ -37,10 +37,11 @@
 }
 
 #textsection p{
-  color: #333;
+  color:#253c6a;
   font-family: sans-serif;
   font-style: italic;
   font-size: 15px;
+  font-weight: 900;
 }
 
 /* TOP/IMAGE SECTION OF MAIN BODY*/
@@ -106,7 +107,7 @@
 }
 
 
-#pagebody-bottom p{
+#bottombanner p{
   color: black;
   font-family: sans-serif;
   font-size: 20px;
@@ -115,65 +116,22 @@
   flex-wrap:wrap;
 }
 
-#pagebody-bottom button{
-  padding: 8px 16px;
-  border: none;
-  outline: none;
-  color: #FFF;
+#textsection button{
+  background: #fbca1f;
+  font-family: inherit;
+  padding: 0.6em 1.3em;
+  font-weight: 900;
+  font-size: 16px;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em;
   cursor: pointer;
-  position: relative;
-  z-index: 1;
-  border-radius: 15px;
-  background-color:white;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
-#pagebody-bottom button::after{
-  content: "";
-  z-index: -1;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  left: 0;
-  top: 0;
-  border-radius: 15px;
-  transition: background-color 0.3s ease-in-out;
-}
-
-#pagebody-bottom button::before{
-  content: "";
-  background: linear-gradient(
-      45deg,#FF0000, #FF7300, #FFFB00, #48FF00,
-      #00FFD5, #002BFF, #FF00C8, #FF0000
-  );
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  background-size: 600%;
-  z-index: -2;
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  filter: blur(8px);
-  animation: glowing 20s linear infinite;
-  transition: opacity.3s ease-in-out;
-  border-radius: 10px;
-  opacity: 0;
-}
-
-@keyframes glowing{
-  0% {background-position: 0 0;}
-  50%{background-position: 400% 0;}
-  100%{background-position: 0 0;}
-}
-
-#pagebody-bottom button::before{
-  opacity: 1;
-}
-
-#pagebody-bottom button:hover::after {
-  background-color: darkorange;
+button:hover {
+  transform: translate(-0.05em, -0.05em);
+  box-shadow: 0.15em 0.15em;
 }
 
 /* Product Section*/
@@ -186,7 +144,7 @@
   
 }
 
-.filtersection{
+.filtersection .category{
   width: 20%; 
   min-width: 180px;
   padding: 20px;
@@ -199,19 +157,35 @@
   overflow: hidden;
 }
 
-.filtersection button{
-padding: 10px 10px;
-font-size: 18px;
-background-color: white;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);  
+.filtersection .category button{
+  cursor: pointer;
+  position: relative;
+  padding: 10px 24px;
+  font-size: 18px;
+  color: black;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: transparent;
+  font-weight: 600;
+  overflow: hidden;
 }
 
-.filtersection button.active{
-background: blue;
-color: white;
+.filtersection .category button::before {
+  position: absolute;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: inherit;
+}
+
+.filtersection .category button:hover {
+  color: #212121;
+  box-shadow: 0 0px 20px black;
+}
+
+.filtersection .category button.active{
+  background: #fbca1f;
+  color: black;
 }
 
 
@@ -242,11 +216,12 @@ color: white;
   transition: 0.2s ease-in-out;
   flex-grow: 1;
   animation: fadeIn 1s;
+  background-color: rgb(228, 227, 227);
 
 }
 
 .products.hide{
-display: none;
+  display: none;
 }
 
 @keyframes fadeIn {
@@ -280,21 +255,23 @@ to{
   width: 100%;
   height: auto;
   object-fit: cover;
-  border-radius: 10px;
   margin-bottom: 10px;
 }
 
+.products h5{
+  font-weight: 600;
+  color: black;
+}
 
 .products h4{
-  color: lightgreen;
-  font-weight: bold;
+  color: black;
   font-size: 15px;
+  padding-top: 5px;
 }
 
 .cart{
   background-color: lightblue;
   color: blue;
-  font-weight: 500;
   width: 50px;
   height: 50px;
   border-radius: 50px;
@@ -307,8 +284,8 @@ to{
 }
 
 .star i{
-  font-size: 12px;
-  color: rgb(255, 247, 3);
+  font-size: 13px;
+  color: rgb(255, 247, 0);
   white-space: nowrap;
 }
 

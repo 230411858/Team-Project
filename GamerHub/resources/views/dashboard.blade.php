@@ -8,6 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in! ") }}<br>
 
@@ -62,4 +63,21 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .manage-customers-btn {
+            background-color: #007bff; /* Default blue */
+            color: white;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .manage-customers-btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+        }
+    </style>
 </x-app-layout>

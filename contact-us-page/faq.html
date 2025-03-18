@@ -12,48 +12,127 @@
   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
-  <!-- Header Section with Logo and Navigation Links -->
-  <header class="header">
-    <nav class="nav container">
-      <div class="nav__data">
-        <!-- Logo linking back to the homepage -->
-        <a href="index.html" class="nav__logo">
-          <img src="images/products/companystuff/GamerHubLogo.png" alt="GamerHub Logo" width="130">
-        </a>
-
-        <!-- Shopping cart icon with a dynamic item counter -->
-        <div class="nav_basket">
-          <i class="ri-shopping-cart-line"></i>
-          <span class="basket-count">0</span>
-        </div>
-      </div>
-
-      <!-- Navigation menu with essential page links -->
-      <div class="nav__menu">
-        <ul class="nav__list">
-          <li><a href="index.html" class="nav__link">Home</a></li>
-          <li><a href="shop.html" class="nav__link">Products</a></li>
-          <li><a href="contact.html" class="nav__link">Contact Us</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-
-  <!-- Top Section for Product Info -->
-  <section class="faq-top-section">
-    <div class="faq-product-info">
-      <!-- Placeholder for dynamic product image -->
-      <img id="product-image" src="" alt="Product Image">
-      <!-- Placeholder for dynamic product title -->
-      <h1 id="product-title">Product Name</h1>
-    </div>
-  </section>
 
   <!-- Main FAQ Section -->
   <section class="faq-section">
     <h1 class="faq-title">Frequently Asked Questions</h1>
+    <!-- Static FAQ list -->
+  <div class="faq-list">
+    
+    <!-- 1. FAQ item -->
+    <div class="faq-item">
+      <button class="faq-question">
+        Do you accept refunds?
+        <i class="ri-arrow-down-s-line arrow-icon"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Yes. We have a 30-day refund policy. Please contact support to initiate a return.</p>
+      </div>
+    </div>
+
+    <!-- 2. FAQ item -->
+    <div class="faq-item">
+      <button class="faq-question">
+        How long does shipping take?
+        <i class="ri-arrow-down-s-line arrow-icon"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Standard shipping takes 5-7 business days, while expedited shipping takes 2-3 days.</p>
+      </div>
+    </div>
+
+    <!-- 3. FAQ item -->
+    <div class="faq-item">
+      <button class="faq-question">
+        Which payment methods do you accept?
+        <i class="ri-arrow-down-s-line arrow-icon"></i>
+      </button>
+      <div class="faq-answer">
+        <p>We accept all major credit cards as well as PayPal.</p>
+      </div>
+    </div>
+
+    <!-- 4. FAQ item -->
+    <div class="faq-item">
+      <button class="faq-question">
+        Do you ship internationally?
+        <i class="ri-arrow-down-s-line arrow-icon"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Yes, we ship worldwide. Shipping fees and times vary by region.</p>
+      </div>
+    </div>
+
+    <!-- 5. FAQ item -->
+    <div class="faq-item">
+      <button class="faq-question">
+        Is there a warranty on your products?
+        <i class="ri-arrow-down-s-line arrow-icon"></i>
+      </button>
+      <div class="faq-answer">
+        <p>All products come with a one-year limited warranty against manufacturing defects.</p>
+      </div>
+    </div>
+
+    <!-- 6. FAQ item -->
+    <div class="faq-item">
+      <button class="faq-question">
+        How can I track my order?
+        <i class="ri-arrow-down-s-line arrow-icon"></i>
+      </button>
+      <div class="faq-answer">
+        <p>You will receive a tracking number via email once your order ships.</p>
+      </div>
+    </div>
+
+    <!-- 7. FAQ item -->
+    <div class="faq-item">
+      <button class="faq-question">
+        Can I change my order after placing it?
+        <i class="ri-arrow-down-s-line arrow-icon"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Contact our support team as soon as possible. If your order hasn’t shipped, we can modify it.</p>
+      </div>
+    </div>
+
+    <!-- 8. FAQ item -->
+    <div class="faq-item">
+      <button class="faq-question">
+        What should I do if my product is defective?
+        <i class="ri-arrow-down-s-line arrow-icon"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Please contact our support with photos or video of the defect. We will replace or refund.</p>
+      </div>
+    </div>
+
+    <!-- 9. FAQ item -->
+    <div class="faq-item">
+      <button class="faq-question">
+        Do you offer gift wrapping?
+        <i class="ri-arrow-down-s-line arrow-icon"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Not currently unfortunately,but we can put a custom note in each order if requested</p>
+      </div>
+    </div>
+
+    <!-- 10. FAQ item -->
+    <div class="faq-item">
+      <button class="faq-question">
+        How can I contact customer service?
+        <i class="ri-arrow-down-s-line arrow-icon"></i>
+      </button>
+      <div class="faq-answer">
+        <p>You can reach us via email, phone, or live chat. See our Contact page for details.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
     <!-- FAQ list will be dynamically generated here -->
-    <div id="faq-list" class="faq-list"></div>
+    <div id="faq-list" class="faq-list"></div>    
   </section>
 
   <!-- Contact Us Prompt Section -->
