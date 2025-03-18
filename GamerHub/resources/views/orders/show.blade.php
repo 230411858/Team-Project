@@ -1,41 +1,102 @@
-<x-app-layout>
+@extends('layouts.layout')
 
-    <link rel="stylesheet" href="{{ url('/css/orders.css') }}">
+@section('css')
+<link rel="stylesheet" href="{{ url('/css/order.css') }}">
+@endsection
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Manage Customers') }}
-        </h2>
-    </x-slot>
+@section('title')
+<title>My Order | GAMERHUB</title>
+@endsection
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h1>Order #{{ $order->id }} <span style="float: right;">{{ $order->created_at }}</span></h1>
-                    <h2>{{ $order->first_name }}  {{ $order->last_name }}</h2>
-                    <h2>{{ $order->email }}</h2>
-                    <h1>Address</h1>
-                    <h2>{{ $order->address_line_1 }}</h2>
-                    <h2>{{ $order->address_line_2 }}</h2>
-                    <h2>{{ $order->city }}</h2>
-                    <h2>{{ $order->country }}</h2>
-                    <h2>{{ $order->postcode }}</h2>
-                    <h2>{{ $order->phone_number }}</h2>
-                    <h1>{{ $order->status }}</h1>
-                    @php
-                    $order_items = App\Models\OrderItem::where('oid', $order->id)->get();
-                    $products = App\Models\Product::all();
-                    $product_images = App\Models\ProductImage::all();
-                    @endphp
-                    @foreach ($order_items as $order_item)
-                    <div>
-                    <img src="{{ url('/images/wireless1.png') }}" alt="">
-                    {{$order_item->product}}
-                    </div>
-                    @endforeach
-                </div>
-            </div>
+@section('content')
+<div class="order-box">
+    <h1>Order #{{ $order->id }} <span style="float: right;">{{ $order->created_at }}</span></h1>
+    <hr>
+    <h2>{{ $order->first_name }} {{ $order->last_name }}</h2>
+    <h2>{{ $order->email }}</h2>
+    <h1>Address</h1>
+    <hr>
+    <h2>{{ $order->address_line_1 }}</h2>
+    <h2>{{ $order->address_line_2 }}</h2>
+    <h2>{{ $order->city }}</h2>
+    <h2>{{ $order->country }}</h2>
+    <h2>{{ $order->postcode }}</h2>
+    <h2>{{ $order->phone_number }}</h2>
+    <div class="order-status">
+        @switch ($order->status)
+
+        @case ('in-transit')
+        <img src="{{ url('/images/in-transit.svg') }}" alt="">
+        <h1 class="update-text">Your order is on your way to you now</h1>
+        @break
+        @case ('delivered')
+        <img src="{{ url('/images/delivered.svg') }}" alt="">
+        <h1 class="update-text">Your order has been delivered</h1>
+        @break
+        @default ('processing')
+        <img src="{{ url('/images/processing.svg') }}" alt="">
+        <h1 class="update-text">We are curently processing your order 
+            <span id="updated-at">(Last updated {{ $order->updated_at }})</span>
+        </h1>
+        @break
+        @endswitch
+    </div>
+    <hr>
+    @php
+    $order_items = App\Models\OrderItem::where('oid', $order->id)->get();
+    $products = App\Models\Product::all();
+    $product_images = App\Models\ProductImage::all();
+    @endphp
+    @foreach ($order_items as $order_item)
+    @php
+    $product = $products->firstWhere('id', $order_item->product);
+
+    $product_image = $product_images->firstWhere('product', $product->id);
+
+    $file = 'cover.png';
+
+    if ($product_image != null)
+    {
+    $file = $product_image->file;
+    }
+    @endphp
+    <div class="order-item-overview">
+        <img class="order-item-image" src="{{ url('/images') }}/{{ $product->category }}/{{ $file }}" alt="Product Image">
+        <div class="order-item-text">
+            {{ ucwords($product->name) }}
+            <br>
+            <i>
+                ({{ ucwords($product->sub_category) }}, {{ ucwords($product->category) }})
+            </i>
+            <br>
+            @if ($product->discount > 0)
+            <s>
+                £{{ number_format($product->price / 100, 2) }}
+            </s>
+            <b class="discounted-price">
+                £{{ number_format(($product->price * (1-$product->discount)) / 100, 2) }}
+            </b>
+            @else
+            <b>
+                £{{ number_format($product->price / 100, 2) }}
+            </b>
+            @endif
+            <br>
+            <p>
+                Quantity: {{ $order_item->quantity }}
+            </p>
+            <br>
+            <br>
+            <p id="product-id">
+                #{{ $product->id }}
+            </p>
+            <a id="product-link" href="{{ url('/products') }}/{{ $product->id }}">{{ url('/products') }}/{{ $product->id }}</a>
+        </div>
+        <div class="order-item-subtotal">
+
         </div>
     </div>
-</x-app-layout>
+    <hr>
+    @endforeach
+</div>
+@endsection

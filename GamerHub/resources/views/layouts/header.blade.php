@@ -77,7 +77,7 @@
         <nav class="nav container">
             <div class="nav__data">
                 <a href="{{ url('/') }}" class="nav__logo">
-                    <img src="{{ url('/images/logo.png') }}" width="300px" height="100px">
+                    <img src="{{ url('/images/logo.png') }}" width="300px" height="84.6667px">
                 </a>
 
                 <div class="nav__toggle" id="nav-toggle">
