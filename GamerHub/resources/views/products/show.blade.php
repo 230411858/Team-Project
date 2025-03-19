@@ -58,6 +58,13 @@
                 {{ $product->description }}
             </p>
             <p class="price-p">Price: £<span id="price">{{ $product->price / 100 }}</span></p>
+
+            @if($product->stock<10)
+                <p id="low-stock">Low Stock!</p>
+            @else
+                <p id="in-stock">In Stock!</p>
+            @endif
+
             <div class="quantity-section">
                 <form action="{{ url('/add') }}" method="POST">
                     @csrf
@@ -65,6 +72,7 @@
                     <input hidden type="number" name="product" value="{{ $product->id }}">
                     <input type="number" id="quantity" name="quantity" value="1" min="1" onchange="updateTotal()">
                     £<span id="total">{{ number_format($product->price / 100, 2) }}</span>
+
                     <button class="cart-butt" aria-label="Add to Cart" type="submit" value="Add to Cart">Add to Cart</button>
                 </form>
             </div>
@@ -140,3 +148,24 @@
 <!-- reviews section -->
 <script src="{{ url('/js/product.js') }}"></script>
 @endsection
+
+
+
+<style>
+    #out-of-stock{
+
+    }
+
+
+
+    #low-stock{
+        color: red;
+
+
+    }
+
+    #in-stock{
+        color: green;
+
+    }
+</style>
