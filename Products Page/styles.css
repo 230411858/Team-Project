@@ -7,7 +7,6 @@
   padding-top: 50px;
   display: flex;
   justify-content: center;
-
 }
 
 #productwrapper{
@@ -158,9 +157,9 @@ button:hover {
 }
 
 .filtersection .category button{
+  font-size: 10px;
   cursor: pointer;
   position: relative;
-  padding: 10px 24px;
   font-size: 18px;
   color: black;
   border: 2px solid black;
@@ -168,41 +167,55 @@ button:hover {
   background-color: transparent;
   font-weight: 600;
   overflow: hidden;
+  padding: 2.5px;
 }
 
-.filtersection .category button::before {
-  position: absolute;
-  margin: auto;
-  width: 50px;
-  height: 50px;
-  border-radius: inherit;
-}
 
 .filtersection .category button:hover {
   color: #212121;
-  box-shadow: 0 0px 20px black;
+  box-shadow: 0px 0px 10px black
 }
 
 .filtersection .category button.active{
   background: #fbca1f;
-  color: black;
 }
 
+.filtersection h3{
+  color:#253c6a;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+}
+.filtersection .price {
+  width: 20%; 
+  min-width: 180px;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+  font-family: Arial;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
 
 .productsmice{
   text-align: center;
 }
 
 .productcontainer{
+  height: 700px;
   display: grid;
   gap: 50px;
   grid-template-columns: repeat(3, 1fr); 
-  align-items: start;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-
 .products{
-  width: 100%;
+  height: 300px;
+  width: 275px;
+  overflow: hidden;
   padding: 15px;
   margin: 5px 10px;
   border: 1px solid black;
@@ -218,6 +231,10 @@ button:hover {
   animation: fadeIn 1s;
   background-color: rgb(228, 227, 227);
 
+}
+
+.products img{
+  object-fit: contain;
 }
 
 .products.hide{

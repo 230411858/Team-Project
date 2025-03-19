@@ -1,63 +1,48 @@
-/*Implemented by Isa Abdur-Rahman*/
-
-//Filter Section by Category//
-const filterbyCategory = document.querySelectorAll(".category button");
-const filterPriceButtons = document.querySelectorAll(".price button");
-
+const categoryButtons = document.querySelectorAll(".category button");
+const priceButtons = document.querySelectorAll(".price button");
 const filterableProducts = document.querySelectorAll(".productcontainer .products");
 
-const filterProducts = e => {
-    document.querySelector(".active").classList.remove("active");
-    e.target.classList.add("active");
+const filterProducts = () => {
+    let selectedCategory = document.querySelector(".category .active").dataset.name || "all";
+    let selectedPriceRange = document.querySelector(".price .active").dataset.price || "all";
 
-filterableProducts.forEach(products =>{
-    products.classList.add("hide");
-    if (products.dataset.name === e.target.dataset.name || e.target.dataset.name === "all"){
-        products.classList.remove("hide");
-    }
-});
-}
-
-filterbyCategory.forEach(button => button.addEventListener("click", filterProducts));
-
-
-//FilterSection by Price//
-
-const priceFilterButtons = document.querySelectorAll(".price button");
-
-const filterByPrice = (e) => {
-    document.querySelector(".price .active")?.classList.remove("active");
-    e.target.classList.add("active");
-
-    let selectedPriceRange = e.target.dataset.price;
-    let productsArray = Array.from(filterableProducts); // Convert NodeList to Array
-
-    let filteredProducts = productsArray.filter(product => {
+    filterableProducts.forEach(product => {
+        let productCategory = product.dataset.name;
         let productPrice = parseFloat(product.dataset.price);
 
-        if (selectedPriceRange === "all") return true; // Show all products
+        let matchesCategory = (selectedCategory === "all" || productCategory === selectedCategory);
+        let matchesPrice = false;
 
-        let [minPrice, maxPrice] = selectedPriceRange.split("-").map(Number);
-        if (!maxPrice) {
-            // Case for "80+" (no upper limit)
-            return productPrice >= minPrice;
+        if (selectedPriceRange === "all") {
+            matchesPrice = true;
         } else {
-            return productPrice >= minPrice && productPrice <= maxPrice;
+            let [minPrice, maxPrice] = selectedPriceRange.split("-").map(Number);
+            if (!maxPrice) {
+                // Case for "80+" (no max range)
+                matchesPrice = productPrice >= minPrice;
+            } else {
+                matchesPrice = productPrice >= minPrice && productPrice <= maxPrice;
+            }
         }
-    });
 
-    // **Sorting products by price (Ascending Order)**
-    filteredProducts.sort((a, b) => parseFloat(a.dataset.price) - parseFloat(b.dataset.price));
-
-    // **Rearrange products in the DOM**
-    let productContainer = document.querySelector(".productcontainer");
-    productContainer.innerHTML = ""; // Clear existing products
-
-    filteredProducts.forEach(product => {
-        product.classList.remove("hide"); // Ensure they are visible
-        productContainer.appendChild(product); // Re-add in sorted order
+        // Only show products that match both category and price
+        product.classList.toggle("hide", !(matchesCategory && matchesPrice));
     });
 };
 
-// ✅ Update event listeners for price filter buttons
-priceFilterButtons.forEach(button => button.addEventListener("click", filterByPrice));
+
+categoryButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        document.querySelector(".category .active")?.classList.remove("active");
+        e.target.classList.add("active");
+        filterProducts(); // Apply both filters
+    });
+});
+
+priceButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        document.querySelector(".price .active")?.classList.remove("active");
+        e.target.classList.add("active");
+        filterProducts(); // Apply both filters
+    });
+});
