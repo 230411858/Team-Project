@@ -6,6 +6,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\InventoryController;
+
+
 
 Route::get('/', function () {
     return redirect('/products');
@@ -54,38 +57,44 @@ Route::middleware('auth')->group(function () {
 });
 
 
-// **Admin routes manually check if admin role
-Route::group(['prefix' => 'admin'], function () {
+// **Admin routes manually check if admin role**
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+    // Customers Management
     Route::get('/customers', function () {
-        if (Auth::check() && Auth::user()->account_type === 'admin') {
+        if (Auth::user()->account_type === 'admin') {
             return app(AdminCustomerController::class)->index();
         }
         return redirect('/')->with('error', 'Unauthorized access');
     })->name('admin.customers.index');
 
-
     Route::get('/customers/{id}/edit', function ($id) {
-        if (Auth::check() && Auth::user()->account_type === 'admin') {
+        if (Auth::user()->account_type === 'admin') {
             return app(AdminCustomerController::class)->edit($id);
         }
         return redirect('/')->with('error', 'Unauthorized access');
     })->name('admin.customers.edit');
 
-
     Route::put('/customers/{id}', function ($id) {
-        if (Auth::check() && Auth::user()->account_type === 'admin') {
+        if (Auth::user()->account_type === 'admin') {
             return app(AdminCustomerController::class)->update(request(), $id);
         }
         return redirect('/')->with('error', 'Unauthorized access');
     })->name('admin.customers.update');
 
-
     Route::delete('/customers/{id}', function ($id) {
-        if (Auth::check() && Auth::user()->account_type === 'admin') {
+        if (Auth::user()->account_type === 'admin') {
             return app(AdminCustomerController::class)->destroy($id);
         }
         return redirect('/')->with('error', 'Unauthorized access');
     })->name('admin.customers.destroy');
+
+    // Inventory Management Routes
+    Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+        Route::get('/inventory', [InventoryController::class, 'index'])->name('admin.inventory.index');
+        Route::get('/inventory/{id}/edit', [InventoryController::class, 'edit'])->name('admin.inventory.edit');
+        Route::put('/inventory/{id}', [InventoryController::class, 'update'])->name('admin.inventory.update');
+        Route::delete('/inventory/{id}', [InventoryController::class, 'destroy'])->name('admin.inventory.delete');
+    });
 
 });
 

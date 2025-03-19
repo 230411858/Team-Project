@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="page-header">
-            {{ __('Manage Customers') }}
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Inventory Management') }}
         </h2>
     </x-slot>
 
@@ -9,28 +9,39 @@
         <div class="container">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="section-title">Customer List</h3>
+                    <h3 class="section-title">Product Inventory</h3>
 
                     @if(session('success'))
                         <p class="success-message">{{ session('success') }}</p>
                     @endif
 
-                    <table class="customer-table">
+                    <table class="inventory-table">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Email</th>
+                            <th>Product</th>
+                            <th>Stock</th>
+                            <th>Price</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($customers as $customer)
+                        @foreach ($products as $product)
                             <tr>
-                                <td>{{ $customer->name }}</td>
-                                <td>{{ $customer->email }}</td>
+                                <td>{{ $product->name }}</td>
                                 <td>
-                                    <a href="{{ route('admin.customers.edit', $customer->id) }}" class="edit-button">Edit</a> |
-                                    <form action="{{ route('admin.customers.destroy', $customer->id) }}" method="POST" class="inline-form">
+                                    @if ($product->stock <= 0)
+                                        <span class="out-of-stock">Out of Stock</span>
+                                    @elseif ($product->stock <= 5)
+                                        <span class="low-stock">Low Stock ({{ $product->stock }})</span>
+                                    @else
+                                        {{ $product->stock }}
+                                    @endif
+                                </td>
+                                <td>£{{ number_format($product->price / 100, 2) }}</td>
+                                <td>
+                                    <a href="{{ route('admin.inventory.edit', $product->id) }}" class="edit-button">Edit</a>
+                                    |
+                                    <form action="{{ route('admin.inventory.delete', $product->id) }}" method="POST" class="inline-form">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" onclick="return confirm('Are you sure?')" class="delete-button">Delete</button>
@@ -46,7 +57,6 @@
     </div>
 
     <style>
-        /* General Layout */
         .content-section {
             padding: 40px 0;
         }
@@ -68,45 +78,44 @@
             padding: 20px;
         }
 
-        /* Page Title */
-        .page-header {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        /* Section Title */
         .section-title {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
         }
 
-        /* Success Message */
         .success-message {
             color: green;
             font-weight: bold;
             margin-bottom: 15px;
         }
 
-        /* Table Styling */
-        .customer-table {
+        .inventory-table {
             width: 100%;
             border-collapse: collapse;
         }
 
-        .customer-table th,
-        .customer-table td {
+        .inventory-table th,
+        .inventory-table td {
             padding: 12px;
             border-bottom: 1px solid #ddd;
             text-align: left;
         }
 
-        .customer-table th {
+        .inventory-table th {
             background: #f8f8f8;
         }
 
-        /* Buttons */
+        .low-stock {
+            color: #ff9800;
+            font-weight: bold;
+        }
+
+        .out-of-stock {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
         .edit-button, .delete-button {
             padding: 6px 12px;
             border-radius: 5px;
@@ -134,7 +143,6 @@
             background-color: #c82333;
         }
 
-        /* Inline Form */
         .inline-form {
             display: inline;
         }

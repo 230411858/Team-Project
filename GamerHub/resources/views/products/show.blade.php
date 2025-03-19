@@ -152,11 +152,20 @@
 
 
 <style>
+    #out-of-stock{
+
+    }
+
+
+
     #low-stock{
         color: red;
+
+
     }
 
     #in-stock{
         color: green;
+
     }
 </style>

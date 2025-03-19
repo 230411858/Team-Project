@@ -35,4 +35,7 @@ class  AdminCustomerController extends Controller
         User::destroy($id);
         return redirect()->route('admin.customers.index')->with('success', 'Customer deleted successfully.');
     }
+
+
+
 }
