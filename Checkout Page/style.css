@@ -254,8 +254,8 @@ input[type="checkbox"] {
 }
 
 .navbar_logo { 
-cursor: pointer;
-transition: transform 0.2 ease;
+    cursor: pointer;
+    transition: transform 0.2 ease;
 }
 
 .navbar_logo:hover {
@@ -310,6 +310,16 @@ transition: transform 0.2 ease;
     gap: 1rem;
 }
 
+/* Shipping method text now bold */
+.method-name,
+.method-time,
+.method-price {
+  font-size: 1rem;
+  font-weight: 700; /* bold */
+  color: #333;
+  margin-right: 8px;
+}
+
 .method {
     padding: 1rem;
     border: 1px solid transparent;
@@ -337,24 +347,6 @@ transition: transform 0.2 ease;
     border-radius: 10px;
     background: #fff;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.method label strong {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #000;
-    margin-right: auto;
-}
-
-.method label span {
-    font-size: 0.9rem;
-    color: #555;
-}
-
-.method .price {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #000;
 }
 
 .method:hover label {
@@ -419,6 +411,14 @@ transition: transform 0.2 ease;
     margin: 0 0.5rem;
 }
 
-.summary-item img {
-    display: inline-block;
+/* Simple error styling: bigger + brighter red text */
+.error-message {
+  display: block;
+  color: #ff4d4d;     /* brighter red */
+  font-size: 1rem;    /* bigger text */
+  margin-top: 0.25rem;
+}
+
+.error-border {
+  border: 2px solid #dc3545 !important;
 }
