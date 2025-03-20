@@ -210,14 +210,14 @@ class ProductController extends Controller
     {
         $query = $request->input('query');
 
-        //search with name or desc
+        // Search products with name or description and retrieve the main image
         $products = Product::where('name', 'like', '%' . $query . '%')
             ->orWhere('description', 'like', '%' . $query . '%')
             ->get();
 
-        //return the results to the search
         return view('products.search-results', compact('products', 'query'));
     }
+
 
     public function getImages($id)
     {
@@ -234,7 +234,6 @@ class ProductController extends Controller
         {
             $image = 'cover.png';
         }
-
         return $image->file;
     }
 
