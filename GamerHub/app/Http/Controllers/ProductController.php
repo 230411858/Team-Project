@@ -53,18 +53,18 @@ class ProductController extends Controller
         return view('deals', ['discount_items' => $discount_items]);
     }
 
-    public function addBasketItem()
+    public function addBasketItem($product, $quantity = 1)
     {
-        $old_basket_item = BasketItem::firstWhere([['user', '=', Auth::id()], ['product', '=', request('product')]]);
+        $old_basket_item = BasketItem::firstWhere([ ['user', '=', Auth::id()], ['product', '=', $product] ]);
 
         if ($old_basket_item == null) {
             $basket_item = new BasketItem();
 
             $basket_item->user = Auth::id();
 
-            $basket_item->product = request('product');
+            $basket_item->product = $product;
 
-            $basket_item->quantity = request('quantity');
+            $basket_item->quantity += $quantity;
 
             if ($basket_item->quantity < 1) {
                 $basket_item->quantity = 1;
@@ -76,7 +76,7 @@ class ProductController extends Controller
         }
         else
         {
-            $old_basket_item->quantity = $old_basket_item->quantity + request('quantity');
+            $old_basket_item->quantity = $old_basket_item->quantity + $quantity;
 
             if ($old_basket_item->quantity < 1) {
                 $old_basket_item->quantity = 1;
@@ -88,6 +88,11 @@ class ProductController extends Controller
         }
 
         return back();
+    }
+
+    public function reduceBasketItem($product, $quantity = -1)
+    {
+        ProductController::addBasketItem($product, $quantity);
     }
 
     public function removeBasketItem()
@@ -143,6 +148,13 @@ class ProductController extends Controller
 
         $order->phone_number = $request->phone_number;
 
+        $order->shipping_method = $request->shipping_method;
+
+        if ($order->shipping_method == null)
+        {
+            $order->shipping_method = 'standard';
+        }
+
         $order->save();
 
         foreach ($basket_items as $basket_item) {
@@ -154,9 +166,11 @@ class ProductController extends Controller
 
             $order_item->quantity = $basket_item->quantity;
 
-            $order_item->save();
+            $product = Product::firstWhere('id', $order_item->product);
 
-            $product = Product::where('id', $order_item->product)->first();
+            $order_item->discount = $product->discount;
+
+            $order_item->save();
 
             $product->stock = $product->stock - $order_item->quantity;
 

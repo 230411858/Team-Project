@@ -90,7 +90,7 @@
             <p id="product-id">
                 #{{ $product->id }}
             </p>
-            <a id="product-link" href="{{ url('/products') }}/{{ $product->id }}">{{ url('/products') }}/{{ $product->id }}</a>
+            <a id="product-link" href="{{ url('/products') }}/{{ $product->id }}">View product</a>
         </div>
         <div class="order-item-subtotal">
 

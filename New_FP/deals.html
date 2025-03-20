@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--=============== REMIXICONS ===============-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" crossorigin="">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="deals_style.css" />
+    <title>GAMERHUB</title>
+  </head>
+  <body>
+    <!--=============== HEADER ===============-->
+    <header class="header">
+      <nav class="nav container">
+        <div class="nav__data">
+          <a href="index.html" class="nav__logo">
+            <img id="myImg" src="image/logo.png" />
+          </a>
+
+          <div class="nav__toggle" id="nav-toggle">
+            <i class="ri-menu-line nav__toggle-menu"></i>
+            <i class="ri-close-line nav__toggle-close"></i>
+          </div>
+        </div>
+
+        <!--=============== NAV MENU ===============-->
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li>
+              <a href="index.html" class="nav__link">Home</a>
+            </li>
+
+            <!--=============== DROPDOWN 1 ===============-->
+            <li class="dropdown__item">
+              <div class="nav__link dropdown__button">
+                Products <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+              </div>
+
+              <div class="dropdown__container">
+                <div class="dropdown__content">
+                  <div class="dropdown__group">
+                    <div class="dropdown__icon">
+                      <i class="ri-mouse-line"></i>
+                    </div>
+
+                    <span class="dropdown__title">Mouse</span>
+
+                    <ul class="dropdown__list">
+                      <li>
+                        <a href="#" class="dropdown__link">Wireless</a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown__link">Wired</a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown__link">Ergonomic</a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown__link">Stylus</a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown__link">Gaming</a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="dropdown__group">
+                    <div class="dropdown__icon">
+                      <i class="ri-keyboard-box-line"></i>
+                    </div>
+
+                    <span class="dropdown__title">Keyboard</span>
+
+                    <ul class="dropdown__list">
+                      <li>
+                        <a href="#" class="dropdown__link">Mechanical</a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown__link">Membrane</a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="dropdown__group">
+                    <div class="dropdown__icon">
+                      <i class="ri-computer-line"></i>
+                    </div>
+
+                    <span class="dropdown__title">Monitors</span>
+
+                    <ul class="dropdown__list">
+                      <li>
+                        <a href="#" class="dropdown__link">144hz</a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown__link">240hz</a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="dropdown__group">
+                    <div class="dropdown__icon">
+                      <i class="ri-headphone-line"></i>
+                    </div>
+
+                    <span class="dropdown__title">Audio</span>
+
+                    <ul class="dropdown__list">
+                      <li>
+                        <a href="#" class="dropdown__link">Headphones</a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown__link">Speakers</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <a href="#" class="nav__link">Deals</a>
+            </li>
+
+            <!--=============== DROPDOWN 2 ===============-->
+            <li class="dropdown__item">
+              <div class="nav__link dropdown__button">
+                Support<i class="ri-arrow-down-s-line dropdown__arrow"></i>
+              </div>
+
+              <div class="dropdown__container">
+                <div class="dropdown__content">
+                  <div class="dropdown__group">
+                    <div class="dropdown__icon">
+                      <i class="ri-code-line"></i>
+                    </div>
+
+                    <span class="dropdown__title">Support</span>
+
+                    <ul class="dropdown__list">
+                      <li>
+                        <a href="#" class="dropdown__link">Contact</a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown__link">FAQ</a>
+                      </li>
+                    </ul>
+                  </div>
+
+            <li>
+                <a href="#" class="nav__link">About</a>
+            </li>
+            <ul class="nav__button">
+              <li>
+                  <div class="menu-icon">
+                    <div class="nav-items"></div>
+                    <div class="search-icon">
+                      <span class="fas fa-search"></span>
+                    </div>
+                    <div class="cancel-icon">
+                      <span class="fas fa-times"></span>
+                    </div>
+                    <form action="#">
+                      <input
+                        type="search"
+                        class="search-data"
+                        placeholder="Search"
+                        required
+                      />
+                      <button type="submit" class="fas fa-search"></button>
+                    </form>
+                  </div>
+                
+              </li>
+              <li>
+                <button id="switch">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M11.3807 2.01886C9.91573 3.38768 9 5.3369 9 7.49999C9 11.6421 12.3579 15 16.5 15C18.6631 15 20.6123 14.0843 21.9811 12.6193C21.6613 17.8537 17.3149 22 12 22C6.47715 22 2 17.5228 2 12C2 6.68514 6.14629 2.33869 11.3807 2.01886Z"
+                    ></path>
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12C18 15.3137 15.3137 18 12 18ZM11 1H13V4H11V1ZM11 20H13V23H11V20ZM3.51472 4.92893L4.92893 3.51472L7.05025 5.63604L5.63604 7.05025L3.51472 4.92893ZM16.9497 18.364L18.364 16.9497L20.4853 19.0711L19.0711 20.4853L16.9497 18.364ZM19.0711 3.51472L20.4853 4.92893L18.364 7.05025L16.9497 5.63604L19.0711 3.51472ZM5.63604 16.9497L7.05025 18.364L4.92893 20.4853L3.51472 19.0711L5.63604 16.9497ZM23 11V13H20V11H23ZM4 11V13H1V11H4Z"
+                    ></path>
+                  </svg>
+                </button>
+              </li>
+              <li>
+                <div class="login">
+                        <a href="#"><i class="ri-user-line"></i></a>
+                </div>
+            </li>
+            <li>
+              <div class="nav_basket">
+                  <i class="ri-shopping-cart-line"></i>
+                  <span class="basket-count">0</span>
+              </div>
+              <div class="basket-modal" id="basket-modal">
+              </div>
+          </li>
+          </ul>
+          </ul>
+        </div>
+      </nav>
+    </header>
+  </head>
+  <body>
+    <section class="catalogue">
+      <div class="products">
+        <div class="container">
+          <h1 class="lg-title">Deals of the Moment</h1>
+          <p class="text-light">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
+            quos sit consectetur, ipsa voluptatem vitae necessitatibus dicta
+            veniam, optio, possimus assumenda laudantium. Temporibus, quis cum.
+          </p>
+
+          <div class="product-items">
+            <!-- single product -->
+            <div class="product">
+              <div class="product-content">
+                <div class="product-img">
+                  <img src="image/image-1.png" alt="product image" />
+                </div>
+                <div class="product-btns">
+                  <button type="button" class="btn-cart">
+                    add to cart
+                    <span><i class="fas fa-plus"></i></span>
+                  </button>
+                  <button type="button" class="btn-buy">
+                    buy now
+                    <span><i class="fas fa-shopping-cart"></i></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="product-info">
+                <a href="#" class="product-name"
+                  >Lorem ipsum dolor sit amet, consectetur</a
+                >
+                <p class="product-price">$ 150.00</p>
+                <p class="product-price">$ 133.00</p>
+              </div>
+
+              <div class="off-info">
+                <h2 class="sm-title">25% off</h2>
+              </div>
+            </div>
+            <!-- end of single product -->
+            <!-- single product -->
+            <div class="product">
+              <div class="product-content">
+                <div class="product-img">
+                  <img src="image/image-2.png" alt="product image" />
+                </div>
+                <div class="product-btns">
+                  <button type="button" class="btn-cart">
+                    add to cart
+                    <span><i class="fas fa-plus"></i></span>
+                  </button>
+                  <button type="button" class="btn-buy">
+                    buy now
+                    <span><i class="fas fa-shopping-cart"></i></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="product-info">
+                <a href="#" class="product-name"
+                  >Lorem ipsum dolor sit amet, consectetur</a
+                >
+                <p class="product-price">$ 150.00</p>
+                <p class="product-price">$ 133.00</p>
+              </div>
+            </div>
+            <!-- end of single product -->
+            <!-- single product -->
+            <div class="product">
+              <div class="product-content">
+                <div class="product-img">
+                  <img src="image/image-3.png" alt="product image" />
+                </div>
+                <div class="product-btns">
+                  <button type="button" class="btn-cart">
+                    add to cart
+                    <span><i class="fas fa-plus"></i></span>
+                  </button>
+                  <button type="button" class="btn-buy">
+                    buy now
+                    <span><i class="fas fa-shopping-cart"></i></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="product-info">
+                <a href="#" class="product-name"
+                  >Lorem ipsum dolor sit amet, consectetur</a
+                >
+                <p class="product-price">$ 150.00</p>
+                <p class="product-price">$ 133.00</p>
+              </div>
+            </div>
+            <!-- end of single product -->
+            <!-- single product -->
+            <div class="product">
+              <div class="product-content">
+                <div class="product-img">
+                  <img src="image/image-4.png" alt="product image" />
+                </div>
+                <div class="product-btns">
+                  <button type="button" class="btn-cart">
+                    add to cart
+                    <span><i class="fas fa-plus"></i></span>
+                  </button>
+                  <button type="button" class="btn-buy">
+                    buy now
+                    <span><i class="fas fa-shopping-cart"></i></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="product-info">
+                <a href="#" class="product-name"
+                  >Lorem ipsum dolor sit amet, consectetur</a
+                >
+                <p class="product-price">$ 150.00</p>
+                <p class="product-price">$ 133.00</p>
+              </div>
+
+              <div class="off-info">
+                <h2 class="sm-title">25% off</h2>
+              </div>
+            </div>
+            <!-- end of single product -->
+            <!-- single product -->
+            <div class="product">
+              <div class="product-content">
+                <div class="product-img">
+                  <img src="image/image-5.png" alt="product image" />
+                </div>
+                <div class="product-btns">
+                  <button type="button" class="btn-cart">
+                    add to cart
+                    <span><i class="fas fa-plus"></i></span>
+                  </button>
+                  <button type="button" class="btn-buy">
+                    buy now
+                    <span><i class="fas fa-shopping-cart"></i></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="product-info">
+                <a href="#" class="product-name"
+                  >Lorem ipsum dolor sit amet, consectetur</a
+                >
+                <p class="product-price">$ 150.00</p>
+                <p class="product-price">$ 133.00</p>
+              </div>
+            </div>
+            <!-- end of single product -->
+            <!-- single product -->
+            <div class="product">
+              <div class="product-content">
+                <div class="product-img">
+                  <img src="image/image-6.png" alt="product image" />
+                </div>
+                <div class="product-btns">
+                  <button type="button" class="btn-cart">
+                    add to cart
+                    <span><i class="fas fa-plus"></i></span>
+                  </button>
+                  <button type="button" class="btn-buy">
+                    buy now
+                    <span><i class="fas fa-shopping-cart"></i></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="product-info">
+                <a href="#" class="product-name"
+                  >Lorem ipsum dolor sit amet, consectetur</a
+                >
+                <p class="product-price">$ 150.00</p>
+                <p class="product-price">$ 133.00</p>
+              </div>
+            </div>
+            <!-- end of single product -->
+            <!-- single product -->
+            <div class="product">
+              <div class="product-content">
+                <div class="product-img">
+                  <img src="image/image-7.png" alt="product image" />
+                </div>
+                <div class="product-btns">
+                  <button type="button" class="btn-cart">
+                    add to cart
+                    <span><i class="fas fa-plus"></i></span>
+                  </button>
+                  <button type="button" class="btn-buy">
+                    buy now
+                    <span><i class="fas fa-shopping-cart"></i></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="product-info">
+                <a href="#" class="product-name"
+                  >Lorem ipsum dolor sit amet, consectetur</a
+                >
+                <p class="product-price">$ 150.00</p>
+                <p class="product-price">$ 133.00</p>
+              </div>
+            </div>
+            <!-- end of single product -->
+            <!-- single product -->
+            <div class="product">
+              <div class="product-content">
+                <div class="product-img">
+                  <img src="image/.png" alt="product image" />
+                </div>
+                <div class="product-btns">
+                  <button type="button" class="btn-cart">
+                    add to cart
+                    <span><i class="fas fa-plus"></i></span>
+                  </button>
+                  <button type="button" class="btn-buy">
+                    buy now
+                    <span><i class="fas fa-shopping-cart"></i></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="product-info">
+                <a href="#" class="product-name"
+                  >Lorem ipsum dolor sit amet, consectetur</a
+                >
+                <p class="product-price">$ 150.00</p>
+                <p class="product-price">$ 133.00</p>
+              </div>
+
+              <div class="off-info">
+                <h2 class="sm-title">35% off</h2>
+              </div>
+            </div>
+            <!-- end of single product -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="footer">
+      <div class="footer-content">
+        <img id="myImg" src="image/logo.png" />    
+          <p>© 2024 GamerHub. All rights reserved.</p>
+
+          <div class="icons">
+              <a href="#"><i class='bx bxl-meta'></i></a>
+              <a href="#"><i class='bx bxl-instagram' ></i></a>
+              <a href="#"><i class='bx bxl-twitter' ></i></a>
+              <a href="#"><i class='bx bxl-reddit' ></i></a>
+          </div>
+      </div>
+
+      <div class="footer-content">
+          <h4>Products</h4>
+          <li><a href="#">Mouses</a></li>
+          <li><a href="#">Keyboards</a></li>
+          <li><a href="#">Monitor</a></li>
+          <li><a href="#">Microphone</a></li>
+          <li><a href="#">Headset</a></li>
+      </div>
+
+      <div class="footer-content">
+          <h4>Deals</h4>
+          <li><a href="#">Discounted items</a></li>
+          <li><a href="#">Black Friday</a></li>
+          <li><a href="#">Bundles</a></li>
+      </div>
+
+      <div class="footer-content">
+          <h4>Support</h4>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+      </div>
+
+  </section>
+    <script src="js/main.js"></script>
+  </body>
+</html>
