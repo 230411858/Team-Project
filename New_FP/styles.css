@@ -937,6 +937,7 @@ div.item:nth-of-type(2) {
   --offset: 2;
   background-color: var(--blue-space);--blue-space
 }
+
 div.item:nth-of-type(3) {
   --offset: 3;
   background-color: #ff9770;
@@ -1421,104 +1422,7 @@ section.layout {
     url("image/discount.png");
 }
 
-.type_card:nth-child(7) {
-  background-image: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      from(rgba(10, 10, 10, 0)),
-      color-stop(50%, rgba(10, 10, 10, 0)),
-      to(rgba(10, 10, 10, 0.7))
-    ),
-    url("image/image-7.png");
-  background-image: -webkit-linear-gradient(
-      top,
-      rgba(10, 10, 10, 0) 0%,
-      rgba(10, 10, 10, 0) 50%,
-      rgba(10, 10, 10, 0.7) 100%
-    ),
-    url("image/image-7.png");
-  background-image: -o-linear-gradient(
-      top,
-      rgba(10, 10, 10, 0) 0%,
-      rgba(10, 10, 10, 0) 50%,
-      rgba(10, 10, 10, 0.7) 100%
-    ),
-    url("image/image-7.png");
-  background-image: linear-gradient(
-      to bottom,
-      rgba(10, 10, 10, 0) 0%,
-      rgba(10, 10, 10, 0) 50%,
-      rgba(10, 10, 10, 0.7) 100%
-    ),
-    url("image/image-7.png");
-}
 
-.type_card:nth-child(8) {
-  background-image: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      from(rgba(13, 49, 209, 0)),
-      color-stop(50%, rgba(10, 10, 10, 0)),
-      to(rgba(10, 10, 10, 0.7))
-    ),
-    url("image/image-8.jpg");
-  background-image: -webkit-linear-gradient(
-      top,
-      rgba(10, 10, 10, 0) 0%,
-      rgba(10, 10, 10, 0) 50%,
-      rgba(10, 10, 10, 0.7) 100%
-    ),
-    url("image/image-8.jpg");
-  background-image: -o-linear-gradient(
-      top,
-      rgba(10, 10, 10, 0) 0%,
-      rgba(10, 10, 10, 0) 50%,
-      rgba(10, 10, 10, 0.7) 100%
-    ),
-    url("image/image-8.jpg");
-  background-image: linear-gradient(
-      to bottom,
-      rgba(10, 10, 10, 0) 0%,
-      rgba(10, 10, 10, 0) 50%,
-      rgba(10, 10, 10, 0.7) 100%
-    ),
-    url("image/image-8.jpg");
-}
-
-.type_card:nth-child(9) {
-  background-image: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      from(rgba(10, 10, 10, 0)),
-      color-stop(50%, rgba(10, 10, 10, 0)),
-      to(rgba(10, 10, 10, 0.7))
-    ),
-    url("image/image-9.jpg");
-  background-image: -webkit-linear-gradient(
-      top,
-      rgba(10, 10, 10, 0) 0%,
-      rgba(10, 10, 10, 0) 50%,
-      rgba(10, 10, 10, 0.7) 100%
-    ),
-    url("image/image-9.jpg");
-  background-image: -o-linear-gradient(
-      top,
-      rgba(10, 10, 10, 0) 0%,
-      rgba(10, 10, 10, 0) 50%,
-      rgba(10, 10, 10, 0.7) 100%
-    ),
-    url("image/image-9.jpg");
-  background-image: linear-gradient(
-      to bottom,
-      rgba(10, 10, 10, 0) 0%,
-      rgba(10, 10, 10, 0) 50%,
-      rgba(10, 10, 10, 0.7) 100%
-    ),
-    url("image/image-9.jpg");
-}
 
 .type_card:nth-child(1) {
   -ms-grid-column: span 6;
@@ -1528,10 +1432,7 @@ section.layout {
   -ms-grid-column: span 6;
   grid-column-start: span 6;
 }
-.type_card:nth-child(7) {
-  -ms-grid-column: span 6;
-  grid-column-start: span 6;
-}
+
 
 .type_card:nth-child(2) {
   -ms-grid-column: span 3;
@@ -1549,14 +1450,7 @@ section.layout {
   -ms-grid-column: span 3;
   grid-column-start: span 3;
 }
-.type_card:nth-child(8) {
-  -ms-grid-column: span 3;
-  grid-column-start: span 3;
-}
-.type_card:nth-child(9) {
-  -ms-grid-column: span 3;
-  grid-column-start: span 3;
-}
+
 
 @media screen and (max-width: 1200px) {
   .type_card:nth-child(n) {
