@@ -151,24 +151,15 @@ var x = setInterval(function () {
   document.getElementById("seconds").innerHTML = seconds;
 }, 1000);
 
-const cartIcon = document.querySelector(".nav_basket");
-const cart = document.querySelector(".cart");
-const cartClose = document.querySelector("#cart-close");
+// Add to Cart (for Countdown Section)
+const countdownAddToCartButton = document.querySelector(".countdown .btn-cart");
+countdownAddToCartButton.addEventListener("click", () => {
+  const productImgSrc = document.querySelector(".countdown_container img").src;
+  const productTitle = "Limited Time Offer - 50% Off";
+  const productPrice = "$75.00"; // Discounted price
 
-cartIcon.addEventListener("click", () => cart.classList.add("active"));
-cartClose.addEventListener("click", () => cart.classList.remove("active"));
-
-const addCartButtons = document.querySelectorAll(".btn-cart");
-addCartButtons.forEach((button) => {
-  button.addEventListener("click", (event) => {
-    const productElement = event.target.closest(".product");
-    if (productElement) {
-      addToCart(productElement);
-    }
-  });
+  addToCartFromCountdown(productImgSrc, productTitle, productPrice);
 });
-
-const cartContent = document.querySelector(".cart-content");
 
 // Load cart from localStorage when page loads
 document.addEventListener("DOMContentLoaded", loadCart);
@@ -214,9 +205,9 @@ function loadCart() {
             <h2 class="cart-product-title">${item.title}</h2>
             <span class="cart-price">${item.price}</span>
             <div class="cart-quantity">
-                <button class="decrease">-</button>
+                <button id="decrease">-</button>
                 <span class="quantity-number">${item.quantity}</span>
-                <button class="increase">+</button>
+                <button id="increase">+</button>
             </div>
         </div>
         <i class="ri-delete-bin-line cart-remove"></i>
@@ -236,12 +227,17 @@ function loadCart() {
         .querySelector(".cart-quantity")
         .addEventListener("click", (event) => {
           const quantityElement = cartBox.querySelector(".quantity-number");
+          const decreaseButton = cartBox.querySelector("#decrease");
           let quantity = parseInt(quantityElement.textContent);
 
-          if (event.target.classList.contains("decrease") && quantity > 1) {
+          if (event.target.id === "decrease" && quantity > 1) {
             quantity--;
-          } else if (event.target.classList.contains("increase")) {
+            if (quantity === 1) {
+              decreaseButton.style.color = "#999";
+            }
+          } else if (event.target.id === "increase") {
             quantity++;
+            decreaseButton.style.color = "#333";
           }
 
           quantityElement.textContent = quantity;
@@ -258,8 +254,95 @@ function loadCart() {
   }
 }
 
+const addToCartFromCountdown = (imgSrc, title, price) => {
+  const cartContent = document.querySelector(".cart-content");
+
+  // Check if item is already in cart
+  const cartItems = cartContent.querySelectorAll(".cart-product-title");
+  for (let item of cartItems) {
+    if (item.textContent === title) {
+      alert("This item is already in the cart.");
+      return;
+    }
+  }
+
+  // Create cart item
+  const cartBox = document.createElement("div");
+  cartBox.classList.add("cart-box");
+  cartBox.innerHTML = `
+        <img src="${imgSrc}" class="cart-img">
+        <div class="cart-detail">
+            <h2 class="cart-product-title">${title}</h2>
+            <span class="cart-price">${price}</span>
+            <div class="cart-quantity">
+                <button id="decrease">-</button>
+                <span class="quantity-number">1</span>
+                <button id="increase">+</button>
+            </div>
+        </div>
+        <i class="ri-delete-bin-line cart-remove"></i>
+    `;
+
+  cartContent.appendChild(cartBox);
+
+  // Remove item from cart
+  cartBox.querySelector(".cart-remove").addEventListener("click", () => {
+    cartBox.remove();
+    updateCartCount(-1);
+    updateTotalPrice();
+    saveCart();
+  });
+
+  // Quantity control
+  cartBox.querySelector(".cart-quantity").addEventListener("click", (event) => {
+    const quantityElement = cartBox.querySelector(".quantity-number");
+    const decreaseButton = cartBox.querySelector("#decrease");
+    let quantity = parseInt(quantityElement.textContent);
+
+    if (event.target.id === "decrease" && quantity > 1) {
+      quantity--;
+      if (quantity === 1) {
+        decreaseButton.style.color = "#999";
+      }
+    } else if (event.target.id === "increase") {
+      quantity++;
+      decreaseButton.style.color = "#333";
+    }
+
+    quantityElement.textContent = quantity;
+    updateTotalPrice();
+    saveCart();
+  });
+
+  updateCartCount(1);
+  updateTotalPrice();
+  saveCart();
+};
+
+const cartIcon = document.querySelector(".nav_basket");
+const cart = document.querySelector(".cart");
+const cartClose = document.querySelector("#cart-close");
+
+cartIcon.addEventListener("click", () => cart.classList.add("active"));
+cartClose.addEventListener("click", () => cart.classList.remove("active"));
+
+const addCartButtons = document.querySelectorAll(".btn-cart");
+addCartButtons.forEach((button) => {
+  if (!button.closest(".countdown")) {
+    // Skip countdown button as it's handled separately
+    button.addEventListener("click", (event) => {
+      const productElement = event.target.closest(".product");
+      if (productElement) {
+        addToCart(productElement);
+      }
+    });
+  }
+});
+
+const cartContent = document.querySelector(".cart-content");
+
 const addToCart = (productElement) => {
-  const productImgSrc = productElement.querySelector(".product-img img").src;
+  const productImgSrc = productElement.querySelector("img").src;
   const productTitle =
     productElement.querySelector(".product-name").textContent;
   const productPrice =
@@ -277,18 +360,18 @@ const addToCart = (productElement) => {
   const cartBox = document.createElement("div");
   cartBox.classList.add("cart-box");
   cartBox.innerHTML = `
-        <img src="${productImgSrc}" class="cart-img">
-        <div class="cart-detail">
-            <h2 class="cart-product-title">${productTitle}</h2>
-            <span class="cart-price">${productPrice}</span>
-            <div class="cart-quantity">
-                <button class="decrease">-</button>
-                <span class="quantity-number">1</span>
-                <button class="increase">+</button>
-            </div>
-        </div>
-        <i class="ri-delete-bin-line cart-remove"></i>
-    `;
+          <img src="${productImgSrc}" class="cart-img">
+          <div class="cart-detail">
+              <h2 class="cart-product-title">${productTitle}</h2>
+              <span class="cart-price">${productPrice}</span>
+              <div class="cart-quantity">
+                  <button id="decrease">-</button>
+                  <span class="quantity-number">1</span>
+                  <button id="increase">+</button>
+              </div>
+          </div>
+          <i class="ri-delete-bin-line cart-remove"></i>
+      `;
 
   cartContent.appendChild(cartBox);
 
@@ -301,12 +384,17 @@ const addToCart = (productElement) => {
 
   cartBox.querySelector(".cart-quantity").addEventListener("click", (event) => {
     const quantityElement = cartBox.querySelector(".quantity-number");
+    const decreaseButton = cartBox.querySelector("#decrease");
     let quantity = parseInt(quantityElement.textContent);
 
-    if (event.target.classList.contains("decrease") && quantity > 1) {
+    if (event.target.id === "decrease" && quantity > 1) {
       quantity--;
-    } else if (event.target.classList.contains("increase")) {
+      if (quantity === 1) {
+        decreaseButton.style.color = "#999";
+      }
+    } else if (event.target.id === "increase") {
       quantity++;
+      decreaseButton.style.color = "#333";
     }
 
     quantityElement.textContent = quantity;
