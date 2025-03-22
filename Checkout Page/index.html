@@ -109,32 +109,17 @@
         <h3>Shipping Method</h3>
         <div class="shipping-methods">
           <div class="method">
-            <input 
-              type="radio" 
-              id="standard-shipping" 
-              name="shipping-method" 
-              value="Standard Shipping" 
-              data-details="2-3 business days" 
-              checked
-            >
+            <input type="radio" id="standard-shipping" name="shipping-method" value="Standard Shipping" data-details="2-3 business days*" checked>
             <label for="standard-shipping">
-              <span class="method-name">Standard Shipping</span>
-              <span class="method-time">2-3 business days</span>
-              <span class="method-price">£2.99</span>
+              <strong>Standard Shipping</strong>
+              <span>2-3 business days</span>
             </label>
           </div>
           <div class="method">
-            <input 
-              type="radio" 
-              id="expedited-shipping" 
-              name="shipping-method" 
-              value="Expedited Shipping" 
-              data-details="1-2 business days"
-            >
+            <input type="radio" id="expedited-shipping" name="shipping-method" value="Expedited Shipping" data-details="1-2 business days*">
             <label for="expedited-shipping">
-              <span class="method-name">Expedited Shipping</span>
-              <span class="method-time">1-2 business days</span>
-              <span class="method-price">£4.99</span>
+              <strong>Expedited Shipping</strong>
+              <span>1-2 business days</span>
             </label>
           </div>
         </div>
@@ -145,8 +130,8 @@
       <div id="compressed-view-method" style="display: none;">
         <h3>Shipping Method <span style="color: green;">✔</span></h3>
         <div class="compressed-block">
-          <h4 id="compressed-method">Standard Shipping</h4>
-          <p id="compressed-method-details">2-3 business days</p>
+          <h4 id="compressed-method">Standard Shipping - Free</h4>
+          <p id="compressed-method-details">2-3 business days*</p>
         </div>
         <a href="#" id="edit-method">Edit</a>
       </div>
