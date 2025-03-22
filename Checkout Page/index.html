@@ -102,6 +102,7 @@
 
 
 
+<<<<<<< HEAD
 <form id="shipping-method-form" style="display: none;">
     <h3>Shipping Method</h3>
     <div class="shipping-methods">
@@ -119,6 +120,82 @@
                 <strong>Expedited Shipping</strong>
                 <span>1-2 business days*</span>
                 <span class="price">Free</span>
+=======
+        <div class="form-group">
+          <label for="address">Address 1 <span class="required">*</span></label>
+          <input type="text" id="address" name="address" required placeholder="Start typing your street address">
+        </div>
+
+        <div class="form-group">
+          <label for="address2">+ Add Apt, Suite, Building (Optional)</label>
+          <input type="text" id="address2" name="address2" placeholder="Apartment, suite, or building">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="city">City <span class="required">*</span></label>
+            <input type="text" id="city" name="city" required placeholder="Enter your city">
+          </div>
+          <div class="form-group half">
+            <label for="postal-code">Postal Code <span class="required">*</span></label>
+            <input type="text" id="postal-code" name="postal-code" required placeholder="Enter your postal code">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone-number">Phone Number <span class="required">*</span></label>
+          <input type="tel" id="phone-number" name="phone-number" required placeholder="Enter your phone number">
+        </div>
+
+        <button type="button" id="save-shipping-details" class="submit-btn">Save And Continue</button>
+      </div>
+
+      <!-- Compressed Shipping View -->
+      <div id="compressed-view" style="display: none;">
+        <h3>Shipping <span style="color: green;">✔</span></h3>
+        <div class="compressed-block">
+          <h4>Shipping Address</h4>
+          <p id="compressed-shipping"></p>
+        </div>
+        <div class="compressed-block">
+          <h4>Billing Address</h4>
+          <p id="compressed-billing"></p>
+        </div>
+        <a href="#" id="edit-shipping">Edit</a>
+      </div>
+
+      <!-- Shipping Method Section -->
+      <div id="shipping-method-section" style="display: none;">
+        <h3>Shipping Method</h3>
+        <div class="shipping-methods">
+          <div class="method">
+            <input 
+              type="radio" 
+              id="standard-shipping" 
+              name="shipping-method" 
+              value="Standard Shipping" 
+              data-details="2-3 business days" 
+              checked
+            >
+            <label for="standard-shipping">
+              <span class="method-name">Standard Shipping</span>
+              <span class="method-time">2-3 business days</span>
+              <span class="method-price">£2.99</span>
+            </label>
+          </div>
+          <div class="method">
+            <input 
+              type="radio" 
+              id="expedited-shipping" 
+              name="shipping-method" 
+              value="Expedited Shipping" 
+              data-details="1-2 business days"
+            >
+            <label for="expedited-shipping">
+              <span class="method-name">Expedited Shipping</span>
+              <span class="method-time">1-2 business days</span>
+              <span class="method-price">£4.99</span>
+>>>>>>> parent of 59a78e8 (Revert "Merge branch 'main' into working")
             </label>
         </div>
     </div>
@@ -129,8 +206,13 @@
     <div id="compressed-view-method" style="display: none;">
         <h3>Shipping Method <span style="color: green;">✔</span></h3>
         <div class="compressed-block">
+<<<<<<< HEAD
             <h4 id="compressed-method">Standard Shipping - Free</h4>
             <p id="compressed-method-details">2-3 business days*</p>
+=======
+          <h4 id="compressed-method">Standard Shipping</h4>
+          <p id="compressed-method-details">2-3 business days</p>
+>>>>>>> parent of 59a78e8 (Revert "Merge branch 'main' into working")
         </div>
         <a href="#" id="edit-method">Edit</a>
     </div>

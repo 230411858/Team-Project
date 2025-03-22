@@ -523,6 +523,141 @@ form button:hover {
 }
 
 
+
+
+.cart {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 360px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  padding: 65px 20px 40px;
+  z-index: 100;
+  overflow: auto;
+  transition: 0.5s;
+}
+
+.cart.active {
+  right: 0;
+}
+
+.cart-title {
+  text-align: center;
+  font-size: 30px;
+}
+
+.cart-box {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.cart-box img {
+  width: 100px;
+  height: 100px;
+  border-radius: 6px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.cart-detail {
+  display: grid;
+  gap: 8px;
+  margin-right: auto;
+}
+
+.cart-product-title {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.cart-price {
+  font-weight: 500;
+}
+
+.cart-quantity {
+  display: flex;
+  width: 100px;
+  border: 1px solid #999;
+  border-radius: 6px;
+  justify-content: space-between ;
+}
+
+.cart-quantity button {
+  background: transparent;
+  width: 30px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.cart-quantity #decrement {
+  color: #999;
+}
+
+.cart-quantity .number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+  cursor: default;
+}
+
+.cart-remove {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.total {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-top: 1px solid #333;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.total-price {
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.cart_btn-buy {
+  display: block;
+  padding: 10px 30px;
+  background: #e35f26;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #fff;
+  margin: 20px auto 0;
+  cursor: pointer;
+}
+
+#cart-close {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 360px) {
+  .product-content {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .cart {
+    width: 100%;
+  }
+}
+
+
+
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 300px) {
@@ -661,6 +796,114 @@ form button:hover {
     margin-inline: auto;
   }
 }
+
+
+.countdown_background {
+  background-attachment: fixed; /* Keep it from moving */
+}
+
+.countdown_container {
+  padding: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+}
+
+.countdown_container img {
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+}
+
+.countdown-text {
+  width: 80%;
+}
+.countdown-text h1{
+  font-size: 3.3rem;
+}
+.countdown-text h2 {
+  font-size: 2.3rem;
+  margin-bottom: 9px;
+  color: var(--title-color);
+}
+
+.countdown_time {
+  display: flex;
+}
+
+.countdown_time div {
+  flex-basis: 100px;
+}
+
+.countdown_time div p {
+  font-size: 50px;
+  margin-bottom: -20px;
+}
+#countdown_button {
+  padding: 1em 2.1em 1.1em;
+  border-radius: 30px 0px 30px 0px;
+  margin: 8px;
+  border: none;
+  width: 170px;
+  height: 65px;
+  background-color: #ef5e41;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  text-align: center;
+  transition: color 0.5s ease-in-out;
+}
+
+#countdown_button:hover {
+  background-color: #fff;
+  color: #ef5e41;
+  border: 2px solid var(--countdown -button-outline);
+  cursor: pointer;
+}
+
+/* Media queries */
+
+@media (max-width: 1122px) {
+  .countdown_container {
+    margin-top: 60px;
+    flex-direction: column;
+  }
+  .countdown-text {
+    width: 100%;
+    text-align: center;
+  }
+  .countdown-text h1 {
+    font-size: 3rem;
+  }
+  .countdown_time {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 678px) {
+  .countdown-text h1 {
+    font-size: 2rem;
+  }
+}
+@media screen and (min-width: 1300px) {
+  .countdown_container {
+    max-width: 1200px;
+  }
+}
+@media screen and (min-width: 1700px) {
+  .countdown_container {
+    max-width: 1200px;
+  }
+}
+
 
 section.catalogue {
   font-family: "Quicksand", sans-serif;
