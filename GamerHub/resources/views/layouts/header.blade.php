@@ -249,7 +249,7 @@
                       }
                       @endphp
                       <li>
-                        <img height="60px" width="80px" src="{{ url('/images') }}/{{ $product->category }}/{{ $file }}" alt="">
+                        <img style="width: 50%;" src="{{ url('/images') }}/{{ $product->category }}/{{ $file }}" alt="">
                         <p class="nav__link">{{ ucwords($product->name) }}</p>
                         <p class="nav__link">x{{ $basket_item->quantity }}</p>
                         @if($basket_item->quantity < 100)

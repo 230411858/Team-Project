@@ -165,8 +165,6 @@
 @endsection
 <!-- reviews section -->
 <style>
-    #out-of-stock {}
-
     #low-stock {
         color: red;
 
