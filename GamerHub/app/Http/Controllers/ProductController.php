@@ -19,7 +19,9 @@ class ProductController extends Controller
 
         $images = ProductImage::all();
 
-        return view('products.index', ['products' => $products, 'images' => $images]);
+        $discount_items = Product::where('discount', '>', 0)->limit(6)->get();
+
+        return view('products.index', ['products' => $products, 'images' => $images, 'discount_items' => $discount_items]);
     }
 
     public function show($id)
@@ -33,14 +35,21 @@ class ProductController extends Controller
         return view('products.show', ['product' => $product, 'images' => $images, 'reviews' => $reviews]);
     }
 
-    public function category($category)
+    public function category($category, $sub_category = null)
     {
         if (in_array($category, ['mice', 'keyboards', 'monitors', 'audio'])) {
             $products = Product::where('category', $category)->get();
 
             $images = ProductImage::all();
 
-            return view('products.category', ['products' => $products, 'images' => $images, 'category' => $category]);
+            $sub_categories = ['wired', 'wireless', 'gaming', 'ergonomic', 'stylus', 'mechanical', 'membrane', '144hz', '240hz'];
+
+            if (!in_array($sub_category, $sub_categories))
+            {
+                $sub_category = null;
+            }
+
+            return view('products.category', ['products' => $products, 'images' => $images, 'category' => $category, 'sub_category' => $sub_category]);
         } else {
             abort(404);
         }
@@ -92,14 +101,16 @@ class ProductController extends Controller
 
     public function reduceBasketItem($product, $quantity = -1)
     {
-        ProductController::addBasketItem($product, $quantity);
+        $this->addBasketItem($product, $quantity);
+
+        return back();
     }
 
-    public function removeBasketItem()
+    public function removeBasketItem($id)
     {
-        $basket_item = BasketItem::firstWhere('id', request('id'));
-        if ($basket_item != null && Auth::id() == $basket_item->user) {
-            BasketItem::destroy(request('id'));
+        $basket_item = BasketItem::firstWhere('id', $id);
+        if ($basket_item != null && Auth::id() === $basket_item->user) {
+            BasketItem::destroy($id);
             return back();
         } else {
             abort(403);

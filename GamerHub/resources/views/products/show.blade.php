@@ -12,8 +12,8 @@
 <nav>
     <ul class="breadcrumb">
         <li><a href="{{ url('/') }}">Home</a></li>
-        <li><a href="{{ url('/') }}/{{ $product->category }}">{{ ucfirst($product->category) }}</a></li>
-        <li>{{ $product->name }}</li>
+        <li><a href="{{ url('/') }}/products/category/{{ $product->category }}">{{ ucfirst($product->category) }}</a></li>
+        <li>{{ ucwords($product->name) }}</li>
     </ul>
 </nav>
 
@@ -57,24 +57,23 @@
             <p class="description-p">
                 {{ $product->description }}
             </p>
-            <p class="price-p">Price: £<span id="price">{{ $product->price / 100 }}</span></p>
-
-            @if($product->stock<10)
+            @if ($product->discount > 0)
+            <p class="price-p">Price: <s style="color: red;">£{{ number_format(($product->price / 100), 2) }}</s> > <span style="color: green;">£<b id="price">{{ number_format(($product->price / 100) * (1 - $product->discount), 2) }}</b></span></p>
+            @else
+            <p class="price-p">Price: £<span id="price">{{ number_format(($product->price / 100), 2) }}</span></p>
+            @endif
+            @if ($product->stock < 10)
                 <p id="low-stock">Low Stock!</p>
             @else
                 <p id="in-stock">In Stock!</p>
             @endif
 
-            <div class="quantity-section">
-                <form action="{{ url('/add') }}" method="POST">
-                    @csrf
+            <div class="quantity-section"> 
+                    <input hidden type="number" id="product-id" name="product" value="{{ $product->id }}">
                     <label for="quantity">Quantity:</label>
-                    <input hidden type="number" name="product" value="{{ $product->id }}">
                     <input type="number" id="quantity" name="quantity" value="1" min="1" onchange="updateTotal()">
-                    £<span id="total">{{ number_format($product->price / 100, 2) }}</span>
-
-                    <button class="cart-butt" aria-label="Add to Cart" type="submit" value="Add to Cart">Add to Cart</button>
-                </form>
+                    £<span id="total">{{ number_format(($product->price * (1 - $product->discount) / 100), 2) }}</span>
+                    <button class="cart-butt" aria-label="Add to Cart" onclick="addToCart()">Add to Cart</button>
             </div>
 
             <!-- description on the right -->
@@ -145,12 +144,8 @@
         @endif
     </div>
 </div>
-<!-- reviews section -->
-<script src="{{ url('/js/product.js') }}"></script>
 @endsection
-
-
-
+<!-- reviews section -->
 <style>
     #out-of-stock{
 
@@ -169,3 +164,7 @@
 
     }
 </style>
+ @section('js')
+<script src="{{ url('/js/product.js') }}"></script>
+<script src="https://kit.fontawesome.com/6d6a721856.js" crossorigin="anonymous"></script>
+@endsection

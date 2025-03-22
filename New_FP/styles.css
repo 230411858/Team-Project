@@ -163,7 +163,7 @@ img {
 .nav__toggle-menu,
 .nav__toggle-close {
   font-size: 1.25rem;
-  margin-left:30px
+  margin-left:30px;
   color: var(--title-color);
   position: absolute;
   display: grid;
@@ -800,7 +800,7 @@ div.item:nth-of-type(1) {
 
 div.item:nth-of-type(2) {
   --offset: 2;
-  background-color: var(--blue-space);--blue-space
+  background-color: var(--blue-space);
 }
 div.item:nth-of-type(3) {
   --offset: 3;

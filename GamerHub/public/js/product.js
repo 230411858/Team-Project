@@ -75,3 +75,8 @@ imageElement.addEventListener('click', function() {
 });
 
 //zoom
+
+function addToCart()
+{
+    window.location.href = "/add/" + document.getElementById("product-id").value + "/" + document.getElementById("quantity").value;
+}

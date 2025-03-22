@@ -1,49 +1,53 @@
 @extends('layouts.layout')
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results</title>
-    <link rel="stylesheet" href="{{ url('/css/reuse.css') }}">
-</head>
-<body>
 
+@section('css')
+<link rel="stylesheet" href="{{ url('/css/reuse.css') }}">
+@endsection
+
+@section('title')
+<title>Search Results</title>
+@endsection
+
+@section('content')
 <h1>Search Results for "{{ $query }}"</h1>
 
 @if($products->isEmpty())
 
-    <h1>No Products Found</h1>
+<h1>No Products Found</h1>
 
 @else
-    <div class="product-list">
-        @foreach($products as $product)
-            <div class="product">
-                <a href="{{ url('/products') }}/{{ $product->id }}" class="product-card">
-                    <div class="card-content">
+<div class="product-list">
+    @foreach($products as $product)
+    @php
+    $image = \App\Models\ProductImage::firstWhere('product', $product);
+    if ($image == null)
+    {
+    $file = 'cover.png';
+    }
+    else
+    {
+    $file = $image->file;
+    }
+    @endphp
+    <div class="product">
+        <a href="{{ url('/products') }}/{{ $product->id }}" class="product-card">
+            <div class="card-content">
 
-                        <!-- Display Product Image -->
-                        @if($product->image)
-                            <img src="{{ asset('storage/' . $product->image) }}"
-                                 alt="{{ $product->name }}" class="product-image">
-                        @else
-                            <img src="{{ asset('images/default-product.jpg') }}"
-                                 alt="Default Image" class="product-image">
-                        @endif
+                <!-- Display Product Image -->
+                <img src="{{ url('/images') }}/{{ $product->category }}/{{ $file }}"
+                    alt="Default Image" class="product-image">
 
-                        <h2>{{ $product->name }}</h2>
-                        <p>Price: £{{ $product->price / 100 }}</p>
-                        <p>{{ $product->description }}</p>
+                <h2>{{ $product->name }}</h2>
+                <p>Price: £{{ $product->price / 100 }}</p>
+                <p>{{ $product->description }}</p>
 
-                    </div>
-                </a>
             </div>
-        @endforeach
+        </a>
     </div>
+    @endforeach
+</div>
 @endif
-
-</body>
-</html>
+@endsection
 
 {{-- CSS --}}
 <style>
@@ -139,8 +143,7 @@
         margin-bottom: 10px;
     }
 
-    h1{
+    h1 {
         padding: 20px;
     }
-
 </style>

@@ -31,11 +31,12 @@ Route::get('/about', function () {
 
 // Product Routes
 Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/category/{category}', [ProductController::class, 'category']);
+Route::get('/products/category/{category}/{sub_category?}', [ProductController::class, 'category']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 Route::get('/deals', [ProductController::class, 'deals']);
-Route::post('/add', [ProductController::class, 'addBasketItem'])->middleware('auth');
-Route::post('/remove', [ProductController::class, 'removeBasketItem'])->middleware('auth');
+Route::get('/add/{product}/{quantity?}', [ProductController::class, 'addBasketItem'])->middleware('auth');
+Route::get('/reduce/{product}', [ProductController::class, 'reduceBasketItem'])->middleware('auth');
+Route::get('/remove/{id}', [ProductController::class, 'removeBasketItem'])->middleware('auth');
 Route::get('/checkout', [ProductController::class, 'checkout'])->middleware('auth');
 Route::post('/checkout', [ProductController::class, 'saveOrder'])->middleware('auth');
 Route::get('/orders/{id}', [OrderController::class, 'show'])->middleware('auth');
@@ -63,33 +64,13 @@ Route::middleware('auth')->group(function () {
 // **Admin routes manually check if admin role**
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     // Customers Management
-    Route::get('/customers', function () {
-        if (Auth::user()->account_type === 'admin') {
-            return app(AdminCustomerController::class)->index();
-        }
-        return redirect('/')->with('error', 'Unauthorized access');
-    })->name('admin.customers.index');
+    Route::get('/customers', [AdminCustomerController::class, 'index'])->name('admin.customers.index');
 
-    Route::get('/customers/{id}/edit', function ($id) {
-        if (Auth::user()->account_type === 'admin') {
-            return app(AdminCustomerController::class)->edit($id);
-        }
-        return redirect('/')->with('error', 'Unauthorized access');
-    })->name('admin.customers.edit');
+    Route::get('/customers/{id}/edit', [AdminCustomerController::class, 'edit'])->name('admin.customers.edit');
 
-    Route::put('/customers/{id}', function ($id) {
-        if (Auth::user()->account_type === 'admin') {
-            return app(AdminCustomerController::class)->update(request(), $id);
-        }
-        return redirect('/')->with('error', 'Unauthorized access');
-    })->name('admin.customers.update');
+    Route::put('/customers/{id}', [AdminCustomerController::class, 'update'])->name('admin.customers.update');
 
-    Route::delete('/customers/{id}', function ($id) {
-        if (Auth::user()->account_type === 'admin') {
-            return app(AdminCustomerController::class)->destroy($id);
-        }
-        return redirect('/')->with('error', 'Unauthorized access');
-    })->name('admin.customers.destroy');
+    Route::delete('/customers/{id}', [AdminCustomerController::class, 'destroy'])->name('admin.customers.destroy');
 
     // Inventory Management Routes
     Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {

@@ -163,7 +163,7 @@ img {
 .nav__toggle-menu,
 .nav__toggle-close {
   font-size: 1.25rem;
-  margin-left:30px
+  margin-left:30px;
   color: var(--title-color);
   position: absolute;
   display: grid;
@@ -219,7 +219,7 @@ img {
 
 /* Show icon */
 .show-icon{
-   maring-left: 20px;
+   margin-left: 20px;
   }
 
 .show-icon .nav__toggle-menu {
