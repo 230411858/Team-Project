@@ -140,7 +140,7 @@
             </div>
           </li>
           <li>
-            <a href="deals.html" class="nav__link">Deals</a>
+            <a href="{{ url('/deals') }}" class="nav__link">Deals</a>
           </li>
 
           <!--=============== DROPDOWN 2 ===============-->
@@ -217,17 +217,8 @@
               <div class="basket-container">
                 <div class="nav_basket">
                   @php
-                  $basket_count = 0;
+                  $basket_count = \App\Models\BasketItem::where('user', Auth::id())->get()->count();
                   $total = 0;
-                  if (Auth::check())
-                  {
-                  $basket_items = \App\Models\BasketItem::where('user', Auth::id())->get();
-                  $products = \App\Models\Product::all();
-                  foreach ($basket_items as $basket_item)
-                  {
-                  $basket_count = $basket_count + $basket_item->quantity;
-                  }
-                  }
                   @endphp
                   <i class="ri-shopping-cart-line"></i>
                   <span class="basket-count">{{ $basket_count }}</span>

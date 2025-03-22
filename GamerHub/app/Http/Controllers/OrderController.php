@@ -16,9 +16,13 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        if (Auth::user()->account_type == 'admin' || Auth::id() == Order::find($id)->user)
+        if (Order::find($id) != null && (Auth::user()->account_type == 'admin' || Auth::id() == Order::find($id)->user))
         {
             return view('orders.show', ['order' => Order::find($id)]);
+        }
+        else
+        {
+            abort(403);
         }
     }
 }

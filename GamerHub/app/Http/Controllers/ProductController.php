@@ -11,6 +11,8 @@ use App\Models\OrderItem;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isEmpty;
+
 class ProductController extends Controller
 {
     public function index()
@@ -59,7 +61,9 @@ class ProductController extends Controller
     {
         $discount_items = Product::where('discount', '>', 0)->get();
 
-        return view('deals', ['discount_items' => $discount_items]);
+        $images = ProductImage::all();
+
+        return view('deals', ['discount_items' => $discount_items, 'images' => $images]);
     }
 
     public function addBasketItem($product, $quantity = 1)
@@ -119,11 +123,13 @@ class ProductController extends Controller
 
     public function checkout()
     {
-        $basket = BasketItem::where('user', Auth::id())->get();
+        $basket_items = BasketItem::where('user', Auth::id())->get();
 
         $products = Product::all();
 
-        return view('checkout', ['basket' => $basket, 'products' => $products]);
+        $images = \App\Models\ProductImage::all();
+
+        return view('checkout', ['basket_items' => $basket_items, 'products' => $products, 'images' => $images]);
 
         return redirect('login');
     }
@@ -193,9 +199,18 @@ class ProductController extends Controller
         return response()->json([]);
     }
 
-    public function review($id)
+    public function review($id, Request $request)
     {
-        $old_review = Review::where([['user', '=', Auth::id()], ['product', '=', $id]])->first();
+        $old_review = Review::firstWhere([['user', '=', Auth::id()], ['product', '=', $id]]);
+
+        $rating = $request->rating;
+
+        if ($rating < 0) {$rating = 1;}
+        else if ($rating > 5) {$rating = 5;}
+
+        $text = $request->text;
+
+        if (strlen($text) > 1000) {$text = substr($text, 0, 1000);}
 
         if ($old_review == null) {
             $review = new Review();
@@ -204,11 +219,15 @@ class ProductController extends Controller
 
             $review->product = $id;
 
-            $review->text = request('review-text');
+            $review->rating = $rating;
+
+            $review->text = $text;
 
             $review->save();
         } else {
-            $old_review->text = request('review-text');
+            $old_review->rating = $rating;
+
+            $old_review->text = $text;
 
             $old_review->save();
         }

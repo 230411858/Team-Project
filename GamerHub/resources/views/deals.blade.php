@@ -23,11 +23,26 @@
             <div class="product-items">
                 <section class="catalogue">
                     <div class="product-items">
+                        @foreach ($discount_items as $discount_item)
                         <!-- single product -->
                         <div class="product">
                             <div class="product-content">
                                 <div class="product-img">
-                                    <img src="image/image-1.png" alt="product image" />
+                                    @php
+                                    $image = $images->firstWhere('product', $discount_item->id);
+
+                                    if ($image == null)
+                                    {
+                                        $file = "cover.png";
+                                    }
+                                    else
+                                    {
+                                        $file = $image->file;
+                                    }
+                                    @endphp
+                                    <a href="{{ url('/products') }}/{{ $discount_item->id }}">
+                                    <img src="{{ url('/images') }}/{{ $discount_item->category }}/{{ $file }}" alt="Product Image" />
+                                    </a>
                                 </div>
                                 <div class="product-btns">
                                     <button type="button" class="btn-cart">
@@ -42,16 +57,17 @@
                             </div>
 
                             <div class="product-info">
-                                <a href="#" class="product-name">Lorem ipsum dolor sit amet, consectetur</a>
-                                <p class="product-price">$ 150.00</p>
-                                <p class="product-price">$ 133.00</p>
+                                <a href="{{ url('/products') }}/{{ $discount_item->id }}" class="product-name">{{ $discount_item->name }}</a>
+                                <p class="product-price">£{{ number_format($discount_item->price / 100, 2) }}</p>
+                                <p class="product-price">£{{ number_format(($discount_item->price * (1 - $discount_item->discount))/ 100, 2) }}</p>
                             </div>
 
                             <div class="off-info">
-                                <h2 class="sm-title">25% off</h2>
+                                <h2 class="sm-title">{{ $discount_item->discount * 100 }}% off</h2>
                             </div>
                         </div>
                         <!-- end of single product -->
+                         @endforeach
                     </div>
                 </section>
             </div>
@@ -59,3 +75,6 @@
     </div>
 </div>
 @endsection
+
+@section('js')
+<script src="{{ url('/js/deals.js') }}"></script>

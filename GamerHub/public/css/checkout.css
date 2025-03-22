@@ -396,6 +396,7 @@ transition: transform 0.2 ease;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+    text-decoration: none;
 }
 
 .quantity-btn:hover {

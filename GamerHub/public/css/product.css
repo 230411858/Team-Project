@@ -625,3 +625,50 @@
 }
 /* the remove button hovered */
 
+.star_rating {
+  user-select: none;
+}
+.star {
+  font-size: 3rem;
+  color: #ff9800;
+  background: none;
+  border: none;
+  outline: none; 
+  cursor: pointer;
+  transition: color 0.3s ease-in-out; 
+}
+
+.star:hover,
+.star.active {
+  color: hsl(220, 89%, 69%);
+
+}
+
+.review-form {
+  margin-top: 10px;
+}
+.reviews-list {
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
+.review-item {
+  position: relative;
+}
+
+.review-stars {
+  position: absolute;
+  top: -5px;
+  left: 3vw;
+}
+
+.static-star {
+  font-size: 3rem;
+  color: #ff9800;
+  background: none;
+  border: none;
+  outline: none; 
+  cursor: pointer;
+  transition: color 0.3s ease-in-out; 
+}

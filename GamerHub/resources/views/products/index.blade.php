@@ -119,18 +119,6 @@
             <p class="type_card__category">Microphone</p>
             <p class="type_card__title">Little description</p>
         </div>
-        <div class="type_card">
-            <p class="type_card__category">Wireless Mouse</p>
-            <p class="type_card__title">Little description</p>
-        </div>
-        <div class="type_card">
-            <p class="type_card__category">Membrane Keyboard</p>
-            <p class="type_card__title">Little description</p>
-        </div>
-        <div class="type_card">
-            <p class="type_card__category">Ergonomic Mouse</p>
-            <p class="type_card__title">Little description</p>
-        </div>
      </div>
     </section>
     @endsection
