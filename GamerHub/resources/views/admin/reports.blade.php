@@ -9,7 +9,7 @@
         <div class="container">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="section-title">Recent Orders</h3>
+                    <h3 class="section-title">Orders</h3>
 
                     <table class="report-table">
                         <thead>
