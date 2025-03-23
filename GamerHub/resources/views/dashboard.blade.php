@@ -17,23 +17,46 @@
             <div class="stats-grid">
                 <div class="stat-card">
                     <h3>Total Customers</h3>
-                    {{-- <p>{{ $totalCustomers }}</p>--}}
+                    @php 
+                    $totalCustomers = \App\Models\User::where('account_type', 'customer')->get()->count();
+                    @endphp
+                    <p>{{ $totalCustomers }}</p>
                 </div>
                 <div class="stat-card">
                     <h3>Total Orders</h3>
                     @php
                     $orders = \App\Models\Order::all();
+
+                    $order_items = \App\Models\OrderItem::all();
+
+                    $products = \App\Models\Product::all();
+
                     $count = 0;
+
+                    $total_revenue = 0;
+
                     foreach ($orders as $order)
                     {
-                    $count++;
+                        $order_items = \App\Models\OrderItem::where('oid', $order->id)->get();
+                        foreach ($order_items as $order_item)
+                        {
+                            $count++;
+
+                            $product = $products->firstWhere('id', $order_item->product);
+
+                            $total_revenue += $product->price * (1 - $order_item->discount) * $order_item->quantity;
+                        }
+
+                    $total_revenue += $order->shipping_method == 'standard' ? 299 : 499;
+
                     }
                     @endphp
                     <p>{{ $count }}</p>
                 </div>
                 <div class="stat-card">
                     <h3>Total Revenue</h3>
-                    {{-- <p>£{{ $totalRevenue }}</p>--}}
+                    
+                    <p>£{{ number_format($total_revenue / 100, 2) }}</p>
                 </div>
                 <div class="stat-card alert">
                     <h3>Low Stock Products</h3>
@@ -49,7 +72,7 @@
                 <a href="{{ route('admin.inventory.index') }}" class="action-button">
                     📦 Inventory Management
                 </a>
-                {{-- <a href="{{ route('admin.orders.index') }}" class="action-button">--}}
+                {{-- <a href="{{ route('orders.index') }}" class="action-button">--}}
                 🛒 View Orders
                 </a>
                 {{-- <a href="{{ route('admin.reports') }}" class="action-button">--}}

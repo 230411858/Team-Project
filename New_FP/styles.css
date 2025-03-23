@@ -220,7 +220,7 @@ img {
 
 /* Show icon */
 .show-icon{
-   maring-left: 20px;
+   margin-left: 20px;
   }
 
 .show-icon .nav__toggle-menu {
@@ -344,9 +344,6 @@ form button:hover {
 .search-icon {
   display: none;
 }
-
-
-
 
   form.active {
     opacity: 1;

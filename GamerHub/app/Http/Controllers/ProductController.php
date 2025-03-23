@@ -39,14 +39,12 @@ class ProductController extends Controller
 
     public function category($category, $sub_category = null)
     {
-        if (in_array($category, ['mice', 'keyboards', 'monitors', 'audio'])) {
+        if (in_array($category, ['mice', 'keyboards', 'monitors', 'speakers', 'microphones'])) {
             $products = Product::where('category', $category)->get();
 
             $images = ProductImage::all();
 
-            $sub_categories = ['wired', 'wireless', 'gaming', 'ergonomic', 'stylus', 'mechanical', 'membrane', '144hz', '240hz'];
-
-            if (!in_array($sub_category, $sub_categories))
+            if (!in_array($sub_category, ['wired', 'wireless', 'gaming', 'ergonomic', 'stylus', 'mechanical', 'membrane', '144hz', '240hz', 'condenser', 'dynamic', 'bookshelf', 'soundbar']))
             {
                 $sub_category = null;
             }
@@ -80,7 +78,7 @@ class ProductController extends Controller
             $basket_item->quantity += $quantity;
 
             if ($basket_item->quantity < 1) {
-                $basket_item->quantity = 1;
+                BasketItem::destroy($basket_item->id);
             } elseif ($basket_item->quantity > 99) {
                 $basket_item->quantity = 99;
             }
@@ -92,7 +90,7 @@ class ProductController extends Controller
             $old_basket_item->quantity = $old_basket_item->quantity + $quantity;
 
             if ($old_basket_item->quantity < 1) {
-                $old_basket_item->quantity = 1;
+                BasketItem::destroy($old_basket_item->id);
             } elseif ($old_basket_item->quantity > 99) {
                 $old_basket_item->quantity = 99;
             }

@@ -28,7 +28,8 @@ h2{
 .update-text{
     position: absolute;
     top: 10px;
-    left: 400px;
+    padding-left: 500px;
+    padding-right: 100px;
 }
 
 #updated-at{
@@ -39,6 +40,7 @@ h2{
 .order-item-overview{
     display: flex;
     padding-top: 20px;
+    position: relative;
 }
 
 .order-item-overview h2{
@@ -58,9 +60,18 @@ h2{
     color: green;
 }
 
+.order-item-subtotal {
+    
+}
+
 .order-item-image{
     width: 200px;
     height: 200px;
+}
+
+.order-status-image {
+    width: 400px;
+    height: auto;
 }
 
 .order-item-text{
@@ -74,4 +85,26 @@ h2{
 
 #product-link{
     color: grey;
+}
+
+.final-values-titles {
+    margin-right: 200px;
+    margin-left: auto;
+}
+
+.final-values {
+    margin-right: 100px;
+    margin-left: auto;
+}
+
+.subtotal {
+
+}
+
+.discount-amount {
+
+}
+
+.grand-total {
+
 }

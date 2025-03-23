@@ -26,16 +26,16 @@
         @switch ($order->status)
 
         @case ('in-transit')
-        <img src="{{ url('/images/in-transit.svg') }}" alt="">
+        <img class="order-status-image" src="{{ url('/images/in-transit.svg') }}" alt="">
         <h1 class="update-text">Your order is on your way to you now</h1>
         @break
         @case ('delivered')
-        <img src="{{ url('/images/delivered.svg') }}" alt="">
+        <img class="order-status-image" src="{{ url('/images/delivered.svg') }}" alt="">
         <h1 class="update-text">Your order has been delivered</h1>
         @break
         @default ('processing')
-        <img src="{{ url('/images/processing.svg') }}" alt="">
-        <h1 class="update-text">We are curently processing your order 
+        <img class="order-status-image" src="{{ url('/images/processing.svg') }}" alt="">
+        <h1 class="update-text">We are curently processing your order
             <span id="updated-at">(Last updated {{ $order->updated_at }})</span>
         </h1>
         @break
@@ -46,12 +46,17 @@
     $order_items = App\Models\OrderItem::where('oid', $order->id)->get();
     $products = App\Models\Product::all();
     $product_images = App\Models\ProductImage::all();
+    $subtotal = 0;
     @endphp
     @foreach ($order_items as $order_item)
     @php
     $product = $products->firstWhere('id', $order_item->product);
 
     $product_image = $product_images->firstWhere('product', $product->id);
+
+    $subtotal = ($product->price * (1 - $order_item->discount) * $order_item->quantity);
+
+    $discount_amount = 0;
 
     $file = 'cover.png';
 
@@ -98,5 +103,30 @@
     </div>
     <hr>
     @endforeach
+    <div class="order-item-overview">
+        <div class="final-values-titles">
+            <p class="subtotal">
+                Subtotal
+            </p>
+            <p class="discount-amount">
+                Discount
+            </p>
+            <p class="grand-total">
+                Total
+            </p>
+        </div>
+        <div class="final-values">
+            <p class="subtotal">
+                £{{ number_format($subtotal / 100, 2) }}
+            </p>
+            <p class="discount-amount">
+                £-{{ number_format($discount_amount, 2) }}
+            </p>
+            <p class="grand-total">
+                £{{ number_format(($subtotal - $discount_amount) / 100, 2) }}
+            </p>
+        </div>
+    </div>
+    <hr>
 </div>
 @endsection

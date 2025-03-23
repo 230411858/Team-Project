@@ -4,7 +4,6 @@
 }
 
 #pagebody-top{
-  padding-top: 50px;
   display: flex;
   justify-content: center;
 }
@@ -233,10 +232,6 @@ button:hover {
 
 }
 
-.products img{
-  object-fit: contain;
-}
-
 .products.hide{
   display: none;
 }
@@ -269,24 +264,31 @@ to{
 }
 
 .products img{
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  margin-bottom: 10px;
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  position: absolute;
+  padding-left: 30px;
 }
 
 .products h5{
   font-weight: 600;
   color: black;
+   /* Absolute position so product name, stars and price are in the same position in each product box */ 
+  position: absolute;
+  bottom: 38px;
+  /* Right padding so product name doesn't appear behind cart button */ 
+  padding-right: 30px;
 }
 
 .products h4{
   color: black;
   font-size: 15px;
-  padding-top: 5px;
+  position: absolute;
+  bottom: 0px;
 }
 
-.cart{
+.cart-icon{
   background-color: lightblue;
   color: blue;
   width: 50px;
@@ -298,6 +300,7 @@ to{
   position: absolute;
   bottom: 10px;
   right: 10px;
+  text-decoration: none;
 }
 
 .star i{
@@ -305,6 +308,12 @@ to{
   color: rgb(255, 247, 0);
   white-space: nowrap;
 }
+
+.star {
+  position: absolute;
+  bottom: 20px;
+}
+
 
 .discount-price{
   color: gold;

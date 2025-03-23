@@ -22,6 +22,7 @@
   @yield('css')
 
   @yield('title')
+
 </head>
 
 <body>
@@ -30,7 +31,7 @@
     <nav class="nav container">
       <div class="nav__data">
         <a href="{{ url('/') }}" class="nav__logo">
-          <img src="{{ url('/images/logo.png') }}" alt="GamerHub Logo" />
+          <img id="myImg" src="{{ url('/images/logo.png') }}" />
         </a>
 
         <div class="nav__toggle" id="nav-toggle">
@@ -58,9 +59,9 @@
                   <div class="dropdown__icon">
                     <i class="ri-mouse-line"></i>
                   </div>
-                  <a href="{{ url('/products/category/mice') }}">
-                    <span class="dropdown__title">Mice</span>
-                  </a>
+
+                  <a href="{{ url('/products/category/mice') }}"><span class="dropdown__title">Mice</span></a>
+
                   <ul class="dropdown__list">
                     <li>
                       <a href="{{ url('/products/category/mice/wireless') }}" class="dropdown__link">Wireless</a>
@@ -72,7 +73,7 @@
                       <a href="{{ url('/products/category/mice/ergonomic') }}" class="dropdown__link">Ergonomic</a>
                     </li>
                     <li>
-                      <a href="{{ url('/products/category/mice/stylus') }}" class="dropdown__link">Stylus</a>
+                      <a href="{{ url('/products/category/mice/ergonomic') }}" class="dropdown__link">Stylus</a>
                     </li>
                     <li>
                       <a href="{{ url('/products/category/mice/gaming') }}" class="dropdown__link">Gaming</a>
@@ -85,9 +86,7 @@
                     <i class="ri-keyboard-box-line"></i>
                   </div>
 
-                  <a href="{{ url('/products/category/keyboards') }}">
-                    <span class="dropdown__title">Keyboards</span>
-                  </a>
+                  <a href="{{ url('/products/category/keyboards') }}" class="dropdown__title">Keyboards</a>
 
                   <ul class="dropdown__list">
                     <li>
@@ -104,35 +103,48 @@
                     <i class="ri-computer-line"></i>
                   </div>
 
-                  <a href="{{ url('/products/category/monitors') }}">
-                    <span class="dropdown__title">Monitors</span>
-                  </a>
+                  <a href="{{ url('/products/category/monitors') }}" class="dropdown__title">Monitors</a>
 
                   <ul class="dropdown__list">
                     <li>
                       <a href="{{ url('/products/category/monitors/144hz') }}" class="dropdown__link">144hz</a>
                     </li>
                     <li>
-                      <a href="{{ url('/products/category/monitors/240hz') }}" class="dropdown__link">240hz</a>
+                      <a href="{{ url('/products/category/monitors/144hz') }}" class="dropdown__link">240hz</a>
                     </li>
                   </ul>
                 </div>
 
                 <div class="dropdown__group">
                   <div class="dropdown__icon">
-                    <i class="ri-headphone-line"></i>
+                    <i class="ri-speaker-line"></i>
                   </div>
 
-                  <a href="{{ url('/products/category/audio') }}">
-                    <span class="dropdown__title">Audio</span>
-                  </a>
+                  <a href="{{ url('/products/category/speakers') }}" class="dropdown__title">Speakers</a>
 
                   <ul class="dropdown__list">
                     <li>
-                      <a href="{{ url('/products/category/audio/wired') }}" class="dropdown__link">Wired</a>
+                      <a href="{{ url('/products/category/speakers/soundbar') }}" class="dropdown__link">Soundbar</a>
                     </li>
                     <li>
-                      <a href="{{ url('/products/category/audio/wireless') }}" class="dropdown__link">Wireless</a>
+                      <a href="{{ url('/products/category/speakers/bookshelf') }}" class="dropdown__link">Bookshelf</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="dropdown__group">
+                  <div class="dropdown__icon">
+                    <i class="ri-mic-line"></i>
+                  </div>
+
+                  <a href="{{ url('/products/category/microphones') }}" class="dropdown__title">Microphones</a>
+
+                  <ul class="dropdown__list">
+                    <li>
+                      <a href="{{ url('/products/category/microphones/condenser') }}" class="dropdown__link">Condenser</a>
+                    </li>
+                    <li>
+                      <a href="{{ url('/products/category/microphones/dynamic') }}" class="dropdown__link">Dynamic</a>
                     </li>
                   </ul>
                 </div>
@@ -181,11 +193,13 @@
                 <div class="cancel-icon">
                   <span class="fas fa-times"></span>
                 </div>
-                <form id="search" action="{{ route('search') }}" method="GET">
-                  <input type="text" name="query" class="search-input" placeholder="Search..." required>
-                  <button type="submit" class="search-button">
-                    <i class="ri-search-line"></i>
-                  </button>
+                <form action="#">
+                  <input
+                    type="search"
+                    class="search-data"
+                    placeholder="Search"
+                    required />
+                  <button type="submit" class="fas fa-search"></button>
                 </form>
               </div>
 
@@ -214,64 +228,21 @@
               </div>
             </li>
             <li>
-              <div class="basket-container">
-                <div class="nav_basket">
-                  @php
-                  $basket_count = \App\Models\BasketItem::where('user', Auth::id())->get()->count();
-                  $total = 0;
-                  @endphp
-                  <i class="ri-shopping-cart-line"></i>
-                  <span class="basket-count">{{ $basket_count }}</span>
-                </div>
-                <div class="basket-modal" id="basket-modal">
-                  <div class="basket-content">
-                    <h2 href="test">Your Basket</h2>
-                    <ul class="basket-items">
-                      @php
-                      $basket_items = \App\Models\BasketItem::where('user', Auth::id())->get();
-                      $products = \App\Models\Product::all();
-                      $images = \App\Models\ProductImage::all();
-                      @endphp
-                      @foreach ($basket_items as $basket_item)
-                      @php
+              <div class="nav_basket">
+                <i class="ri-shopping-cart-line"></i>
+                @php
+                $basket_items = \App\Models\BasketItem::where('user', Auth::id())->get();
 
-                      $product = $products->firstWhere('id', $basket_item->product);
+                $basket_count = 0;
 
-                      $total += ($product->price * (1 - $product->discount) * $basket_item->quantity) / 100;
-
-                      $image = $images->firstWhere('product', $product->id);
-
-                      $file = 'cover.png';
-
-                      if ($image != null)
-                      {
-                      $file = $image->file;
-                      }
-                      @endphp
-                      <li>
-                        <img style="width: 50%;" src="{{ url('/images') }}/{{ $product->category }}/{{ $file }}" alt="">
-                        <p class="nav__link">{{ ucwords($product->name) }}</p>
-                        <p class="nav__link">x{{ $basket_item->quantity }}</p>
-                        @if($basket_item->quantity < 100)
-                          <a href="{{ url('/add') }}/{{ $product->id }}">+</a>
-                          @endif
-                          @if($basket_item->quantity > 1)
-                          <a href="{{ url('/reduce') }}/{{ $product->id }}">-</a>
-                          @endif
-                          <a href="{{ url('/remove') }}/{{ $basket_item->id }}">x</a>
-                      </li>
-                      <li>
-                        <span class="total-price">£{{ number_format(($product->price * $basket_item->quantity * (1 - $product->discount)) / 100, 2) }} &nbsp </span> | £{{ number_format(($product->price * (1 - $product->discount)) / 100, 2) }}/item
-                      </li>
-                      @endforeach
-                    </ul>
-                    <div class="basket-total">
-                      <span>Total:</span>
-                      <span class="total-price">£{{ number_format($total, 2) }}</span>
-                    </div>
-                    <a href="{{ url('/checkout') }}" class="checkout-btn">Checkout</a>
-                  </div>
-                </div>
+                foreach ($basket_items as $basket_item)
+                {
+                $basket_count += $basket_item->quantity;
+                }
+                @endphp
+                <span class="basket-count">{{ $basket_count }}</span>
+              </div>
+              <div class="basket-modal" id="basket-modal">
               </div>
             </li>
           </ul>
@@ -279,3 +250,44 @@
       </div>
     </nav>
   </header>
+  <div class="cart">
+    <h2 class="cart-title">Your Cart</h2>
+    @php
+
+    $products = \App\Models\Product::all();
+
+    $images = \App\Models\ProductImage::all();
+
+    $total = 0;
+    @endphp
+    <div class="cart-content">{{ $basket_items->count() }}</div>
+    @foreach ($basket_items as $basket_item)
+    @php
+    $product = $products->firstWhere('id', $basket_item->product);
+
+    $image = $images->firstWhere('product', $product->id);
+
+    $total += number_format(($product->price * $basket_item->quantity * (1 - $product->discount) / 100), 2);
+
+    @endphp
+    <div class="cart-box">
+      <img src="{{ url('/images') }}/{{ $product->category }}/{{ $image == null ? cover.png : $image->file }}" class="cart-img">
+      <div class="cart-detail">
+        <h2 class="cart-product-title">{{ ucwords($product->name) }}</h2>
+        <span class="cart-price">£{{ number_format(($product->price * $basket_item->quantity * (1 - $basket_item->discount)) / 100, 2) }}</span>
+        <div class="cart-quantity">
+          <a href="{{ url('/reduce') }}/{{ $product->id }}"><button class="decrease">-</button></a>
+          <span class="quantity-number">{{ $basket_item->quantity }}</span>
+          <a href="{{ url('/add') }}/{{ $product->id }}"><button class="increase">+</button></a>
+        </div>
+      </div>
+    </div>
+    <a style="color: grey;" href="{{ url('/remove') }}/{{ $basket_item->id }}"><i class="ri-delete-bin-line cart-remove"></i></a>
+    @endforeach
+    <div class="total">
+      <div class="total-title">Total</div>
+      <div class="total-price">£{{ $total }}</div>
+    </div>
+    <a href="{{ url('/checkout') }}"><button class="cart_btn-buy">Checkout</button></a>
+    <i class="ri-close-line" id="cart-close"></i>
+  </div>

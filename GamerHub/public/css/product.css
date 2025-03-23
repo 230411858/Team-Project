@@ -627,6 +627,7 @@
 
 .star_rating {
   user-select: none;
+  align-items: center;
 }
 .star {
   font-size: 3rem;

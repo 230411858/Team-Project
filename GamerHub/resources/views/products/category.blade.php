@@ -61,12 +61,20 @@
                 <button data-name="240hz">240hz</button>
             </div>
             @break
-            @case ('audio')
+            @case ('speakers')
             <div class="category">
                 <h3>Category</h3>
                 <button class="active" data-name="all">Show all</button>
-                <button data-name="wired">Wired</button>
-                <button data-name="wireless">Wireless</button>
+                <button data-name="bookshelf">Bookshelf</button>
+                <button data-name="soundbar">Soundbar</button>
+            </div>
+            @break
+            @case('microphones')
+            <div class="category">
+                <h3>Category</h3>
+                <button class="active" data-name="all">Show all</button>
+                <button data-name="condenser">Condenser</button>
+                <button data-name="dynamic">Dynamic</button>
             </div>
             @break
             @default
@@ -92,18 +100,10 @@
             @foreach ($products as $product)
             @php
             $image = $images->firstWhere('product', $product->id);
-            if ($image == null)
-            {
-            $file = 'cover.png';
-            }
-            else
-            {
-            $file = $image->file;
-            }
             @endphp
             <div class="products" data-name="{{ $product->sub_category }}" data-price="{{ number_format((($product->price * (1 - $product->discount)) / 100), 2) }}">
                 <a href="{{ url('/products') }}/{{ $product->id }}">
-                    <img src="{{ url('/images') }}/{{ $category }}/{{ $file }}">
+                    <img src="{{ url('/images') }}/{{ $category }}/{{ $image == null ? 'cover.png' : $image->file }}">
                 </a>
                 <h5>{{ ucwords($product->name) }}</h5>
                 <div class="star">
@@ -118,7 +118,7 @@
                 @else
                 <h4>£{{ number_format(($product->price / 100), 2) }}</h4>
                 @endif
-                <a href="{{ url('/add') }}/{{ $product->id }}" class="cart">
+                <a href="{{ url('/add') }}/{{ $product->id }}" class="cart-icon">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
             </div>
