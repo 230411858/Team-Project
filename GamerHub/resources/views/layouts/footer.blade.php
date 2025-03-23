@@ -2,7 +2,7 @@
         <section class="footer">
             <div class="footer-content">
                 <img height="128px" src="{{ url('/images/logo.png') }}"> <!--=== TO DO ==-->
-                <p>© 2024 GamerHub. All rights reserved.</p>
+                <p>© 2025 GamerHub. All rights reserved.</p>
 
                 <div class="icons">
                     <a href="#"><i class='bx bxl-meta'></i></a>
