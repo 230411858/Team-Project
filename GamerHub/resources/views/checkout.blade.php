@@ -159,25 +159,16 @@
         <!-- Summary section: displays the selected products, their quantities, and total prices - implemented by Jayden Beach -->
         <section class="summary">
             <h3>Summary</h3>
-            @endphp
             @foreach ($basket_items as $basket_item)
             @php
             $product = $products->firstWhere('id', $basket_item->product);
-
             $image = $images->firstWhere('product', $product->id);
-
-            $file = 'cover.png';
-
-            if ($image != null)
-            {
-            $file = $image->file;
-            }
             @endphp
             <div class="summary-item">
-                <img height="150px" width="150" src="{{ url('/images') }}/{{ $product->category }}/{{ $file }}" alt="product image">
+                <img height="150px" width="150" src="{{ url('/images') }}/{{ $product->category }}/{{ $image == null ? 'cover.png' : $image->file }}" alt="product image">
                 <div class="product-details">
                     <a class="quantity-btn" href="{{ url('/remove') }}/{{ $basket_item->id }}">x</a>
-                    <p class="product-name">{{ $product->name }}</p>
+                    <p class="product-name">{{ ucwords($product->name) }}</p>
                     <div class="quantity-section">
                         <p class="quantity-label">Quantity:</p>
                         <div class="quantity-control">

@@ -105,6 +105,14 @@ input[type="checkbox"] {
     color: red;
 }
 
+.error-border {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+}
+
 .form-row {
     display: flex;
     gap: 2rem;

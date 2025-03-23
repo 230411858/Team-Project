@@ -44,6 +44,7 @@ Route::get('/orders/{id}', [OrderController::class, 'show'])->middleware('auth')
 Route::get('/orders', [OrderController::class, 'index'])->middleware('auth');
 Route::post('/review/{id}', [ProductController::class, 'review'])->middleware('auth');
 Route::get('/search', [ProductController::class, 'search'])->name('search');
+Route::get('/faq', [function() { return view('faq'); }])->name('faq');
 
 // User Dashboard (Customer)
 Route::get('/edit/user/{id}', [UserController::class, 'edit'])->middleware('auth');

@@ -119,8 +119,8 @@
                                 <td>{{ $order->id }}</td>
                                 <td>{{ $order->created_at }}</td>
                                 <td>{{ $order->email }}</td>
-                                <td>{{ $order->shipping_method }}</td>
-                                <td>{{ $order->status }}</td>
+                                <td>{{ ucwords($order->shipping_method) }}</td>
+                                <td>{{ ucwords($order->status) }}</td>
                             </tr>
                         </a>
                         @endforeach

@@ -18,6 +18,9 @@
   --alice-blue: #f8f9fa;
   --carribean-green: #40c9a2;
   --gray: #ededed;
+  --carousel-background: #c3e5ff;
+  --nav-button: #000000;
+  --title-slide-color: #0a0a0a;
   /*========== Font and typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
   --body-font: "Poppins", sans-serif;
@@ -33,9 +36,9 @@
 }
 .darkmode {
   --first-color: hsl(220, 95%, 70%);
-  --first-color-lighten: hsl(18, 97%, 38%);
+  --first-color-lighten: hsl(0, 0%, 21%);
   --title-color: hsl(220, 89%, 69%);
-  --title-list-color: hsl(18, 97%, 38%);
+  --title-slide-color: hsl(18, 97%, 38%);
   --text-color: hsl(220, 12%, 45%);
   --body-color: hsl(0, 0%, 0%);
   --reason_color: hsl(0, 4%, 10%);
@@ -44,6 +47,10 @@
   --background-color: hsl(214, 89%, 7%);
   --hero-button-outline: #e2e273;
   --hero-background: url("image/background2.jpg");
+  --carousel-background: #06194e;
+  --carribean-green: hsl(18, 97%, 38%);
+  --nav-button: #ededed;
+  --gray: #cc8b60;
 }
 @media screen and (min-width: 1024px) {
   :root {
@@ -84,7 +91,8 @@ img {
 }
 .lg-title,
 .md-title,
-.sm-title {
+.sm-title,
+.cata-title {
   font-family: "Roboto", sans-serif;
   padding: 0.6rem 0;
   text-transform: capitalize;
@@ -94,8 +102,24 @@ img {
   font-weight: 500;
   text-align: center;
   padding: 1.3rem 0;
-  opacity: 0.9;
-  color: #ff0000;
+  opacity: 1;
+  background-color: var(--carousel-background);
+  margin-bottom: -40px;
+  color: var(--title-slide-color);
+}
+.cata-title {
+  font-size: 2.5rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 1.3rem 0;
+  opacity: 1;
+  background-image: var(--hero-background); /* Set background */
+  background-size: cover; /* Ensure it covers the entire viewport */
+  background-attachment: fixed; /* Keep it from moving */
+  background-position: center;
+  margin-bottom: -30px;
+  margin-top: -30px;
+  color: var(--title-slide-color);
 }
 .md-title {
   font-size: 2rem;
@@ -164,8 +188,7 @@ img {
 .nav__toggle-menu,
 .nav__toggle-close {
   font-size: 1.25rem;
-  margin-left:30px;
-  color: var(--title-color);
+  color: var(--nav-button);
   position: absolute;
   display: grid;
   place-items: center;
@@ -305,7 +328,7 @@ form {
   border: 1px solid rgba(155, 155, 155, 0.2);
   margin-left: 30px;
   pointer-events: auto;
-  border-radius:3px 20px 20px 3px;
+  border-radius: 3px 20px 20px 3px;
   z-index: 10;
   margin-left: 10px;
   opacity: 0;
@@ -317,7 +340,7 @@ form .search-data {
   padding: 0 15px;
   color: #fff;
   font-size: 17px;
-  border:var(--carribean-green);
+  border: var(--carribean-green);
   font-weight: 500;
   background: none;
 }
@@ -325,15 +348,11 @@ form button {
   padding: 0 15px;
   color: #fff;
   font-size: 16px;
-  background: var(--carribean-green);
+  background: var(--first-color);
   border: none;
-  border-radius:20px 20px 20px 20px;
+  border-radius: 20px 20px 20px 20px;
   cursor: pointer;
 }
-form button:hover {
-  background: var(--carribean-green);
-}
-
 
 .search-icon.hide {
   display: none;
@@ -343,47 +362,45 @@ form button:hover {
   display: none;
 }
 
-  form.active {
-    opacity: 1;
-    z-index: 11;
-    border-radius: 3px 20px 20px 3px;
-    pointer-events: auto;
+form.active {
+  opacity: 1;
+  z-index: 11;
+  border-radius: 3px 20px 20px 3px;
+  pointer-events: auto;
+}
 
-  }
+.search-icon {
+  display: block;
+  width: 40px;
+  text-align: center;
+  margin-left: 40px;
+  margin-top: 10px;
+  font-size: 21px;
+  color: var(--first-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+}
 
+.cancel-icon.show {
+  display: block;
+  width: 40px;
+  text-align: center;
+  margin-left: 40px;
+  margin-top: 10px;
+  font-size: 21px;
+  color: var(--first-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+}
 
-  .search-icon {
-    display: block;
-    width: 40px;
-    text-align: center;
-    margin-left: 40px;
-    margin-top: 10px;
-    font-size: 21px;
-    color: var(--first-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    display: flex;
-  }
-
-  .cancel-icon.show {
-    display: block;
-    width: 40px;
-    text-align: center;
-    margin-left: 40px;
-    margin-top: 10px;
-    font-size: 21px;
-    color: var(--first-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    display: flex;
-  }
-
-  @media screen and (min-width: 1118px) {
-      form {
+@media screen and (min-width: 1118px) {
+  form {
     position: absolute;
     background: #0a2550;
     z-index: 10;
@@ -394,7 +411,7 @@ form button:hover {
     transition: top 0.3s ease, opacity 0.1s ease;
     border-radius: 3px 20px 20px 3px;
   }
-      .search-icon {
+  .search-icon {
     display: block;
     width: 40px;
     text-align: center;
@@ -423,9 +440,7 @@ form button:hover {
     cursor: pointer;
     display: flex;
   }
-  }
-
-
+}
 
 /*=============== DARKMODE ===============*/
 #switch {
@@ -471,7 +486,6 @@ form button:hover {
   justify-content: space-between;
   cursor: pointer;
   padding: 8px 16px;
-  background: #fff;
   border-radius: 20px;
   align-items: baseline;
 }
@@ -502,7 +516,6 @@ form button:hover {
   top: 2px;
 }
 
-
 .basket-count {
   height: 20px;
   width: 20px;
@@ -517,7 +530,6 @@ form button:hover {
   padding: 2px 6px;
   border-radius: 50%;
 }
-
 
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
@@ -558,17 +570,17 @@ form button:hover {
     column-gap: 0.5rem;
     height: 100%;
   }
-  .nav_basket{
+  .nav_basket {
     margin-top: 35px;
     margin-left: 15px;
   }
-  .basket-count{
+  .basket-count {
     margin-top: -10px;
     margin-left: 12px;
   }
   #switch {
     margin-top: 28px;
-    margin-left: 10px
+    margin-left: 10px;
   }
   .login {
     margin-top: 28px;
@@ -601,7 +613,7 @@ form button:hover {
     transition: top 0.4s, opacity 0.3s;
   }
   .dropdown__content {
-    grid-template-columns: repeat(4, max-content);
+    grid-template-columns: repeat(5, max-content);
     column-gap: 6rem;
     max-width: 1120px;
     margin-inline: auto;
@@ -715,7 +727,7 @@ form button:hover {
   width: 100px;
   border: 1px solid #999;
   border-radius: 6px;
-  justify-content: space-between ;
+  justify-content: space-between;
 }
 
 .cart-quantity button {
@@ -788,7 +800,6 @@ form button:hover {
     width: 100%;
   }
 }
-
 /*-----------FOOTER----------*/
 
 section.footer {

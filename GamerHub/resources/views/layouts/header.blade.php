@@ -175,7 +175,7 @@
                       <a href="#" class="dropdown__link">Contact</a>
                     </li>
                     <li>
-                      <a href="#" class="dropdown__link">FAQ</a>
+                      <a href="{{ url('/faq') }}" class="dropdown__link">FAQ</a>
                     </li>
                   </ul>
                 </div>

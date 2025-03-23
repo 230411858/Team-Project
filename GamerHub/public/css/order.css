@@ -14,7 +14,6 @@ h2{
     background-color: white;
     min-width: 60vw;
     padding: 20px;
-    margin-top: 80px;
     margin-left: 20vw;
     margin-right: 20vw;
 }
@@ -66,7 +65,8 @@ h2{
 
 .order-item-image{
     width: 200px;
-    height: 200px;
+    height: auto;
+    object-fit: contain;
 }
 
 .order-status-image {
@@ -88,13 +88,13 @@ h2{
 }
 
 .final-values-titles {
-    margin-right: 200px;
+    margin-right: 0px;
     margin-left: auto;
+    padding-right: 160px;
 }
 
 .final-values {
-    margin-right: 100px;
-    margin-left: auto;
+    padding-right: 50px;
 }
 
 .subtotal {
@@ -102,6 +102,7 @@ h2{
 }
 
 .discount-amount {
+    color: green;
 
 }
 

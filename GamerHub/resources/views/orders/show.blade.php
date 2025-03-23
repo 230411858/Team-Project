@@ -111,6 +111,9 @@
             <p class="discount-amount">
                 Discount
             </p>
+            <p class="shipping-cost">
+                Shipping ({{ ucwords($order->shipping_method) }})
+            </p>
             <p class="grand-total">
                 Total
             </p>
@@ -121,6 +124,9 @@
             </p>
             <p class="discount-amount">
                 £-{{ number_format($discount_amount, 2) }}
+            </p>
+            <p class="shipping-cost">
+                £{{ number_format(($order->shipping_method == 'standard' ? 299 : 499) / 100, 2) }}
             </p>
             <p class="grand-total">
                 £{{ number_format(($subtotal - $discount_amount) / 100, 2) }}
