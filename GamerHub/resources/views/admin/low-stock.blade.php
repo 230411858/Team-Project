@@ -1,62 +1,59 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Inventory Management') }}
+            {{ __('Low Stock Products') }}
         </h2>
     </x-slot>
+
 
     <div class="content-section">
         <div class="container">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="section-title">Product Inventory</h3>
+                    <h3 class="section-title">Products with Low Stock (≤ 5)</h3>
 
-                    @if(session('success'))
-                        <p class="success-message">{{ session('success') }}</p>
-                    @endif
-
-                    <table class="inventory-table">
-                        <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Stock</th>
-                            <th>Price</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($products as $product)
+                    @if(count($lowStockProducts) === 0)
+                        <p class="success-message">🎉 All products are sufficiently stocked!</p>
+                    @else
+                        <table class="inventory-table">
+                            <thead>
                             <tr>
-                                <td>
-                                    {{--Link to the actual product--}}
-                                    <a href="{{ route('admin.products.show', $product->id) }}" class="product-link">
-                                        {{ $product->name }}
-                                    </a>
-
-                                </td>
-                                <td>
-                                    @if ($product->stock <= 0)
-                                        <span class="out-of-stock">Out of Stock</span>
-                                    @elseif ($product->stock <= 5)
-                                        <span class="low-stock">Low Stock ({{ $product->stock }})</span>
-                                    @else
-                                        {{ $product->stock }}
-                                    @endif
-                                </td>
-                                <td>£{{ number_format($product->price / 100, 2) }}</td>
-                                <td>
-                                    <a href="{{ route('admin.inventory.edit', $product->id) }}" class="edit-button">Edit</a>
-                                    |
-                                    <form action="{{ route('admin.inventory.delete', $product->id) }}" method="POST" class="inline-form">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Are you sure?')" class="delete-button">Delete</button>
-                                    </form>
-                                </td>
+                                <th>Product</th>
+                                <th>Stock</th>
+                                <th>Price</th>
+                                <th>Actions</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach ($lowStockProducts as $product)
+                                <tr>
+                                    <td>
+                                        <a href="{{ route('admin.products.show', $product->id) }}" class="product-link">
+                                            {{ $product->name }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @if ($product->stock <= 0)
+                                            <span class="out-of-stock">Out of Stock</span>
+                                        @else
+                                            <span class="low-stock">Low Stock ({{ $product->stock }})</span>
+                                        @endif
+                                    </td>
+                                    <td>£{{ number_format($product->price / 100, 2) }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.inventory.edit', $product->id) }}" class="edit-button">Edit</a>
+                                        |
+                                        <form action="{{ route('admin.inventory.delete', $product->id) }}" method="POST" class="inline-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="return confirm('Are you sure?')" class="delete-button">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    @endif
                 </div>
             </div>
         </div>
