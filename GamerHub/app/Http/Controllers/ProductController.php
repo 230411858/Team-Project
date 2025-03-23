@@ -240,6 +240,8 @@ class ProductController extends Controller
         $lowStockProducts = Product::where('stock', '<', 5)->get();
         return view('admin.low-stock', compact('lowStockProducts'));
     }
+
+
 }
 
 
