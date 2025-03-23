@@ -1,31 +1,8 @@
-            <!--=============== FOOTER ===============-->
-            <section class="footer">
-              <div class="footer-content">
-                <a href="index.html">
-                  <img id="myImg" src="/images/logo.png"> </a>   
-                  <p>© 2024 GamerHub. All rights reserved.</p>
-  
-                  <div class="icons">
-                      <a href="#"><i class='bx bxl-meta'></i></a>
-                      <a href="#"><i class='bx bxl-instagram' ></i></a>
-                      <a href="#"><i class='bx bxl-twitter' ></i></a>
-                      <a href="#"><i class='bx bxl-reddit' ></i></a>
-                  </div>
-              </div>
-  
-              <div class="footer-content">
-                  <h4>Products</h4>
-                  <li><a href="#">Mouses</a></li>
-                  <li><a href="#">Keyboards</a></li>
-                  <li><a href="#">Monitor</a></li>
-                  <li><a href="#">Microphone</a></li>
-                  <li><a href="#">Headset</a></li>
-              </div>
-  
-              <div class="footer-content">
-                  <h4>Deals</h4>
-                  <li><a href="#">Discounted items</a></li>
-
+        <!--=============== FOOTER ===============-->
+        <section class="footer">
+            <div class="footer-content">
+                <img height="128px" src="{{ url('/images/logo.png') }}"> <!--=== TO DO ==-->
+                <p>© 2025 GamerHub. All rights reserved.</p>
               </div>
   
               <div class="footer-content">

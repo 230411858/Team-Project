@@ -64,7 +64,20 @@
                 </div>
             </div>
 
-            {{-- Quick Actions --}}
+                @php
+                    $lowStockCount = \App\Models\Product::where('stock', '<', 5)->count();
+                @endphp
+                <div class="stat-card alert">
+                    <a href="{{ route('admin.lowstock') }}" class="stat-card-link">
+                        <h3>Low Stock Items</h3>
+                        <p>{{ $lowStockCount }}</p>
+                    </a>
+                </div>
+
+
+
+
+                {{-- Quick Actions --}}
             <div class="quick-actions">
                 <a href="{{ route('admin.customers.index') }}" class="action-button">
                     👥 Manage Customers
@@ -72,15 +85,16 @@
                 <a href="{{ route('admin.inventory.index') }}" class="action-button">
                     📦 Inventory Management
                 </a>
-                {{-- <a href="{{ route('orders.index') }}" class="action-button">--}}
+{{--                <a href="{{ route('admin.orders.index') }}" class="action-button">--}}
                 🛒 View Orders
-                </a>
-                {{-- <a href="{{ route('admin.reports') }}" class="action-button">--}}
+{{--                </a>--}}
+                <a href="{{ route('admin.reports') }}" class="action-button">
                 📊 View Reports
                 </a>
+                <a href="{{ route('admin.products.create') }}" class="action-button">
+                    ➕ Add Products
+                </a>
             </div>
-            @endif
-
         </div>
     </div>
 

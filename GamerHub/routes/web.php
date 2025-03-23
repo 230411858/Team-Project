@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\InventoryController;
+use App\Http\Controllers\Admin\ReportController;
 
 
 
@@ -79,6 +80,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::put('/inventory/{id}', [InventoryController::class, 'update'])->name('admin.inventory.update');
         Route::delete('/inventory/{id}', [InventoryController::class, 'destroy'])->name('admin.inventory.delete');
     });
+
+    Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
+    Route::post('/admin/products/store', [ProductController::class, 'store'])->name('admin.products.store');
+
+    //reports
+    Route::get('/admin/reports', [ReportController::class, 'index'])->name('admin.reports');
+
+
+    Route::get('/admin/products/{id}', [ProductController::class, 'show'])->name('admin.products.show');
+
+    Route::get('/admin/low-stock', [ProductController::class, 'lowStock'])->name('admin.lowstock');
+
 
 });
 
