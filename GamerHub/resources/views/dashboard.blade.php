@@ -12,31 +12,39 @@
             <div class="stats-grid">
                 <div class="stat-card">
                     <h3>Total Customers</h3>
-{{--                    <p>{{ $totalCustomers }}</p>--}}
+                    {{--                    <p>{{ $totalCustomers }}</p>--}}
                 </div>
                 <div class="stat-card">
                     <h3>Total Orders</h3>
                     @php
-                    $orders = \App\Models\Order::all();
-                    $count = 0;
-                    foreach ($orders as $order)
-                        {
-                            $count++;
-                        }
+                        $orders = \App\Models\Order::all();
+                        $count = 0;
+                        foreach ($orders as $order)
+                            {
+                                $count++;
+                            }
                     @endphp
-                   <p>{{ $count }}</p>
+                    <p>{{ $count }}</p>
                 </div>
                 <div class="stat-card">
                     <h3>Total Revenue</h3>
-{{--                    <p>£{{ $totalRevenue }}</p>--}}
+                    {{--                    <p>£{{ $totalRevenue }}</p>--}}
                 </div>
-                <div class="stat-card alert">
-                    <h3>Low Stock Products</h3>
-{{--                    <p>{{ $lowStockCount }}</p>--}}
-                </div>
-            </div>
 
-            {{-- Quick Actions --}}
+                @php
+                    $lowStockCount = \App\Models\Product::where('stock', '<', 5)->count();
+                @endphp
+                <div class="stat-card alert">
+                    <a href="{{ route('admin.lowstock') }}" class="stat-card-link">
+                        <h3>Low Stock Items</h3>
+                        <p>{{ $lowStockCount }}</p>
+                    </a>
+                </div>
+
+
+
+
+                {{-- Quick Actions --}}
             <div class="quick-actions">
                 <a href="{{ route('admin.customers.index') }}" class="action-button">
                     👥 Manage Customers
@@ -45,13 +53,15 @@
                     📦 Inventory Management
                 </a>
 {{--                <a href="{{ route('admin.orders.index') }}" class="action-button">--}}
-                    🛒 View Orders
+                🛒 View Orders
+{{--                </a>--}}
+                <a href="{{ route('admin.reports') }}" class="action-button">
+                📊 View Reports
                 </a>
-{{--                <a href="{{ route('admin.reports') }}" class="action-button">--}}
-                    📊 View Reports
+                <a href="{{ route('admin.products.create') }}" class="action-button">
+                    ➕ Add Products
                 </a>
             </div>
-
         </div>
     </div>
 

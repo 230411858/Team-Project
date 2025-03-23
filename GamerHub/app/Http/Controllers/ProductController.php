@@ -73,9 +73,7 @@ class ProductController extends Controller
             }
 
             $basket_item->save();
-        }
-        else
-        {
+        } else {
             $old_basket_item->quantity = $old_basket_item->quantity + request('quantity');
 
             if ($old_basket_item->quantity < 1) {
@@ -187,10 +185,61 @@ class ProductController extends Controller
     {
         $image = ProductImage::firstWhere('product', $id);
 
-        if ($image == null)
-        {
+        if ($image == null) {
             $image = 'cover.png';
         }
         return $image->file;
     }
+
+    public function create()
+    {
+        return view('admin.products.create'); // Show the create product form
+    }
+
+    public function store(Request $request)
+    {
+        // Validate form data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'category' => 'required|in:mice,keyboards,monitors,audio',
+            'description' => 'required|string|max:1000',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        // Create new product
+        $product = Product::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'stock' => $request->stock,
+            'category' => $request->category, // Save category
+            'description' => $request->description
+
+        ]);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('product_images', 'public'); // Store the file in storage/app/public/product_images
+
+                ProductImage::create([
+                    'product' => $product->id, // Match column name in DB
+                    'file' => $imagePath // Use 'file' instead of 'image_path'
+                ]);
+            }
+        }
+
+
+        // Redirect back with success message
+        return redirect()->route('admin.products.create')->with('success', 'Product added successfully!');
+    }
+
+
+    public function lowStock()
+    {
+        $lowStockProducts = Product::where('stock', '<', 5)->get();
+        return view('admin.low-stock', compact('lowStockProducts'));
+    }
 }
+
+

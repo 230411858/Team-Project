@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Product extends Model
 {
     protected $fillable =
-        ['name','description', 'price','image', 'stock'];
+        ['name','description', 'price','image', 'stock','category'];
 
     public function images()
     {
