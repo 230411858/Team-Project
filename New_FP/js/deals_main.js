@@ -76,38 +76,45 @@ addEventListener("resize", removeStyle);
 /*=============== DARKMODE ===============*/
 
 let darkmode = localStorage.getItem("darkmode");
-const Switch = document.getElementById("switch");
+const switchButton = document.getElementById("switch");
+const myImg = document.getElementById("myImg");
 
-const enableDarkode = () => {
+// Enable dark mode
+const enableDarkmode = () => {
   document.body.classList.add("darkmode");
   localStorage.setItem("darkmode", "active");
+  myImg.src = "image/Logo_White.png"; // Change image for dark mode
+  localStorage.setItem("imageState", "dark");
 };
 
-const diableDarkmode = () => {
+// Disable dark mode
+const disableDarkmode = () => {
   document.body.classList.remove("darkmode");
-  localStorage.setItem("darkmode", null);
+  localStorage.setItem("darkmode", "inactive");
+  myImg.src = "image/logo.png"; // Change image for light mode
+  localStorage.setItem("imageState", "light");
 };
 
-if (darkmode === "active") enableDarkode();
+// Check stored mode on page load
+if (darkmode === "active") {
+  enableDarkmode();
+} else {
+  disableDarkmode();
+}
 
-Switch.addEventListener("click", () => {
+// Add event listener for the button
+switchButton.addEventListener("click", () => {
   darkmode = localStorage.getItem("darkmode");
-  darkmode !== "active" ? enableDarkode() : diableDarkmode();
+  darkmode !== "active" ? enableDarkmode() : disableDarkmode();
 });
 
-const myImg = document.getElementById("myImg");
-const myButton = document.getElementById("switch");
-
-let isFirstImage = true;
-
-myButton.addEventListener("click", function () {
-  if (isFirstImage) {
-    myImg.src = "image/Logo_White.png";
-  } else {
-    myImg.src = "image/logo.png";
-  }
-  isFirstImage = !isFirstImage;
-});
+// Restore image state on page load
+const savedImageState = localStorage.getItem("imageState");
+if (savedImageState === "dark") {
+  myImg.src = "image/Logo_White.png";
+} else {
+  myImg.src = "image/logo.png";
+}
 
 const menuBtn = document.querySelector(".menu-icon span");
 const searchBtn = document.querySelector(".search-icon");
