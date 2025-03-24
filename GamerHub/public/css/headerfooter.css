@@ -317,7 +317,7 @@ img {
   transform: rotate(180deg);
 }
 
-form {
+.search-form {
   position: absolute;
   margin-top: 20px;
   display: flex;
@@ -334,7 +334,7 @@ form {
   opacity: 0;
   transition: top 0.3s ease, opacity 0.1s ease;
 }
-form .search-data {
+.search-form input.search-data {
   width: 100%;
   height: 100%;
   padding: 0 15px;
@@ -344,7 +344,7 @@ form .search-data {
   font-weight: 500;
   background: none;
 }
-form button {
+.search-form button {
   padding: 0 15px;
   color: #fff;
   font-size: 16px;
@@ -362,14 +362,14 @@ form button {
   display: none;
 }
 
-form.active {
+.search-form.active {
   opacity: 1;
   z-index: 11;
   border-radius: 3px 20px 20px 3px;
   pointer-events: auto;
 }
 
-.search-icon {
+.search-form-icon {
   display: block;
   width: 40px;
   text-align: center;
@@ -400,7 +400,7 @@ form.active {
 }
 
 @media screen and (min-width: 1118px) {
-  form {
+  .search-form {
     position: absolute;
     background: #0a2550;
     z-index: 10;

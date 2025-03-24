@@ -193,7 +193,7 @@
                 <div class="cancel-icon">
                   <span class="fas fa-times"></span>
                 </div>
-                <form action="{{ url('/search') }}">
+                <form class="search-form" action="{{ url('/search') }}">
                   @csrf
                   <input
                     type="search"

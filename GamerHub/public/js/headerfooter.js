@@ -113,7 +113,7 @@ const menuBtn = document.querySelector(".menu-icon span");
 const searchBtn = document.querySelector(".search-icon");
 const cancelBtn = document.querySelector(".cancel-icon");
 const items = document.querySelector(".nav-items");
-const form = document.querySelector("form");
+const form = document.querySelector(".search-form");
 
 menuBtn.onclick = () => {
   items.classList.add("active");

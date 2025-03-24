@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-<title>{{ $product->name }} | GAMERHUB</title>
+<title>{{ ucwords($product->name) }} | GAMERHUB</title>
 @endsection
 
 @section('content')
@@ -124,7 +124,7 @@
 
     <h2>Write a Review</h2>
 
-    <form id="review-form" action="{{ url('/review')}}/{{ $product->id }}" method="POST">
+    <form class="review-form" action="{{ url('/review')}}/{{ $product->id }}" method="POST">
         @csrf
         <div class="star_rating">
             <button type="button" class="star" data-value="1">&#9734;</button>

@@ -1,3 +1,4 @@
+
 /*=============== PRODUCT SECTION ===============*/
 
 .products{
@@ -64,10 +65,6 @@
   object-fit: cover;
 }
 
-/* my CSS*/
-
-/*  -______- */
-
 .breadcrumb {
   list-style: none;
   padding: 0;
@@ -75,7 +72,7 @@
   gap: 20px;
   align-items: center;
   margin-left: 50px;
-  margin-top: 7rem; /* Add margin-top to push breadcrumbs down */
+  margin-top: 5rem; /* Add margin-top to push breadcrumbs down */
 }
 
 .breadcrumb li {
@@ -210,7 +207,7 @@
 .thumbnails img {
   width: 60px;
   height: 60px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 5px;
   cursor: pointer;
   transition: transform 0.3s;
@@ -479,11 +476,12 @@
 
 .review-item {
   margin-bottom: 1.5rem;
-  padding: 1rem;
+  padding: 1.5rem; 
   border: 1px solid var(--text-color);
-  border-radius: 4px;
+  border-radius: 8px; 
   background-color: var(--body-color);
   font-family: var(--body-font);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
 }
 /* review item calss  */
 
@@ -502,129 +500,6 @@
 /* review item p tag  */
 
 
-/*=============== Basket Section Stuff ===============*/
-.show-basket {
-  transform: translateX(0)
-}
-/* basket transition */
-
-.basket-total {
-  display: flex;
-  justify-content: space-between;
-  font-weight: var(--font-semi-bold);
-}
-/* basket total cost  */
-
-
-.checkout-btn {
-  background-color: var(--first-color);
-  color: #fff;
-  padding: 10xp;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  text-align: center;
-}
-/* checkout button  */
-
-.basket-items {
-  list-style: none;
-  overflow-y: auto;
-  flex-grow: 1;
-}
-/* items in basket */
-
-.basket-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-/* item in basket name amount quant and remove button  */
-
-.basket-item span {
-  margin-right: 25px; 
-}
-/* gap between the items in basket  */
-
-.basket-content {
-  padding: 1rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content:space-between;
-}
-/* content in basket  */
-
-.basket-modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 300px;
-  height: 100vh;
-  background: var(--body-color);
-  box-shadow: -2px 0 8px rgba(0,0,0,0.1);
-  transform: translateX(100%);
-  transition: transform 0.4s ease-in-out;
-  z-index: var(--z-fixed);
-}
-/* basket modal */
-
-
-.nav_basket{
-  display: flex;
-  margin-left: 150px;
-  position: absolute;
-  right: 80px;
-  cursor: pointer;
-}
-/* nav bar basket  */
-
-
-.basket-count {
-  position: absolute;
-  top: -5px;
-  right: -10px;
-  background-color: var(--first-color);
-  color: #fff;
-  font-size: 0.75rem;
-  padding: 2px 6px;
-  border-radius: 50%;
-
-}
-/* basket counter  */
-
-
-.nav_basket .ri-shopping-cart-line {
-  font-size: 1.5rem;
-  color: var(--title-color);
-}
-/* nav bar basket */
-
-
-.basket-container:hover .basket-modal {
-  transform: translateX(0);
-}
-/* container basket hovered  */
-
-.remove-item {
-  background-color: var(--first-color);
-  color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  font-size: var(--small-font-size);
-  font-weight: var(--font-semi-bold);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-/* the remove button */
-
-.remove-item:hover {
-  background-color: orange;
-}
-/* the remove button hovered */
-
 .star_rating {
   display: flex;
   justify-content: center; 
@@ -633,19 +508,19 @@
   user-select: none;
   margin-top: 10px;
 }
-
-.star {
+button.star {
+  all: initial;
   background: none;
   border: none;
-  outline: none;
+  outline: none; 
   font-size: 3rem;
   color: #ff9800;
   cursor: pointer;
   transition: color 0.3s ease-in-out; 
 }
 
-.star:hover,
-.star.active {
+button.star:hover,
+button.star.active {
   color: hsl(220, 89%, 69%);
 
 }
@@ -659,28 +534,12 @@
   padding-top: 10px;
 }
 
-.review-item {
-  margin-bottom: 1.5rem;
-  padding: 1.5rem; 
-  border: 1px solid var(--text-color);
-  border-radius: 8px; 
-  background-color: var(--body-color);
-  font-family: var(--body-font);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
-}
-
-.review-stars {
-  position: absolute;
-  top: -5px;
-  left: 3vw;
-}
-
 .static-star {
   font-size: 3rem;
   color: #ff9800;
   background: none;
   border: none;
-  outline: none; 
+  outline: none;
   cursor: pointer;
-  transition: color 0.3s ease-in-out; 
+  transition: color 0.3s ease-in-out;
 }
