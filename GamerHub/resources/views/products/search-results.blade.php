@@ -69,7 +69,7 @@
 <div class="product-list">
     @foreach($products as $product)
     @php
-    $image = \App\Models\ProductImage::firstWhere('product', $product);
+    $image = \App\Models\ProductImage::firstWhere('product', $product->id);
     @endphp
     <div class="product">
         <a href="{{ url('/products') }}/{{ $product->id }}" class="product-card">

@@ -84,8 +84,7 @@
                                 <span><i class="fas fa-plus"></i></span>
                             </button>
                             <button type="button" class="btn-buy">
-                                buy now
-                                <span><i class="fas fa-shopping-cart"></i></span>
+                                more info
                             </button>
                         </div>
                     </div>

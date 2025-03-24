@@ -29,7 +29,7 @@
                                 <tr>
                                     <td>
                                         <a href="{{ route('admin.products.show', $product->id) }}" class="product-link">
-                                            {{ $product->name }}
+                                            {{ ucwords($product->name) }}
                                         </a>
                                     </td>
                                     <td>
