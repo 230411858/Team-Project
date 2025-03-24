@@ -105,6 +105,14 @@ input[type="checkbox"] {
     color: red;
 }
 
+.error-border {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+}
+
 .form-row {
     display: flex;
     gap: 2rem;
@@ -396,6 +404,7 @@ transition: transform 0.2 ease;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+    text-decoration: none;
 }
 
 .quantity-btn:hover {

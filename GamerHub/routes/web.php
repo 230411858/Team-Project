@@ -4,6 +4,7 @@ use App\Http\Controllers\BasketController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\InventoryController;
@@ -22,22 +23,26 @@ Route::get('/support', function () {
 Route::get('/contact', function () {
     return view('support.contact');
 });
-Route::get('/faq', function () {
-    return view('support.faq');
-});
 Route::get('/about', function () {
     return view('about');
+});
+Route::get('/faq', function() { 
+    return view('support.faq'); 
 });
 
 // Product Routes
 Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/category/{category}', [ProductController::class, 'category']);
+Route::get('/products/category/{category}/{sub_category?}', [ProductController::class, 'category']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 Route::get('/deals', [ProductController::class, 'deals']);
-Route::post('/add', [ProductController::class, 'addBasketItem'])->middleware('auth');
-Route::post('/remove', [ProductController::class, 'removeBasketItem'])->middleware('auth');
+Route::get('/add/{product}/{quantity?}', [ProductController::class, 'addBasketItem'])->middleware('auth');
+Route::get('/reduce/{product}', [ProductController::class, 'reduceBasketItem'])->middleware('auth');
+Route::get('/remove/{id}', [ProductController::class, 'removeBasketItem'])->middleware('auth');
 Route::get('/checkout', [ProductController::class, 'checkout'])->middleware('auth');
-Route::post('/checkout/save', [ProductController::class, 'saveOrder'])->middleware('auth');
+Route::post('/checkout', [ProductController::class, 'saveOrder'])->middleware('auth');
+Route::get('/orders/{id}', [OrderController::class, 'show'])->middleware('auth');
+Route::get('/orders/{id}/{status?}', [AdminCustomerController::class, 'change_order_status']);
+Route::get('/orders', [OrderController::class, 'index'])->middleware('auth');
 Route::post('/review/{id}', [ProductController::class, 'review'])->middleware('auth');
 Route::get('/search', [ProductController::class, 'search'])->name('search');
 
@@ -61,33 +66,13 @@ Route::middleware('auth')->group(function () {
 // **Admin routes manually check if admin role**
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     // Customers Management
-    Route::get('/customers', function () {
-        if (Auth::user()->account_type === 'admin') {
-            return app(AdminCustomerController::class)->index();
-        }
-        return redirect('/')->with('error', 'Unauthorized access');
-    })->name('admin.customers.index');
+    Route::get('/customers', [AdminCustomerController::class, 'index'])->name('admin.customers.index');
 
-    Route::get('/customers/{id}/edit', function ($id) {
-        if (Auth::user()->account_type === 'admin') {
-            return app(AdminCustomerController::class)->edit($id);
-        }
-        return redirect('/')->with('error', 'Unauthorized access');
-    })->name('admin.customers.edit');
+    Route::get('/customers/{id}/edit', [AdminCustomerController::class, 'edit'])->name('admin.customers.edit');
 
-    Route::put('/customers/{id}', function ($id) {
-        if (Auth::user()->account_type === 'admin') {
-            return app(AdminCustomerController::class)->update(request(), $id);
-        }
-        return redirect('/')->with('error', 'Unauthorized access');
-    })->name('admin.customers.update');
+    Route::put('/customers/{id}', [AdminCustomerController::class, 'update'])->name('admin.customers.update');
 
-    Route::delete('/customers/{id}', function ($id) {
-        if (Auth::user()->account_type === 'admin') {
-            return app(AdminCustomerController::class)->destroy($id);
-        }
-        return redirect('/')->with('error', 'Unauthorized access');
-    })->name('admin.customers.destroy');
+    Route::delete('/customers/{id}', [AdminCustomerController::class, 'destroy'])->name('admin.customers.destroy');
 
     // Inventory Management Routes
     Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
@@ -99,10 +84,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
     Route::post('/admin/products/store', [ProductController::class, 'store'])->name('admin.products.store');
-
-    //reports
-    Route::get('/admin/reports', [ReportController::class, 'index'])->name('admin.reports');
-
 
     Route::get('/admin/products/{id}', [ProductController::class, 'show'])->name('admin.products.show');
 

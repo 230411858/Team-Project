@@ -1,50 +1,76 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="page-header">
+            @if (Auth::user()->account_type === 'admin')
             {{ __('Admin Dashboard') }}
+            @else
+            {{ __('My Dashboard') }}
+            @endif
         </h2>
     </x-slot>
 
     <div class="content-section">
         <div class="container">
 
+            @if (Auth::user()->account_type === 'admin')
             {{-- Admin Stats --}}
             <div class="stats-grid">
                 <div class="stat-card">
                     <h3>Total Customers</h3>
-                    {{--                    <p>{{ $totalCustomers }}</p>--}}
+                    @php
+                    $totalCustomers = \App\Models\User::where('account_type', 'customer')->get()->count();
+                    @endphp
+                    <p>{{ $totalCustomers }}</p>
                 </div>
                 <div class="stat-card">
-                    <h3>Total Orders</h3>
+                    <h3>Total Items Ordered<br>(Total Orders Placed)</h3>
                     @php
-                        $orders = \App\Models\Order::all();
-                        $count = 0;
-                        foreach ($orders as $order)
-                            {
-                                $count++;
-                            }
+                    $orders = \App\Models\Order::all();
+
+                    $order_items = \App\Models\OrderItem::all();
+
+                    $products = \App\Models\Product::all();
+
+                    $order_count = count($orders);
+
+                    $order_item_count = 0;
+
+                    $total_revenue = 0;
+
+                    foreach ($orders as $order)
+                    {
+                    $order_items = \App\Models\OrderItem::where('oid', $order->id)->get();
+
+                    foreach ($order_items as $order_item)
+                    {
+                        $order_item_count += $order_item->quantity;
+
+                    $product = $products->firstWhere('id', $order_item->product);
+
+                    $total_revenue += $product->price * (1 - $order_item->discount) * $order_item->quantity;
+                    }
+
+                    $total_revenue += $order->shipping_method == 'standard' ? 299 : 499;
+
+                    }
                     @endphp
-                    <p>{{ $count }}</p>
+                    <p>{{ $order_item_count }}<br>({{ $order_count }})</p>
                 </div>
                 <div class="stat-card">
                     <h3>Total Revenue</h3>
-                    {{--                    <p>£{{ $totalRevenue }}</p>--}}
-                </div>
 
+                    <p>£{{ number_format($total_revenue / 100, 2) }}</p>
+                </div>
                 @php
-                    $lowStockCount = \App\Models\Product::where('stock', '<', 5)->count();
-                @endphp
-                <div class="stat-card alert">
-                    <a href="{{ route('admin.lowstock') }}" class="stat-card-link">
-                        <h3>Low Stock Items</h3>
+                $lowStockCount = \App\Models\Product::where('stock', '<', 5)->count();
+                    @endphp
+                    <div class="stat-card alert">
+                        <h3>Low Stock Products</h3>
                         <p>{{ $lowStockCount }}</p>
-                    </a>
-                </div>
+                    </div>
+            </div>
 
-
-
-
-                {{-- Quick Actions --}}
+            {{-- Quick Actions --}}
             <div class="quick-actions">
                 <a href="{{ route('admin.customers.index') }}" class="action-button">
                     👥 Manage Customers
@@ -52,21 +78,40 @@
                 <a href="{{ route('admin.inventory.index') }}" class="action-button">
                     📦 Inventory Management
                 </a>
-{{--                <a href="{{ route('admin.orders.index') }}" class="action-button">--}}
-                🛒 View Orders
-{{--                </a>--}}
-                <a href="{{ route('admin.reports') }}" class="action-button">
-                📊 View Reports
+                <a href="{{ url('/orders') }}" class="action-button">
+                    🛒 View Orders
                 </a>
                 <a href="{{ route('admin.products.create') }}" class="action-button">
                     ➕ Add Products
                 </a>
             </div>
+            @else
+            <div class="stat-card">
+                <h3>Total Items Ordered<br>(Total Orders Placed)</h3>
+                @php
+                $orders = \App\Models\Order::where('user', Auth::id())->get();
+
+                $order_count = 0;
+
+                $order_item_count = 0;
+
+                foreach ($orders as $order)
+                {
+                $order_count++;
+                $order_items = \App\Models\OrderItem::where('oid', $order->id)->get();
+                foreach ($order_items as $order_item)
+                {
+                $order_item_count++;
+                }
+                }
+                @endphp
+                <p>{{ $order_item_count }}<br>({{ $order_count }})</p>
+            </div>
+            @endif
         </div>
     </div>
 
     <style>
-
         .content-section {
             padding: 40px 0;
         }
@@ -125,8 +170,7 @@
 
         .action-button:hover {
             background-color: #0056b3;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
-
     </style>
 </x-app-layout>

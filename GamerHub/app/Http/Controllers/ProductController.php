@@ -11,6 +11,8 @@ use App\Models\OrderItem;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isEmpty;
+
 class ProductController extends Controller
 {
     public function index()
@@ -19,7 +21,9 @@ class ProductController extends Controller
 
         $images = ProductImage::all();
 
-        return view('products.index', ['products' => $products, 'images' => $images]);
+        $discount_items = Product::where('discount', '>', 0)->limit(6)->get();
+
+        return view('products.index', ['products' => $products, 'images' => $images, 'discount_items' => $discount_items]);
     }
 
     public function show($id)
@@ -33,14 +37,19 @@ class ProductController extends Controller
         return view('products.show', ['product' => $product, 'images' => $images, 'reviews' => $reviews]);
     }
 
-    public function category($category)
+    public function category($category, $sub_category = null)
     {
-        if (in_array($category, ['mice', 'keyboards', 'monitors', 'audio'])) {
+        if (in_array($category, ['mice', 'keyboards', 'monitors', 'speakers', 'microphones'])) {
             $products = Product::where('category', $category)->get();
 
             $images = ProductImage::all();
 
-            return view('products.category', ['products' => $products, 'images' => $images, 'category' => $category]);
+            if (!in_array($sub_category, ['wired', 'wireless', 'gaming', 'ergonomic', 'stylus', 'mechanical', 'membrane', '144hz', '240hz', 'condenser', 'dynamic', 'bookshelf', 'soundbar']))
+            {
+                $sub_category = null;
+            }
+
+            return view('products.category', ['products' => $products, 'images' => $images, 'category' => $category, 'sub_category' => $sub_category]);
         } else {
             abort(404);
         }
@@ -50,34 +59,38 @@ class ProductController extends Controller
     {
         $discount_items = Product::where('discount', '>', 0)->get();
 
-        return view('deals', ['discount_items' => $discount_items]);
+        $images = ProductImage::all();
+
+        return view('deals', ['discount_items' => $discount_items, 'images' => $images]);
     }
 
-    public function addBasketItem()
+    public function addBasketItem($product, $quantity = 1)
     {
-        $old_basket_item = BasketItem::firstWhere([['user', '=', Auth::id()], ['product', '=', request('product')]]);
+        $old_basket_item = BasketItem::firstWhere([ ['user', '=', Auth::id()], ['product', '=', $product] ]);
 
         if ($old_basket_item == null) {
             $basket_item = new BasketItem();
 
             $basket_item->user = Auth::id();
 
-            $basket_item->product = request('product');
+            $basket_item->product = $product;
 
-            $basket_item->quantity = request('quantity');
+            $basket_item->quantity += $quantity;
 
             if ($basket_item->quantity < 1) {
-                $basket_item->quantity = 1;
+                BasketItem::destroy($basket_item->id);
             } elseif ($basket_item->quantity > 99) {
                 $basket_item->quantity = 99;
             }
 
             $basket_item->save();
-        } else {
-            $old_basket_item->quantity = $old_basket_item->quantity + request('quantity');
+        }
+        else
+        {
+            $old_basket_item->quantity = $old_basket_item->quantity + $quantity;
 
             if ($old_basket_item->quantity < 1) {
-                $old_basket_item->quantity = 1;
+                BasketItem::destroy($old_basket_item->id);
             } elseif ($old_basket_item->quantity > 99) {
                 $old_basket_item->quantity = 99;
             }
@@ -88,11 +101,18 @@ class ProductController extends Controller
         return back();
     }
 
-    public function removeBasketItem()
+    public function reduceBasketItem($product, $quantity = -1)
     {
-        $basket_item = BasketItem::firstWhere('id', request('id'));
-        if ($basket_item != null && Auth::id() == $basket_item->user) {
-            BasketItem::destroy(request('id'));
+        $this->addBasketItem($product, $quantity);
+
+        return back();
+    }
+
+    public function removeBasketItem($id)
+    {
+        $basket_item = BasketItem::firstWhere('id', $id);
+        if ($basket_item != null && Auth::id() === $basket_item->user) {
+            BasketItem::destroy($id);
             return back();
         } else {
             abort(403);
@@ -101,24 +121,56 @@ class ProductController extends Controller
 
     public function checkout()
     {
-        $basket = BasketItem::where('user', Auth::id())->get();
+        $basket_items = BasketItem::where('user', Auth::id())->get();
 
         $products = Product::all();
 
-        return view('checkout', ['basket' => $basket, 'products' => $products]);
+        $images = \App\Models\ProductImage::all();
+
+        return view('checkout', ['basket_items' => $basket_items, 'products' => $products, 'images' => $images]);
 
         return redirect('login');
     }
 
-    public function saveOrder()
+    public function saveOrder(Request $request)
     {
+        $basket_items = BasketItem::where('user', Auth::id())->get();
+
+        if ($basket_items->first() == null)
+        {
+            abort(403); 
+        }
+
         $order = new Order();
 
         $order->user = Auth::id();
 
-        $order->save();
+        $order->email = $request->email;
 
-        $basket_items = BasketItem::where('user', Auth::id())->get();
+        $order->first_name = $request->first_name;
+
+        $order->last_name = $request->last_name;
+
+        $order->address_line_1 = $request->address_line_1;
+
+        $order->address_line_2 = $request->address_line_2;
+
+        $order->city = $request->city;
+
+        $order->country = $request->country;
+
+        $order->postcode = $request->postcode;
+
+        $order->phone_number = $request->phone_number;
+
+        $order->shipping_method = $request->shipping_method;
+
+        if ($order->shipping_method == null)
+        {
+            $order->shipping_method = 'standard';
+        }
+
+        $order->save();
 
         foreach ($basket_items as $basket_item) {
             $order_item = new OrderItem();
@@ -129,17 +181,34 @@ class ProductController extends Controller
 
             $order_item->quantity = $basket_item->quantity;
 
+            $product = Product::firstWhere('id', $order_item->product);
+
+            $order_item->discount = $product->discount;
+
             $order_item->save();
 
-            $basket_item->delete();
+            $product->stock = $product->stock - $order_item->quantity;
+
+            $product->save();
+
+            BasketItem::destroy($basket_item->id);
         }
 
-        return back();
+        return response()->json([]);
     }
 
-    public function review($id)
+    public function review($id, Request $request)
     {
-        $old_review = Review::where([['user', '=', Auth::id()], ['product', '=', $id]])->first();
+        $old_review = Review::firstWhere([['user', '=', Auth::id()], ['product', '=', $id]]);
+
+        $rating = $request->rating;
+
+        if ($rating < 0) {$rating = 1;}
+        else if ($rating > 5) {$rating = 5;}
+
+        $text = $request->text;
+
+        if (strlen($text) > 1000) {$text = substr($text, 0, 1000);}
 
         if ($old_review == null) {
             $review = new Review();
@@ -148,11 +217,15 @@ class ProductController extends Controller
 
             $review->product = $id;
 
-            $review->text = request('review-text');
+            $review->rating = $rating;
+
+            $review->text = $text;
 
             $review->save();
         } else {
-            $old_review->text = request('review-text');
+            $old_review->rating = $rating;
+
+            $old_review->text = $text;
 
             $old_review->save();
         }

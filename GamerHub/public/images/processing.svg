@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="95mm"
+   height="24.609243mm"
+   viewBox="0 0 95 24.609243"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <linearGradient
+       id="swatch2">
+      <stop
+         style="stop-color:#909090;stop-opacity:1;"
+         offset="0"
+         id="stop2" />
+    </linearGradient>
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-25,-8.0000005)">
+    <ellipse
+       style="fill:#add8e6;fill-opacity:1;stroke:#000000;stroke-width:0.828288;stroke-dasharray:none;stroke-opacity:1"
+       id="path1"
+       cx="35"
+       cy="18"
+       rx="9.5858564"
+       ry="9.5858555" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.828288;stroke-dasharray:none;stroke-opacity:1"
+       id="path1-1"
+       cx="72.5"
+       cy="18"
+       rx="9.5860004"
+       ry="9.5858555" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.828288;stroke-dasharray:none;stroke-opacity:1"
+       id="path1-1-6"
+       cx="110"
+       cy="18"
+       rx="9.5858564"
+       ry="9.5858555" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:'MS PGothic';-inkscape-font-specification:'MS PGothic, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:25.5681;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+       x="24.085976"
+       y="38.442638"
+       id="text2"
+       transform="translate(1.715625,-6.2598259)"><tspan
+         x="24.085976"
+         y="38.442638"
+         id="tspan2">PROCESSING</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.94284px;font-family:'MS PGothic';-inkscape-font-specification:'MS PGothic, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:25.5681;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+       x="24.085976"
+       y="38.442638"
+       id="text2-8"
+       transform="matrix(1,0,0,1.1640014,40.442748,-12.392274)"><tspan
+         x="24.085976"
+         y="38.442638"
+         id="tspan3">IN-TRANSIT</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:'MS Gothic';-inkscape-font-specification:'MS Gothic, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:25.5681;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+       x="24.085976"
+       y="38.442638"
+       id="text2-8-5"
+       transform="translate(78.765234,-5.9993767)"><tspan
+         x="24.085976"
+         y="38.442638"
+         id="tspan4">DELIVERED</tspan></text>
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3"
+       width="17.678869"
+       height="0.94920099"
+       x="44.849747"
+       y="18" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3-3"
+       width="17.678869"
+       height="0.94920099"
+       x="82.456741"
+       y="18" />
+  </g>
+</svg>

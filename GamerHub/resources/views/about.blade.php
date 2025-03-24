@@ -1,43 +1,6 @@
 @extends('layouts.layout')
 
-@section('title')
-<title>About | GAMERHUB</title>
-@endsection
-
-@section('content')
-<!--=============== ABOUT US SECTION ===============-->
-<main>
-<section class="about-us container">
-    <h1 class="about-us__title">About GamerHub</h1>
-    <p class="about-us__description">
-        Welcome to GamerHub, your ultimate destination for high-quality gaming accessories designed to elevate your gaming experience.
-        We are passionate about gaming and committed to providing our customers with the best products and services to meet their needs.
-    </p>
-
-    <div class="about-us__content">
-        <div class="about-us__image">
-        </div>
-        <div class="about-us__text">
-            <h2>Our Mission</h2>
-            <p>
-                At GamerHub, our mission is to empower gamers by offering a wide range of cutting-edge gaming accessories,
-                from ergonomic mice and mechanical keyboards to immersive headsets and ultra-clear monitors.
-                We believe in delivering value, innovation, and quality in every product we offer.
-            </p>
-            <h2>Why Choose Us?</h2>
-            <ul class="about-us__list">
-                <li><i class="ri-checkbox-circle-line"></i> High-quality gaming gear at competitive prices</li>
-                <li><i class="ri-checkbox-circle-line"></i> Fast and reliable shipping</li>
-                <li><i class="ri-checkbox-circle-line"></i> Dedicated customer support team</li>
-                <li><i class="ri-checkbox-circle-line"></i> Exclusive deals and discounts</li>
-            </ul>
-        </div>
-    </div>
-</section>
-</main>
-<!--=============== MAIN JS ===============-->
-<script src="{{ url('/js/front.js') }}"></script>
-</body>
+@section('css')
 </html>
 
 <style>
@@ -97,15 +60,55 @@
     .about-us__list i {
         color: #ff5722;
     }
-
-    main {
-        margin-top: 100px;
-    }
-
-    .nav__logo-img {
-        height: 40px;
-        width: auto;
-        margin-left: -35px;
-    }
 </style>
+@endsection
+
+@section('title')
+<title>About | GAMERHUB</title>
+@endsection
+
+@section('content')
+<!--=============== ABOUT US SECTION ===============-->
+<main>
+<section class="about-us container">
+    <h1 class="about-us__title">About GamerHub</h1>
+    <p class="about-us__description">
+        Welcome to GamerHub, your ultimate destination for high-quality gaming accessories designed to elevate your gaming experience.
+        We are passionate about gaming and committed to providing our customers with the best products and services to meet their needs.
+    </p>
+
+    <div class="about-us__content">
+        <div class="about-us__image">
+        </div>
+        <div class="about-us__text">
+            <h2>Our Mission</h2>
+            <p>
+                At GamerHub, our mission is to empower gamers by offering a wide range of cutting-edge gaming accessories,
+                from ergonomic mice and mechanical keyboards to immersive headsets and ultra-clear monitors.
+                We believe in delivering value, innovation, and quality in every product we offer.
+            </p>
+            <h2>Why Choose Us?</h2>
+            <ul class="about-us__list">
+                <li><i class="ri-checkbox-circle-line"></i> High-quality gaming gear at competitive prices</li>
+                <li><i class="ri-checkbox-circle-line"></i> Fast and reliable shipping</li>
+                <li><i class="ri-checkbox-circle-line"></i> Dedicated customer support team</li>
+                <li><i class="ri-checkbox-circle-line"></i> Exclusive deals and discounts</li>
+            </ul>
+        </div>
+    </div>
+</section>
+</main>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+@endsection
+
+@section('js')
+<!--=============== MAIN JS ===============-->
+<script src="{{ url('/js/front.js') }}"></script>
 @endsection

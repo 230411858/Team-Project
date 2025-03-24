@@ -242,9 +242,9 @@ img {
 }
 
 /* Show icon */
-.show-icon {
-  maring-left: 20px;
-}
+.show-icon{
+   margin-left: 20px;
+  }
 
 .show-icon .nav__toggle-menu {
   opacity: 0;
