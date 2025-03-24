@@ -58,11 +58,14 @@
                     <div class="form-row">
                         <div class="form-group half">
                             <label for="first_name">First Name <span class="required">*</span></label>
-                            <input type="text" id="first_name" name="first_name" required placeholder="Enter your first name">
+                            @php
+                            $full_name = explode(' ', Auth::user()->name);
+                            @endphp
+                            <input type="text" id="first_name" name="first_name" value="{{ $full_name[0] }}" required placeholder="Enter your first name">
                         </div>
                         <div class="form-group half">
                             <label for="last_name">Last Name <span class="required">*</span></label>
-                            <input type="text" id="last_name" name="last_name" required placeholder="Enter your last name">
+                            <input type="text" id="last_name" name="last_name" value="{{ count($full_name) >= 2 ? $full_name[count($full_name) - 1] : '' }}" required placeholder="Enter your last name">
                         </div>
                     </div>
 
@@ -165,7 +168,7 @@
             $image = $images->firstWhere('product', $product->id);
             @endphp
             <div class="summary-item">
-                <img height="150px" width="150" src="{{ url('/images') }}/{{ $product->category }}/{{ $image == null ? 'cover.png' : $image->file }}" alt="product image">
+                <img height="150px" width="150px" style="object-fit: contain;" src="{{ url('/images') }}/{{ $product->category }}/{{ $image == null ? 'cover.png' : $image->file }}" alt="product image">
                 <div class="product-details">
                     <a class="quantity-btn" href="{{ url('/remove') }}/{{ $basket_item->id }}">x</a>
                     <p class="product-name">{{ ucwords($product->name) }}</p>

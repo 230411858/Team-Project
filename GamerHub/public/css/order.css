@@ -59,7 +59,14 @@ h2{
     color: green;
 }
 
+.order-item-text {
+    position: relative;
+}
+
 .order-item-subtotal {
+    position: absolute;
+    top: 50%;
+    right: 200px;
     
 }
 
@@ -90,11 +97,11 @@ h2{
 .final-values-titles {
     margin-right: 0px;
     margin-left: auto;
-    padding-right: 160px;
+    padding-right: 100px;
 }
 
 .final-values {
-    padding-right: 50px;
+    padding-right: 200px;
 }
 
 .subtotal {

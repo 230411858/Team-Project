@@ -110,7 +110,7 @@
                       <a href="{{ url('/products/category/monitors/144hz') }}" class="dropdown__link">144hz</a>
                     </li>
                     <li>
-                      <a href="{{ url('/products/category/monitors/144hz') }}" class="dropdown__link">240hz</a>
+                      <a href="{{ url('/products/category/monitors/240hz') }}" class="dropdown__link">240hz</a>
                     </li>
                   </ul>
                 </div>
@@ -172,7 +172,7 @@
 
                   <ul class="dropdown__list">
                     <li>
-                      <a href="#" class="dropdown__link">Contact</a>
+                      <a href="{{ url('/contact') }}" class="dropdown__link">Contact</a>
                     </li>
                     <li>
                       <a href="{{ url('/faq') }}" class="dropdown__link">FAQ</a>
@@ -181,7 +181,7 @@
                 </div>
 
           <li>
-            <a href="#" class="nav__link">About</a>
+            <a href="{{ url('/about') }}" class="nav__link">About</a>
           </li>
           <ul class="nav__button">
             <li>
@@ -193,10 +193,12 @@
                 <div class="cancel-icon">
                   <span class="fas fa-times"></span>
                 </div>
-                <form action="#">
+                <form action="{{ url('/search') }}">
+                  @csrf
                   <input
                     type="search"
                     class="search-data"
+                    name="query"
                     placeholder="Search"
                     required />
                   <button type="submit" class="fas fa-search"></button>

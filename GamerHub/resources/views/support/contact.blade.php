@@ -1,24 +1,11 @@
 @extends('layouts.layout')
 
-    @section('css')
+@section('css')
     <!-- CSS Styling for the Page -->
-    <link rel="stylesheet" href="{{ url('/css/support.css') }}">
-
-<!-- https://stackoverflow.com/questions/30374863/why-use-rem-instead-px-when-its-the-same-anyway -->
-<!-- implemented usage of rem as easier for future accessibility endevours - Jayden mentioned and I implemented -->
+    <link rel="stylesheet" href="{{ url('/css/contact.css') }}">
     <style>
-        .header-logo {
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            background-color: #f8fafc; 
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
-        }
-
-        .header-logo img {
-            height: 50px;
-            width: auto;  
-            /* scale help */
+        .box-sizing {
+            box-sizing: border-box;
         }
 
         /* /* Main contact section stuff  */
@@ -29,6 +16,8 @@
             background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
             border-radius: 10px; 
+            resize: none;
+            
         }
 
         .contact-header {
@@ -55,11 +44,14 @@
         .contact-section input,
         .contact-section select,
         .contact-section textarea {
-            width: 100%; 
+            width: 95%; 
             padding: 1rem;
             border: 1px solid #ddd;
             border-radius: 8px; 
             font-size: 1rem;
+            resize: none;
+            display: block;
+            box-sizing: border-box;
         }
 
         .contact-section textarea {
@@ -82,20 +74,6 @@
             background-color: #ec5b5b; 
         }
 
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #f8fafc;
-            color: #333;
-            font-size: 0.9rem;
-            border-top: 1px solid #ddd; 
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-        /* Responsive - GPT help for future mobile implementation */
         @media (max-width: 768px) {
             .contact-header h2 {
                 font-size: 2rem; /* Smaller headline for mobile */
@@ -106,14 +84,22 @@
                 padding: 0.8rem;
             }
         }
+
+        #contact-form {
+            all: initial;
+        }
     </style>
-    @endsection
+@endsection
 
-    @section('title')
-    <title>Contact Us | GAMERHUB</title>
-    @endsection
+@section('title')
+    <title>Contact Us | GamerHub</title>
+@endsection
 
-    @section('content')
+@section('content')
+<!-- https://stackoverflow.com/questions/30374863/why-use-rem-instead-px-when-its-the-same-anyway -->
+<!-- implemented usage of rem as easier for future accessibility endevours - Jayden mentioned and I implemented -->
+    <!-- Logo section -->
+ 
 
     <!-- Contact Us form -->
     <section class="contact-section">
@@ -124,7 +110,7 @@
         <!-- This is where users fill out their info -->
         <form id="contact-form">
             <div class="form-group">
-                <label for="from-name">Full Name <span class="required">*</span></label>
+                <label for="form-name">Full Name <span class="required">*</span></label>
                 <input type="text" id="from-name" name="from-name" required placeholder="Enter your full name">
             </div>
             <div class="form-group">
@@ -135,8 +121,8 @@
                 <label for="country">Country <span class="required">*</span></label>
                 <select id="country" name="country" required>
                     <option value="" disabled selected>Select Your Country</option>
-                    <option value="United States">United States</option>
                     <option value="United Kingdom">United Kingdom</option>
+                    <option value="United States">United States</option>
                     <option value="Canada">Canada</option>
                     <option value="Australia">Australia</option>
                 </select>
@@ -149,10 +135,13 @@
             <button type="submit" class="submit-btn">Send Message</button>
         </form>
     </section>
+    <br>
+@endsection
 
+@section('js')
     <!-- Script to handle email sending -->
-    <script src="{{ url('/js/support.js') }}"></script>
-    <!-- EmailJS Setup for Sending Emails -->
+    <script src="{{ url('/js/contact.js') }}"></script>
+        <!-- EmailJS Setup for Sending Emails -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/email.min.js"></script>
     <script>
         // Initialize EmailJS - Replace with ID from emailjs website

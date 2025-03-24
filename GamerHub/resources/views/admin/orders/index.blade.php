@@ -84,10 +84,10 @@
     }
 
     .row:hover {
-        color: white;
-        background-color: orange;
-        cursor: pointer;
-    }
+            color: white;
+            background-color: orange;
+            cursor: pointer;
+        }
 </style>
 @endsection
 
@@ -100,11 +100,8 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                @if (Auth::user()->account_type === 'admin')
-                <h3 class="section-title">All Orders</h3>
-                @else
                 <h3 class="section-title">My Orders</h3>
-                @endif
+
                 <table class="inventory-table">
                     <thead>
                         <tr>

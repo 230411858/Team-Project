@@ -76,38 +76,45 @@ addEventListener("resize", removeStyle);
 /*=============== DARKMODE ===============*/
 
 let darkmode = localStorage.getItem("darkmode");
-const Switch = document.getElementById("switch");
+const switchButton = document.getElementById("switch");
+const myImg = document.getElementById("myImg");
 
-const enableDarkode = () => {
+// Enable dark mode
+const enableDarkmode = () => {
   document.body.classList.add("darkmode");
   localStorage.setItem("darkmode", "active");
+  myImg.src = "image/Logo_White.png"; // Change image for dark mode
+  localStorage.setItem("imageState", "dark");
 };
 
-const diableDarkmode = () => {
+// Disable dark mode
+const disableDarkmode = () => {
   document.body.classList.remove("darkmode");
-  localStorage.setItem("darkmode", null);
+  localStorage.setItem("darkmode", "inactive");
+  myImg.src = "image/logo.png"; // Change image for light mode
+  localStorage.setItem("imageState", "light");
 };
 
-if (darkmode === "active") enableDarkode();
+// Check stored mode on page load
+if (darkmode === "active") {
+  enableDarkmode();
+} else {
+  disableDarkmode();
+}
 
-Switch.addEventListener("click", () => {
+// Add event listener for the button
+switchButton.addEventListener("click", () => {
   darkmode = localStorage.getItem("darkmode");
-  darkmode !== "active" ? enableDarkode() : diableDarkmode();
+  darkmode !== "active" ? enableDarkmode() : disableDarkmode();
 });
 
-const myImg = document.getElementById("myImg");
-const myButton = document.getElementById("switch");
-
-let isFirstImage = true;
-
-myButton.addEventListener("click", function () {
-  if (isFirstImage) {
-    myImg.src = "image/Logo_White.png";
-  } else {
-    myImg.src = "image/logo.png";
-  }
-  isFirstImage = !isFirstImage;
-});
+// Restore image state on page load
+const savedImageState = localStorage.getItem("imageState");
+if (savedImageState === "dark") {
+  myImg.src = "image/Logo_White.png";
+} else {
+  myImg.src = "image/logo.png";
+}
 
 const menuBtn = document.querySelector(".menu-icon span");
 const searchBtn = document.querySelector(".search-icon");
@@ -150,306 +157,3 @@ var x = setInterval(function () {
   document.getElementById("minutes").innerHTML = minutes;
   document.getElementById("seconds").innerHTML = seconds;
 }, 1000);
-
-// Add to Cart (for Countdown Section)
-const countdownAddToCartButton = document.querySelector(".countdown .btn-cart");
-countdownAddToCartButton.addEventListener("click", () => {
-  const productImgSrc = document.querySelector(".countdown_container img").src;
-  const productTitle = "Limited Time Offer - 50% Off";
-  const productPrice = "$75.00"; // Discounted price
-
-  addToCartFromCountdown(productImgSrc, productTitle, productPrice);
-});
-
-// Load cart from localStorage when page loads
-document.addEventListener("DOMContentLoaded", loadCart);
-
-// Function to save cart to localStorage
-const saveCart = () => {
-  const cartItems = [];
-  const cartBoxes = cartContent.querySelectorAll(".cart-box");
-
-  cartBoxes.forEach((cartBox) => {
-    const imgSrc = cartBox.querySelector(".cart-img").src;
-    const title = cartBox.querySelector(".cart-product-title").textContent;
-    const price = cartBox.querySelector(".cart-price").textContent;
-    const quantity = cartBox.querySelector(".quantity-number").textContent;
-
-    cartItems.push({
-      imgSrc,
-      title,
-      price,
-      quantity,
-    });
-  });
-
-  localStorage.setItem("cart", JSON.stringify(cartItems));
-};
-
-// Function to load cart from localStorage
-function loadCart() {
-  const savedCart = localStorage.getItem("cart");
-  if (savedCart) {
-    const cartItems = JSON.parse(savedCart);
-
-    // Clear current cart count
-    cartItemCount = 0;
-
-    // Add each saved item to the cart
-    cartItems.forEach((item) => {
-      const cartBox = document.createElement("div");
-      cartBox.classList.add("cart-box");
-      cartBox.innerHTML = `
-        <img src="${item.imgSrc}" class="cart-img">
-        <div class="cart-detail">
-            <h2 class="cart-product-title">${item.title}</h2>
-            <span class="cart-price">${item.price}</span>
-            <div class="cart-quantity">
-                <button id="decrease">-</button>
-                <span class="quantity-number">${item.quantity}</span>
-                <button id="increase">+</button>
-            </div>
-        </div>
-        <i class="ri-delete-bin-line cart-remove"></i>
-      `;
-
-      cartContent.appendChild(cartBox);
-
-      // Add event listeners to the newly created elements
-      cartBox.querySelector(".cart-remove").addEventListener("click", () => {
-        cartBox.remove();
-        updateCartCount(-1);
-        updateTotalPrice();
-        saveCart();
-      });
-
-      cartBox
-        .querySelector(".cart-quantity")
-        .addEventListener("click", (event) => {
-          const quantityElement = cartBox.querySelector(".quantity-number");
-          const decreaseButton = cartBox.querySelector("#decrease");
-          let quantity = parseInt(quantityElement.textContent);
-
-          if (event.target.id === "decrease" && quantity > 1) {
-            quantity--;
-            if (quantity === 1) {
-              decreaseButton.style.color = "#999";
-            }
-          } else if (event.target.id === "increase") {
-            quantity++;
-            decreaseButton.style.color = "#333";
-          }
-
-          quantityElement.textContent = quantity;
-          updateTotalPrice();
-          saveCart();
-        });
-
-      // Update cart count
-      updateCartCount(1);
-    });
-
-    // Update total price after loading all items
-    updateTotalPrice();
-  }
-}
-
-const addToCartFromCountdown = (imgSrc, title, price) => {
-  const cartContent = document.querySelector(".cart-content");
-
-  // Check if item is already in cart
-  const cartItems = cartContent.querySelectorAll(".cart-product-title");
-  for (let item of cartItems) {
-    if (item.textContent === title) {
-      alert("This item is already in the cart.");
-      return;
-    }
-  }
-
-  // Create cart item
-  const cartBox = document.createElement("div");
-  cartBox.classList.add("cart-box");
-  cartBox.innerHTML = `
-        <img src="${imgSrc}" class="cart-img">
-        <div class="cart-detail">
-            <h2 class="cart-product-title">${title}</h2>
-            <span class="cart-price">${price}</span>
-            <div class="cart-quantity">
-                <button id="decrease">-</button>
-                <span class="quantity-number">1</span>
-                <button id="increase">+</button>
-            </div>
-        </div>
-        <i class="ri-delete-bin-line cart-remove"></i>
-    `;
-
-  cartContent.appendChild(cartBox);
-
-  // Remove item from cart
-  cartBox.querySelector(".cart-remove").addEventListener("click", () => {
-    cartBox.remove();
-    updateCartCount(-1);
-    updateTotalPrice();
-    saveCart();
-  });
-
-  // Quantity control
-  cartBox.querySelector(".cart-quantity").addEventListener("click", (event) => {
-    const quantityElement = cartBox.querySelector(".quantity-number");
-    const decreaseButton = cartBox.querySelector("#decrease");
-    let quantity = parseInt(quantityElement.textContent);
-
-    if (event.target.id === "decrease" && quantity > 1) {
-      quantity--;
-      if (quantity === 1) {
-        decreaseButton.style.color = "#999";
-      }
-    } else if (event.target.id === "increase") {
-      quantity++;
-      decreaseButton.style.color = "#333";
-    }
-
-    quantityElement.textContent = quantity;
-    updateTotalPrice();
-    saveCart();
-  });
-
-  updateCartCount(1);
-  updateTotalPrice();
-  saveCart();
-};
-
-const cartIcon = document.querySelector(".nav_basket");
-const cart = document.querySelector(".cart");
-const cartClose = document.querySelector("#cart-close");
-
-cartIcon.addEventListener("click", () => cart.classList.add("active"));
-cartClose.addEventListener("click", () => cart.classList.remove("active"));
-
-const addCartButtons = document.querySelectorAll(".btn-cart");
-addCartButtons.forEach((button) => {
-  if (!button.closest(".countdown")) {
-    // Skip countdown button as it's handled separately
-    button.addEventListener("click", (event) => {
-      const productElement = event.target.closest(".product");
-      if (productElement) {
-        addToCart(productElement);
-      }
-    });
-  }
-});
-
-const cartContent = document.querySelector(".cart-content");
-
-const addToCart = (productElement) => {
-  const productImgSrc = productElement.querySelector("img").src;
-  const productTitle =
-    productElement.querySelector(".product-name").textContent;
-  const productPrice =
-    productElement.querySelectorAll(".product-price")[1]?.textContent ||
-    productElement.querySelector(".product-price").textContent;
-
-  const cartItems = cartContent.querySelectorAll(".cart-product-title");
-  for (let item of cartItems) {
-    if (item.textContent === productTitle) {
-      alert("This item is already in the cart.");
-      return;
-    }
-  }
-
-  const cartBox = document.createElement("div");
-  cartBox.classList.add("cart-box");
-  cartBox.innerHTML = `
-          <img src="${productImgSrc}" class="cart-img">
-          <div class="cart-detail">
-              <h2 class="cart-product-title">${productTitle}</h2>
-              <span class="cart-price">${productPrice}</span>
-              <div class="cart-quantity">
-                  <button id="decrease">-</button>
-                  <span class="quantity-number">1</span>
-                  <button id="increase">+</button>
-              </div>
-          </div>
-          <i class="ri-delete-bin-line cart-remove"></i>
-      `;
-
-  cartContent.appendChild(cartBox);
-
-  cartBox.querySelector(".cart-remove").addEventListener("click", () => {
-    cartBox.remove();
-    updateCartCount(-1);
-    updateTotalPrice();
-    saveCart();
-  });
-
-  cartBox.querySelector(".cart-quantity").addEventListener("click", (event) => {
-    const quantityElement = cartBox.querySelector(".quantity-number");
-    const decreaseButton = cartBox.querySelector("#decrease");
-    let quantity = parseInt(quantityElement.textContent);
-
-    if (event.target.id === "decrease" && quantity > 1) {
-      quantity--;
-      if (quantity === 1) {
-        decreaseButton.style.color = "#999";
-      }
-    } else if (event.target.id === "increase") {
-      quantity++;
-      decreaseButton.style.color = "#333";
-    }
-
-    quantityElement.textContent = quantity;
-    updateTotalPrice();
-    saveCart();
-  });
-
-  updateCartCount(1);
-  updateTotalPrice();
-  saveCart();
-};
-
-const updateTotalPrice = () => {
-  const totalPriceElement = document.querySelector(".total-price");
-  const cartBoxes = cartContent.querySelectorAll(".cart-box");
-  let total = 0;
-  cartBoxes.forEach((cartBox) => {
-    const priceElement = cartBox.querySelector(".cart-price");
-    const quantityElement = cartBox.querySelector(".quantity-number");
-    const price = parseFloat(priceElement.textContent.replace("$", ""));
-    const quantity = parseInt(quantityElement.textContent);
-    total += price * quantity;
-  });
-  totalPriceElement.textContent = `$${total.toFixed(2)}`;
-};
-
-let cartItemCount = 0;
-const updateCartCount = (change) => {
-  const cartItemCountBadge = document.querySelector(".basket-count");
-  cartItemCount += change;
-  if (cartItemCount > 0) {
-    cartItemCountBadge.style.visibility = "visible";
-    cartItemCountBadge.textContent = cartItemCount;
-  } else {
-    cartItemCountBadge.style.visibility = "hidden";
-    cartItemCountBadge.textContent = "";
-  }
-};
-
-const buyNowButton = document.querySelector(".btn-buy");
-buyNowButton.addEventListener("click", () => {
-  const cartBoxes = cartContent.querySelectorAll(".cart-box");
-  if (cartBoxes.length === 0) {
-    alert("Your cart is empty. Please add items to your cart before buying.");
-    return;
-  }
-
-  cartBoxes.forEach((cartBox) => cartBox.remove());
-
-  cartItemCount = 0;
-  updateCartCount(0);
-  updateTotalPrice();
-
-  // Clear localStorage after purchase
-  localStorage.removeItem("cart");
-
-  alert("Thank you for your purchase!");
-});

@@ -135,22 +135,6 @@ searchBtn.onclick = () => {
   cancelBtn.classList.add("show");
 };
 
-var countDownDate = new Date("Apr 20, 2025 00:00:00").getTime();
-var x = setInterval(function () {
-  var now = new Date().getTime();
-  var distance = countDownDate - now;
-
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById("days").innerHTML = days;
-  document.getElementById("hours").innerHTML = hours;
-  document.getElementById("minutes").innerHTML = minutes;
-  document.getElementById("seconds").innerHTML = seconds;
-}, 1000);
-
 const cartIcon = document.querySelector(".nav_basket");
 const cart = document.querySelector(".cart");
 const cartClose = document.querySelector("#cart-close");

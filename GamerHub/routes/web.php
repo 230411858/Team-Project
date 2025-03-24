@@ -23,11 +23,11 @@ Route::get('/support', function () {
 Route::get('/contact', function () {
     return view('support.contact');
 });
-Route::get('/faq', function () {
-    return view('support.faq');
-});
 Route::get('/about', function () {
     return view('about');
+});
+Route::get('/faq', function() { 
+    return view('support.faq'); 
 });
 
 // Product Routes
@@ -41,10 +41,10 @@ Route::get('/remove/{id}', [ProductController::class, 'removeBasketItem'])->midd
 Route::get('/checkout', [ProductController::class, 'checkout'])->middleware('auth');
 Route::post('/checkout', [ProductController::class, 'saveOrder'])->middleware('auth');
 Route::get('/orders/{id}', [OrderController::class, 'show'])->middleware('auth');
+Route::get('/orders/{id}/{status?}', [AdminCustomerController::class, 'change_order_status']);
 Route::get('/orders', [OrderController::class, 'index'])->middleware('auth');
 Route::post('/review/{id}', [ProductController::class, 'review'])->middleware('auth');
 Route::get('/search', [ProductController::class, 'search'])->name('search');
-Route::get('/faq', [function() { return view('faq'); }])->name('faq');
 
 // User Dashboard (Customer)
 Route::get('/edit/user/{id}', [UserController::class, 'edit'])->middleware('auth');
@@ -84,10 +84,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
     Route::post('/admin/products/store', [ProductController::class, 'store'])->name('admin.products.store');
-
-    //reports
-    Route::get('/admin/reports', [ReportController::class, 'index'])->name('admin.reports');
-
 
     Route::get('/admin/products/{id}', [ProductController::class, 'show'])->name('admin.products.show');
 

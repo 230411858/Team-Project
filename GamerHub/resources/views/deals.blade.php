@@ -26,6 +26,7 @@
             $biggest_discount = $discount_items->sortByDesc('discount')->first();
 
             $biggest_discount_image = $images->firstWhere('product', $biggest_discount->id);
+            
             @endphp
             <img src="{{ url('/images') }}/{{ $biggest_discount->category }}/{{ $biggest_discount_image == null ? 'cover.png' : $biggest_discount_image->file }}" alt="" />
             <div class="countdown-text">

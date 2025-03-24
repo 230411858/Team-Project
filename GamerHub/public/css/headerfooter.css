@@ -703,7 +703,7 @@ form.active {
   width: 100px;
   height: 100px;
   border-radius: 6px;
-  object-fit: cover;
+  object-fit: contain;
   margin-right: 20px;
 }
 
@@ -814,7 +814,7 @@ section.footer {
   grid-template-columns: repeat(auto-fit, minmax(200px, auto));
   gap: 3.5rem;
   background: #1a242f;
-  position: relative;
+  position: sticky;
 }
 
 .footer-content h4 {

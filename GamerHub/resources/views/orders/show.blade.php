@@ -2,6 +2,22 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ url('/css/order.css') }}">
+<style>
+    #change-status-label {
+        display: inline-block;
+        width: 8em;
+        padding-top: 1.5em;
+    }
+
+    #change-status {
+        display: inline-block;
+        width: 6em;
+        position: relative;
+        top: -3em;
+        all: initial;
+        font-family: 'Courier New', Courier, monospace;
+    }
+</style>
 @endsection
 
 @section('title')
@@ -27,11 +43,15 @@
 
         @case ('in-transit')
         <img class="order-status-image" src="{{ url('/images/in-transit.svg') }}" alt="">
-        <h1 class="update-text">Your order is on your way to you now</h1>
+        <h1 class="update-text">Your order is on your way to you now
+            <span id="updated-at">(Last updated {{ $order->updated_at }})</span>
+        </h1>
         @break
         @case ('delivered')
         <img class="order-status-image" src="{{ url('/images/delivered.svg') }}" alt="">
-        <h1 class="update-text">Your order has been delivered</h1>
+        <h1 class="update-text">Your order has been delivered
+            <span id="updated-at">(Last updated {{ $order->updated_at }})</span>
+        </h1>
         @break
         @default ('processing')
         <img class="order-status-image" src="{{ url('/images/processing.svg') }}" alt="">
@@ -44,8 +64,13 @@
     <hr>
     @php
     $order_items = App\Models\OrderItem::where('oid', $order->id)->get();
+
     $products = App\Models\Product::all();
+
     $product_images = App\Models\ProductImage::all();
+
+    $shipping_cost = $order->shipping_method == 'standard' ? 299 : 499;
+
     $subtotal = 0;
     @endphp
     @foreach ($order_items as $order_item)
@@ -54,19 +79,12 @@
 
     $product_image = $product_images->firstWhere('product', $product->id);
 
-    $subtotal = ($product->price * (1 - $order_item->discount) * $order_item->quantity);
+    $subtotal += ($product->price * (1 - $order_item->discount) * $order_item->quantity);
 
     $discount_amount = 0;
-
-    $file = 'cover.png';
-
-    if ($product_image != null)
-    {
-    $file = $product_image->file;
-    }
     @endphp
     <div class="order-item-overview">
-        <img class="order-item-image" src="{{ url('/images') }}/{{ $product->category }}/{{ $file }}" alt="Product Image">
+        <img class="order-item-image" src="{{ url('/images') }}/{{ $product->category }}/{{ $product_image == null ? 'cover.png' : $product_image->file }}" alt="Product Image">
         <div class="order-item-text">
             {{ ucwords($product->name) }}
             <br>
@@ -79,7 +97,7 @@
                 £{{ number_format($product->price / 100, 2) }}
             </s>
             <b class="discounted-price">
-                £{{ number_format(($product->price * (1-$product->discount)) / 100, 2) }}
+                £{{ number_format(($product->price * (1-$order_item->discount)) / 100, 2) }}
             </b>
             @else
             <b>
@@ -98,12 +116,22 @@
             <a id="product-link" href="{{ url('/products') }}/{{ $product->id }}">View product</a>
         </div>
         <div class="order-item-subtotal">
-
+            £{{ number_format(($product->price * (1-$order_item->discount) * $order_item->quantity) / 100, 2) }}
         </div>
     </div>
     <hr>
     @endforeach
     <div class="order-item-overview">
+        @if (Auth::user()->account_type === 'admin')
+        <label id="change-status-label" for="change-status">Update order status:</label>
+        <br>
+        <select onchange="edit(<?php echo $order->id ?>, this)" name="change-status" id="change-status">
+            <option value="<?php echo $order->status ?>">No change</option>
+            <option value="processing">Processing</option>
+            <option value="in-transit">In-transit</option>
+            <option value="delivered">Delivered</option>
+        </select>
+        @endif
         <div class="final-values-titles">
             <p class="subtotal">
                 Subtotal
@@ -126,13 +154,16 @@
                 £-{{ number_format($discount_amount, 2) }}
             </p>
             <p class="shipping-cost">
-                £{{ number_format(($order->shipping_method == 'standard' ? 299 : 499) / 100, 2) }}
+                £{{ number_format(($shipping_cost) / 100, 2) }}
             </p>
             <p class="grand-total">
-                £{{ number_format(($subtotal - $discount_amount) / 100, 2) }}
+                £{{ number_format(($subtotal - $discount_amount + $shipping_cost) / 100, 2) }}
             </p>
         </div>
     </div>
     <hr>
 </div>
+@endsection
+@section('js')
+<script src="{{ url('/js/orders.js') }}"></script>
 @endsection

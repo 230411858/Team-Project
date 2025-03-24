@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
 class  AdminCustomerController extends Controller
@@ -39,6 +40,22 @@ class  AdminCustomerController extends Controller
         $this->verifyAdmin();
         User::destroy($id);
         return redirect()->route('admin.customers.index')->with('success', 'Customer deleted successfully.');
+    }
+
+    public function orders()
+    {
+        $this->verifyAdmin();
+        $orders = Order::all()->sortByDesc('created_at');
+        return view('admin.orders.index', ['orders' => $orders]);
+    }
+
+    public function change_order_status($id, $status)
+    {
+        $this->verifyAdmin();
+        $order = Order::find($id);
+        $order->status = $status;
+        $order->save();
+        return back();
     }
 
     public function verifyAdmin()
