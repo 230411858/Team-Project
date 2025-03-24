@@ -52,7 +52,7 @@
                         <span>Seconds</span>
                     </div>
                 </div>
-                <button type="button" class="btn-cart">
+                <button onclick="window.location.href = '/add/{{ $biggest_discount->id }}'" type="button" class="btn-cart">
                     add to cart
                     <span><i class="fas fa-plus"></i></span>
                 </button>
@@ -79,11 +79,11 @@
                             </a>
                         </div>
                         <div class="product-btns">
-                            <button type="button" class="btn-cart">
+                            <button onclick="window.location.href = '/add/{{ $discount_item->id }}'" type="button" class="btn-cart">
                                 add to cart
                                 <span><i class="fas fa-plus"></i></span>
                             </button>
-                            <button type="button" class="btn-buy">
+                            <button onclick="window.location.href = '/products/{{ $biggest_discount->id }}'" type="button" class="btn-buy">
                                 more info
                             </button>
                         </div>
