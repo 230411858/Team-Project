@@ -37,24 +37,18 @@
     @foreach ($discount_items as $discount_item)
     @php
     $image = $images->firstWhere('product', $discount_item->id);
-    if ($image == null)
-    {
-    $file = 'cover.png';
-    }
-    else
-    {
-    $file = $image->file;
-    }
     @endphp
     <div class="item">
       <div class="product">
         <div class="product-content">
           <div class="product-img">
-            <img src="{{ url('/images') }}/{{ $discount_item->category }}/{{ $file }}" alt="product image" />
+            <a href="{{ url('/products') }}/{{ $discount_item->id }}">
+            <img src="{{ url('/images') }}/{{ $discount_item->category }}/{{ $image == null ? 'cover.png' : $image->file }}" alt="product image" />
+            </a>
           </div>
           <div class="product-btns">
             <a href="{{ url('/add') }}/{{ $discount_item->id }}"><button type="button" class="btn-cart">add to cart></button></a>
-            <button type="button" class="btn-buy">more info</button>
+            <button onclick="window.location.href = '/products/<?php echo $discount_item->id ?>'" type="button" class="btn-buy">more info</button>
           </div>
         </div>
 
@@ -102,16 +96,16 @@
     <a href="{{ url('/products/category/monitors') }}" class="type_card">
       <p class="type_card__title">Monitors</p>
     </a>
-    <a href="{{ url('/products/category/microphones') }}" class="type_card">
+    <a href="{{ url('/products/category/speakers') }}" class="type_card">
       <p class="type_card__title">Speakers</p>
     </a>
-    <a href="{{ url('/products/category/speakers') }}" class="type_card">
+    <a href="{{ url('/products/category/mice') }}" class="type_card">
       <p class="type_card__title">Mice</p>
     </a>
     <a href="{{ url('/deals') }}" class="type_card">
       <p class="type_card__title">Discounted</p>
     </a>
-    <a href="{{ url('/products/category/mice') }}" class="type_card">
+    <a href="{{ url('/products/category/keyboards') }}" class="type_card">
       <p class="type_card__title">Keyboards</p>
     </a>
     <a href="{{ url('/products/category/microphones') }}" class="type_card">

@@ -24,11 +24,14 @@ h2{
     padding-bottom: 20px;
 }
 
+.order-status-image {
+    width: 400px;
+    height: auto;
+    padding-right: 50px;
+}
+
 .update-text{
-    position: absolute;
-    top: 10px;
-    padding-left: 500px;
-    padding-right: 100px;
+    
 }
 
 #updated-at{
@@ -74,11 +77,6 @@ h2{
     width: 200px;
     height: auto;
     object-fit: contain;
-}
-
-.order-status-image {
-    width: 400px;
-    height: auto;
 }
 
 .order-item-text{

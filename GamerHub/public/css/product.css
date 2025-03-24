@@ -455,7 +455,7 @@
 }
 /* button in form  */
 
-.review-form button:hover {
+.review-form button.submit-review:hover {
   background-color: orange;
 }
 /* hover over button in form  */
@@ -542,4 +542,5 @@ button.star.active {
   outline: none;
   cursor: pointer;
   transition: color 0.3s ease-in-out;
+  pointer-events: none;
 }

@@ -66,6 +66,11 @@ class ProductController extends Controller
 
     public function addBasketItem($product, $quantity = 1)
     {
+        if($quantity > Product::find($product)->stock)
+        {
+            return back();
+        }
+
         $old_basket_item = BasketItem::firstWhere([ ['user', '=', Auth::id()], ['product', '=', $product] ]);
 
         if ($old_basket_item == null) {
@@ -276,7 +281,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'category' => 'required|in:mice,keyboards,monitors,audio',
+            'category' => 'required|in:mice,keyboards,monitors,speakers,microphone',
             'description' => 'required|string|max:1000',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);

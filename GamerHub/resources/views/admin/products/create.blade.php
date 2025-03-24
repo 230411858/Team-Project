@@ -56,7 +56,8 @@
                                 <option value="mice">Mice</option>
                                 <option value="keyboards">Keyboards</option>
                                 <option value="monitors">Monitors</option>
-                                <option value="audio">Audio</option>
+                                <option value="speakers">Speakers</option>
+                                <option value="microphones">Microphones</option>
                             </select>
                         </div>
 

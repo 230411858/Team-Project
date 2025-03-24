@@ -262,7 +262,7 @@
 
     $total = 0;
     @endphp
-    <div class="cart-content">{{ $basket_items->count() }}</div>
+    <div class="cart-content"></div>
     @foreach ($basket_items as $basket_item)
     @php
     $product = $products->firstWhere('id', $basket_item->product);
@@ -273,7 +273,7 @@
 
     @endphp
     <div class="cart-box">
-      <img src="{{ url('/images') }}/{{ $product->category }}/{{ $image == null ? cover.png : $image->file }}" class="cart-img">
+      <img src="{{ url('/images') }}/{{ $product->category }}/{{ $image == null ? 'cover.png' : $image->file }}" class="cart-img">
       <div class="cart-detail">
         <h2 class="cart-product-title">{{ ucwords($product->name) }}</h2>
         <span class="cart-price">£{{ number_format(($product->price * $basket_item->quantity * (1 - $basket_item->discount)) / 100, 2) }}</span>

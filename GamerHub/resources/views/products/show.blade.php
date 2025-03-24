@@ -137,7 +137,7 @@
         <br>
         <div class="review-form">
             <input type="text" maxlength="1000" id="text" name="text" rows="4" placeholder="Write your review here...">
-            <button type="submit">Submit Review</button>
+            <button class="submit-review" type="submit">Submit Review</button>
     </form>
 </div>
 
