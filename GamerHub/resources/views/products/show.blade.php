@@ -30,16 +30,9 @@
             <!-- main picture (big one) -->
             @php
             $image = $images->firstWhere('product', $product->id);
-
-            $file = 'cover.png';
-
-            if ($image != null)
-            {
-            $file = $image->file;
-            }
             @endphp
             <div class="image-main-p">
-                <img src="{{ url('/images') }}/{{ $product->category }}/{{ $file }}" alt="Product Image" id="Mainpicture">
+                <img src="{{ url('/images') }}/{{ $product->category }}/{{ $image == null ? 'cover.png' : $image->file }}" alt="Product Image" id="Mainpicture">
             </div>
 
             <!-- little thumbnails to click to change pics-->

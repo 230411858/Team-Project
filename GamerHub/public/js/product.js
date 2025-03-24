@@ -1,3 +1,8 @@
+function changeImage(imageSrc) {
+    document.getElementById('Mainpicture').src = imageSrc;
+}  
+//get the main pic id
+
 function updateTotal() {
     const price = parseFloat(document.getElementById('price').textContent);
     const quantity = parseInt(document.getElementById('quantity').value);

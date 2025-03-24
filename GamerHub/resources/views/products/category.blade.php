@@ -131,7 +131,7 @@
 <script src="https://kit.fontawesome.com/6d6a721856.js" crossorigin="anonymous"></script>
 <script async>
     document.addEventListener("DOMContentLoaded", function() {
-        subCategory = "<?php echo $sub_category ?>";
+        const subCategory = "<?php echo $sub_category ?>";
         document.querySelector(`[data-name="${subCategory}"]`).click();
     });
 </script>
