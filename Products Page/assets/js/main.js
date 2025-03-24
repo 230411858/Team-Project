@@ -267,21 +267,26 @@ Switch.addEventListener("click", () =>{
 // rating system
 
 let selectedRating = 0;
-        
-document.querySelectorAll('.star').forEach((star, index, stars) => {
+
+document.querySelectorAll('.star').forEach(star => {
     star.addEventListener('click', () => {
-        selectedRating = index + 1;
-        stars.forEach((s, i) => s.innerHTML = i < selectedRating ? "&#9733;" : "&#9734;");
+        selectedRating = star.getAttribute('data-value');
+        document.querySelectorAll('.star').forEach(s => 
+            s.innerHTML = s.getAttribute('data-value') <= selectedRating ? "&#9733;" : "&#9734;"
+        );
     });
 });
 
 function addReview() {
-    const reviewText = document.getElementById('review-text').value.trim();
-    const reviewerName = document.getElementById('reviewer-name').value.trim();
-    if (!reviewText || !reviewerName || !selectedRating) {
-        return alert("Please provide a rating, name, and review.");
-    }
-    document.getElementById('reviews-list').innerHTML += `<div><strong>${reviewerName}</strong> (${selectedRating} stars) <br> ${reviewText} <hr></div>`;
+    const reviewText = document.getElementById('review-text').value.trim(),
+          reviewerName = document.getElementById('reviewer-name').value.trim(),
+          reviewsList = document.getElementById('reviews-list');
+
+    if (!reviewText || !reviewerName || selectedRating == 0) return alert("Please provide a rating, name, and review.");
+
+    reviewsList.innerHTML += `<div><strong>${reviewerName}</strong> (${selectedRating} star${selectedRating > 1 ? "s" : ""})<br>${reviewText}<hr></div>`;
+    
+    document.getElementById('no-reviews-message')?.remove();
     document.getElementById('review-text').value = '';
     document.getElementById('reviewer-name').value = '';
     selectedRating = 0;
